@@ -1,0 +1,41 @@
+    <div class="content-section col-lg-12 text-center">
+      <h3 class="text-white">Registrarse</h3> 
+    </div>
+    <form name="signup">
+      <div class="panel animated bounceInLeft" style=" background-color: rgba(0, 0, 0, 0.3)!important;">
+         <div style="padding: 6px;" class="alert alert-danger" ng-show="signup.$valid && formRegister.data.password != formRegister.data.confirm">
+          <strong></strong> Las contraseñas no coinciden.
+          </div>
+          <div class="form-group">
+          <label class="text-white">Nombres*:</label>
+            <input type="text" required="true" name="nombres" ng-model="formRegister.data.name" class="form-control" placeholder="Nombres">
+          </div>
+          <div class="form-group">
+          <label class="text-white">Apellidos*:</label>
+            <input type="text" required="true" name="last_name" ng-model="formRegister.data.last_name" class="form-control" placeholder="Apellidos">
+          </div>
+          <div class="form-group">
+          <label class="text-white">Email*:</label>
+            <input type="email" required="true" name="username" ng-model="formRegister.data.email" class="form-control" placeholder="Correo">
+          </div>
+          <div class="row">
+            <div class="col-lg-6">
+              <div class="form-group">
+              <label class="text-white">Contraseña*:</label>
+                <input type="password" disable-right-click ng-cut="$event.preventDefault()" ng-copy="$event.preventDefault()" ng-paste="$event.preventDefault()" required="true" name="password" ng-model="formRegister.data.password" class="form-control" placeholder="Contraseña">
+              </div>            
+            </div>
+            <div class="col-lg-6">
+              <div class="form-group">
+              <label class="text-white">Confirmar Contraseña*:</label>
+                <input type="password" disable-right-click ng-cut="$event.preventDefault()" ng-copy="$event.preventDefault()" ng-paste="$event.preventDefault()" required="true" name="re-password" ng-model="formRegister.data.confirm" class="form-control" placeholder="Confirmar Contraseña">
+              </div>            
+            </div>            
+          </div>
+          <div vc-recaptcha key="'6LcVHCkTAAAAAJZ34Qsx8U6rapWvpS7w4KW3-4aF'"
+          ></div>
+          <div class="form-group">
+            <button ng-click="register_and_request()" style="width:30%;position:relative;top:5px;margin:0 auto;padding:10px;border-radius: 4px;" class="custom-btn custom-btn-primary">Registrarme</button>
+          </div> 
+      </div>            
+    </form>

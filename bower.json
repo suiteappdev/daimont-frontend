@@ -1,0 +1,75 @@
+{
+  "name": "DAIMONT",
+  "version": "0.0.0",
+  "dependencies": {
+    "angular": "^1.4.0",
+    "angular-animate": "^1.4.0",
+    "angular-cookies": "^1.4.0",
+    "angular-resource": "^1.4.0",
+    "angular-route": "^1.4.0",
+    "angular-sanitize": "^1.4.0",
+    "angular-touch": "^1.4.0",
+    "angular-ui-router": "ui-router#^0.2.18",
+    "firebase": "^2.4.1",
+    "angularfire": "^1.1.4",
+    "jquery": "^2.2.2",
+    "sweetalert": "^1.1.3",
+    "angularUtils-pagination": "angular-utils-pagination#^0.11.1",
+    "toastr": "^2.1.2",
+    "cropperjs": "^0.7.1",
+    "ng-img-crop": "^0.3.2",
+    "moment": "^2.13.0",
+    "ngDatepicker": "*",
+    "iCheck": "https://github.com/fronteed/icheck.git#^1.0.2",
+    "angular-selectize2": "https://github.com/suiteappdev/selectizer.git",
+    "angular-recaptcha": "^3.0.4",
+    "angular-preload-image": "*",
+    "angular-ui-map": "^0.5.0",
+    "components-font-awesome": "^4.7.0",
+    "angular-facebook": "^0.2.3",
+    "nouislider": "^10.0.0",
+    "angular-bootstrap": "^2.5.0",
+    "bootstrap": "v4.0.0-alpha.6",
+    "Datedropper3": "https://github.com/felicegattuso/Datedropper3.git",
+    "jquery.maskedinput": "^1.4.1",
+    "angular-i18n": "^1.6.5"
+  },
+  "devDependencies": {
+    "angular-mocks": "^1.4.0"
+  },
+  "appPath": "app",
+  "moduleName": "shoplyApp",
+  "resolutions": {
+    "angular": "~1.4.0"
+  },
+  "overrides": {
+    "moment": {
+      "main": [
+        "min/moment.min.js",
+        "locale/es.js"
+      ]
+    },
+    "nouislider": {
+      "main": [
+        "distribute/nouislider.min.js"
+      ]
+    },
+    "bootstrap": {
+      "main": [
+        "dist/css/bootstrap.min.css",
+        "dist/js/bootstrap.min.js"
+      ]
+    },
+    "Datedropper3": {
+      "main": [
+        "datedropper.min.css",
+        "datedropper.min.js"
+      ]
+    },
+    "angular-i18n": {
+      "main": [
+        "angular-locale_es-co.js"
+      ]
+    }
+  }
+}

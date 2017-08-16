@@ -1,0 +1,14 @@
+{
+  "name": "Datedropper3",
+  "homepage": "https://github.com/felicegattuso/Datedropper3",
+  "_release": "60df15d8f6",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "60df15d8f657f50b059972bb1c4061f91c1976b8"
+  },
+  "_source": "https://github.com/felicegattuso/Datedropper3.git",
+  "_target": "*",
+  "_originalSource": "https://github.com/felicegattuso/Datedropper3.git",
+  "_direct": true
+}

@@ -1,0 +1,53 @@
+<h2 class="fs-title">Informacion Laboral</h2>
+<h3 class="fs-subtitle">Por favor complete los campos y presione continuar</h3>
+
+<div class="row">
+    <div class="col-lg-6">
+        <div class="form-group">
+            <selectize required config="{create:false, maxItems:1, valueField: 'value', labelField: 'text', placeholder:'Nivel de Estudio'}" options='[{value:"Profesional", text:"Profesional"}, {value:"Tecnico", text:"Tecnico"},  {value:"Tecnologo", text:"Tecnologo"}]' ng-model="form.data.nivel_estudio"></selectize>
+        </div>
+    </div>
+    <div class="col-lg-6">
+        <div class="form-group">
+             <selectize required config="{create:false, maxItems:1, valueField: 'value', labelField: 'text', placeholder:'Actualmente soy'}" options='[{value:"Independiente", text:"Independiente"}, {value:"Empleado", text:"Empleado"}, {value:"Estudiante", text:"Estudiante"}, {value:"Pensionado", text:"Pensionado"}]' ng-model="form.data.perfil_actual"></selectize>
+        </div>
+    </div>
+    <div class="col-lg-6">
+        <div class="form-group">
+            <selectize 
+                required 
+                config="{create:true, maxItems:1, valueField: 'value', labelField: 'text', placeholder:'Ingresos totales mensuales'}" options='[
+                    {value:"Menos de 500.000", text:"Menos de 500.000"},
+                    {value:"De 500.000 hasta 1.000.000", text:"De 500.000 hasta 1.000.000"},
+                    {value:"De 1.000.000 hasta 1.500.000", text:"De 1.000.000 hasta 1.500.000"},
+                    {value:"De 1.500.000 hasta 2.000.000", text:"De 1.500.000 hasta 2.000.000"},
+                    {value:"De 2.000.000 hasta 2.500.000", text:"De 2.000.000 hasta 2.500.000"},
+                    {value:"De 3.000.000 hasta 3.500.000", text:"De 3.000.000 hasta 3.500.000"},
+                    {value:"De 4.000.000 hasta 4.500.000", text:"De 4.000.000 hasta 4.500.000"},
+                    {value:"De 5.000.000 hasta 5.500.000", text:"De 5.000.000 hasta 5.500.000"}
+                ]' 
+                ng-model="form.data.ingresos_totales">
+            </selectize>
+        </div>        
+    </div>
+    <div class="col-lg-6">
+        <div class="form-group">
+            <selectize 
+                required 
+                config="{create:false, maxItems:1, valueField: 'value', labelField: 'text', placeholder:'Engresos totales mensuales'}" options='[
+                    {value:"Menos de 500.000", text:"Menos de 500.000"},
+                    {value:"De 500.000 hasta 1.000.000", text:"De 500.000 hasta 1.000.000"},
+                    {value:"De 1.000.000 hasta 1.500.000", text:"De 1.000.000 hasta 1.500.000"},
+                    {value:"De 1.500.000 hasta 2.000.000", text:"De 1.500.000 hasta 2.000.000"},
+                    {value:"De 2.000.000 hasta 2.500.000", text:"De 2.000.000 hasta 2.500.000"},
+                    {value:"De 3.000.000 hasta 3.500.000", text:"De 3.000.000 hasta 3.500.000"},
+                    {value:"De 4.000.000 hasta 4.500.000", text:"De 4.000.000 hasta 4.500.000"},
+                    {value:"De 5.000.000 hasta 5.500.000", text:"De 5.000.000 hasta 5.500.000"}
+                ]' 
+                ng-model="form.data.egresos_totales">
+            </selectize>        
+        </div>
+    </div>        
+</div>
+<input type="button" ng-click="go_back()" name="previous" class="previous action-button" value="Anterior" />
+<a ui-sref="profile.bank" href="#/profile/update/bank" name="next" class="btn btn-primary bold" value="Continuar">Continuar</a>

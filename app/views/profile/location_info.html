@@ -1,0 +1,30 @@
+<h2 class="fs-title">Informacion Residencial</h2>
+<h3 class="fs-subtitle">Por favor complete los campos y presione continuar</h3>
+
+<div class="row">
+    <div class="col-lg-6">
+        <div class="form-group">
+             <departamento-field required ng-model="form.data.departamento"></departamento-field>
+        </div>
+    </div>
+    <div class="col-lg-6">
+        <div class="form-group">
+             <ciudad-field required ng-model="form.data.ciudad"></ciudad-field>
+        </div>
+    </div>
+    <div class="col-lg-6">
+        <input type="text" class="form-control" name="direccion_residencial" placeholder="Dirección residencial" />
+    </div>
+    <div class="col-lg-6">
+        <div class="form-group">
+           <selectize required name="vivienda" config="{create:false, maxItems:1, valueField: 'value', labelField: 'text', placeholder:'Tipo de vivienda'}" options='[{value:"Propia", text:"Propia"}, {value:"Familiar", text:"Familiar"},  {value:"Arrendado", text:"Arrendado"}]' ng-model="form.data.tipo_vivienda"></selectize>
+        </div>        
+    </div>
+    <div class="col-lg-6">
+        <div class="form-group">
+           <selectize name="estrato" required config="{create:false, maxItems:1, valueField: 'value', labelField: 'text', placeholder:'Estrato'}" options='[{value:"1", text:"1"}, {value:"2", text:"2"},  {value:"3", text:"3"},  {value:"4", text:"4"},  {value:"5", text:"5"}]' ng-model="form.data.estrato"></selectize>
+        </div>
+    </div>
+</div>
+<input type="button" ng-click="go_back()" name="previous" class="previous action-button" value="Anterior" />
+<a ui-sref="profile.finance()" href="#/profile/update/finance" name="next" class="btn btn-primary bold" value="Continuar">Continuar</a>

@@ -1,0 +1,333 @@
+<div class="login-page" ng-controller="HomeCtrl">
+    <!-- Navbar -->
+    <nav class="navbar navbar-toggleable-md bg-primary fixed-top navbar-transparent hidden-md-down" color-on-scroll="500">
+        <div class="container">
+            <div class="logo">
+                <a href=""><img src="images/logo-main.png"></a>
+                <span class="animated bounceInLeft" style="display: block;position: absolute;font-size: 7px;bottom: 0px;left: 44px;">Creditos rapidos y seguros</span>
+            </div>
+            <div class="collapse navbar-collapse justify-content-end" id="navigation" data-nav-image="images/blurred-image-1.jpg">
+                <ul class="navbar-nav">
+                    <li class="nav-item" ng-show="!$root.isLogged">
+                        <a class="nav-link" href="#/signup" ui-sref="signup">Registrarse</a>
+                    </li>
+                    <li class="nav-item" ng-show="!$root.isLogged">
+                        <a class="nav-link" href="#/login" ui-sref="login" >Entrar</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" rel="tooltip" title="Follow us on Twitter" data-placement="bottom" href="https://twitter.com/CreativeTim" target="_blank">
+                            <i class="fa fa-twitter"></i>
+                            <p class="hidden-lg-up">Twitter</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" rel="tooltip" title="Like us on Facebook" data-placement="bottom" href="https://www.facebook.com/CreativeTim" target="_blank">
+                            <i class="fa fa-facebook-square"></i>
+                            <p class="hidden-lg-up">Facebook</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" rel="tooltip" title="Follow us on Instagram" data-placement="bottom" href="https://www.instagram.com/CreativeTimOfficial" target="_blank">
+                            <i class="fa fa-instagram"></i>
+                            <p class="hidden-lg-up">Instagram</p>
+                        </a>
+                    </li>
+                        <div class="pull-right navbar-text" ng-show="$root.user || $root.isLogged">
+                          <div class="dropdown">
+                              <a href="" class="dropdown-toggle" id="about-us" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                  <img ng-show="user.picture.data.url" ng-src="{{user.picture.data.url}}">
+                                  <img ng-show="user.picture.data.avatar" class="rounded-circle img-raised" ng-src="images/no_avatar.gif">
+                                  <div class="dropdown-menu dropdown-menu-right" aria-labelledby="about-us">
+                                    <a class="dropdown-header">Opciones</a>
+                                    <a class="dropdown-item" href="#"><span class="badge badge-default">Plan Basico</span></a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item" href="#">Configuración</a>
+                                    <a class="dropdown-item" href="#">Creditos</a>
+                                    <a class="dropdown-item" href="#">Planes</a>
+                                     <a class="dropdown-item" href="#" ng-click="logout()" >Salir</a>
+                                  </div>
+                              </a>                    
+                          </div>
+                        </div>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- End Navbar -->
+    <div class="page-header" filter-color="orange">
+        <div class="page-header-image"></div>
+        <div class="container">
+            <div class="col-md-4 content-center hidden-md-down">
+                <div class="row">
+                    <div class="simulator_summary col-lg-6" ng-hide="!$root.switch_summary">
+                        <div class="card card-login card-padding">
+                            <form class="form" method="" action="">
+                                <div class="header header-primary text-center">
+           
+                                </div>
+                                <div class="content">
+                                 <div class="row">
+                                    <div class="col-lg-6 text-left">
+                                        <label style="color:#101010;"><i class="now-ui-icons ui-1_calendar-60" ></i>&nbsp;Fecha de Pago:</label>
+                                    </div>
+                                    <div class="col-lg-6 text-right">
+                                        <p style="color:#101010;"><span class="badge badge-primary">{{ form.data.pay_day || current_date | moment: 'format': 'MMMM DD, YYYY' }}</span></p>
+                                    </div> 
+                                    <div class="col-lg-6 text-left">
+                                        <label style="color:#101010;">Monto Solicitado:</label>
+                                    </div>
+                                    <div class="col-lg-6 text-right">
+                                        <p  class="label-strong-primary">{{ form.data.amount[0] | currency:"$ "}}</p>
+                                    </div>
+                                    <div class="col-lg-6 text-left">
+                                        <label style="color:#101010;">Interes:</label>
+                                    </div>
+                                    <div class="col-lg-6 text-right">
+                                        <p  class="label-strong-primary">{{form.data.interestsDays || form.data.interests || 0 | currency:"$ ":0}} </p>
+                                    </div> 
+                                    <div class="col-lg-6 text-left">
+                                        <label style="color:#101010;">Gestión de Credito:</label>
+                                    </div>
+                                    <div class="col-lg-6 text-right">
+                                        <p  class="label-strong-primary">{{form.data.system_quoteDays || form.data.system_quote || 0   | currency:"$ ":0 }}</p>
+                                    </div>
+                                    <div class="col-lg-6 text-left">
+                                        <label style="color:#101010;">Costo de financiación:</label>
+                                    </div>
+                                    <div class="col-lg-6 text-right">
+                                        <p  class="label-strong-primary">{{form.data.finance_quote || 0 | currency:"$ "}}</p>
+                                    </div> 
+
+                                    <div class="col-lg-6 text-left">
+                                        <label style="color:#101010;">Iva:</label>
+                                    </div>
+                                    <div class="col-lg-6 text-right">
+                                        <p  class="label-strong-primary">{{form.data.ivaDays || form.data.iva || 0 | currency:"$ ":0}} </p>
+                                    </div> 
+
+                                    <div class="col-lg-6 text-left">
+                                        <label style="color:#101010;">Gestión de Credito:</label>
+                                    </div>
+                                    <div class="col-lg-6 text-right">
+                                        <p  class="label-strong-primary">{{form.data.system_quote || 0 | currency:"$ "}}</p>
+                                    </div> 
+                                    <hr style="1px dashed #858585 !important;" />                       
+
+                                    <div class="col-lg-6 text-left">
+                                        <label style="color:#101010;">Total a Pagar:</label>
+                                    </div>
+                                    <div class="col-lg-6 text-right">
+                                        <p class="label-strong-primary" style="color:green;!important">{{form.data.total_payment || 0 | currency:"$ ":0}} COP</p>
+                                    </div>
+                                </div>
+                                    <div class="row" ng-hide="!$root.user || $root.isLogged">
+                                        <div class="col-lg-12">
+                                             <a href="" ng-click="new_credit()" class="btn btn-success btn-block">Solicitar</a>                           
+                                        </div>
+                                    </div>
+                                        <div class="row" ng-hide="$root.user || $root.isLogged">
+                                            <div class="col-lg-6">
+                                                <a  href="#/empezar" ui-sref="home.empezar({ credit : form})" class="btn btn-primary btn-block btn-sm"></i>&nbsp;¿Eres Nuevo?</a>
+                                                
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <a href="#/continuar" ui-sref="home.continuar({ credit : form})" class="btn btn-primary btn-block btn-sm"></i>&nbsp;Tengo Cuenta</a>
+                                            </div>                                    
+                                        </div>
+                                </div>
+                                <div class="footer-card-data text-center row">
+                                    <div class="col-md-3">
+                                        <i style="font-size:25px;color: gray;" class="now-ui-icons shopping_credit-card"></i>
+                                        <p style="color:gray;font-size:10px;">C. Bancaria</p>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <i style="font-size:25px;color: gray;" class="now-ui-icons tech_mobile"></i>
+                                        <p style="color:gray;font-size:10px;">Celular</p>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <i style="font-size:25px;color: gray;" class="now-ui-icons ui-1_email-85"></i>
+                                        <p style="color:gray;font-size:10px;">Email</p>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <i style="font-size:25px;color: gray;" class="now-ui-icons business_badge"></i>
+                                        <p style="color:gray;font-size:10px;">Colombiano <button class="btn btn-primary btn-icon  btn-icon-mini btn-round btn-circle-badge" type="button">
+                                           +18
+                                        </button></p>
+                                    </div>
+                                </div>
+                            </form>
+
+                        </div> 
+                    </div>
+                    <div class="col-lg-6 container" ng-hide="$root.switch_summary">
+                        <div class="simulator_wrapper">
+                            <h5 class="text-left">¿Cuánto dinero necesitas?</h5>
+                            <i ng-click="inc()" style="position: relative;left: -220px;top: 13px;border:1px solid;border-radius:20%;padding:5px;" class="now-ui-icons ui-1_simple-delete"></i>
+                            <slider step="50000" id="amount" ng-model="form.data.amount" initial="200000" range="[100000, 500000]"></slider>
+                            <i  ng-click="dec()" style="position: relative;right: -220px;top: -15px;border:1px solid;border-radius:20%;padding: 5px;" class="now-ui-icons ui-1_simple-add"></i>
+                            <div class="row">
+                                <div class="col-lg-6 text-left">{{''}}</div>
+                                <div style="font-size:20px;margin-top: 5px;" class="col-lg-6 text-right">{{form.data.amount[0] || 0 | currency:"COP $ "}}</div>
+                            </div>
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+                            <h5 class="text-left">¿Cuándo puedes pagar?</h5>
+                            <i style="position: relative;left: -220px;top: 13px;border:1px solid;border-radius:20%;padding:5px;" class="now-ui-icons ui-1_simple-delete"></i>
+                            <slider step="1" ng-model="form.data.days" initial="15" range="[1, 30]"></slider>
+                            <i  style="position: relative;right: -220px;top: -15px;border:1px solid;border-radius:20%;padding: 5px;" class="now-ui-icons ui-1_simple-add"></i>
+                            <div class="row">
+                                <div style="font-size:20px;margin-top: 20px;" class="col-lg-6 text-left"></div>
+                                <div style="font-size:20px;margin-top: 5px;" ng-init="form.data.date = currentDate" class="col-lg-6 text-right">{{'en ' + form.data.days + ' dias.'}}</div>                            
+                            </div>
+                            <br />
+                            <br />                            
+                            <div class="row">
+                                <div class="col-lg-6 text-left">
+                                   <a href=""><img src="images/ico_appstore.svg" style="width:65%;margin-top:15px;"></a> 
+                                </div>
+                                <div class="col-lg-6 text-right">
+                                    <a href=""><img src="images/ico_googleplay.svg" style="width:65%;margin-top:15px;"></a>
+                                </div>                            
+                            </div>                            
+                        </div>
+
+                    </div>
+                    <div class="col-lg-6">
+                <div class="card card-login card-padding" ui-view>
+                    <form class="form" method="" action="">
+                        <div class="header header-primary text-center">
+   
+                        </div>
+                        <div class="content">
+                        <div class="row">
+                            <div class="col-lg-6 text-left">
+                                <label style="color:#101010;"><i class="now-ui-icons ui-1_calendar-60" ></i>&nbsp;Fecha de Pago:</label>
+                            </div>
+                            <div class="col-lg-6 text-right">
+                                <p style="color:#101010;"><span class="badge badge-primary">{{ form.data.pay_day || current_date | moment: 'format': 'MMMM DD, YYYY' }}</span></p>
+                            </div> 
+                            <div class="col-lg-6 text-left">
+                                <label style="color:#101010;">Monto Solicitado:</label>
+                            </div>
+                            <div class="col-lg-6 text-right">
+                                <p  class="label-strong-primary">{{ form.data.amount[0] | currency:"$ ":0}}</p>
+                            </div>
+                            <div class="col-lg-6 text-left">
+                                <label style="color:#101010;">Interes:</label>
+                            </div>
+                            <div class="col-lg-6 text-right">
+                                <p  class="label-strong-primary">{{ form.data.interestsDays || form.data.interests || 0 | currency:"$ ":0 }}</p>
+                            </div> 
+                            <div class="col-lg-6 text-left">
+                                <label style="color:#101010;">Gestión de Credito:</label>
+                            </div>
+                            <div class="col-lg-6 text-right">
+                                <p  class="label-strong-primary">{{form.data.system_quoteDays || form.data.system_quote  | currency:"$ ":0 }}</p>
+                            </div> 
+                            <div class="col-lg-6 text-left">
+                                <label style="color:#101010;">Costo de financiación:</label>
+                            </div>
+                            <div class="col-lg-6 text-right">
+                                <p  class="label-strong-primary">{{form.data.finance_quote || 0 | currency:"$ "}}</p>
+                            </div> 
+
+                            <div class="col-lg-6 text-left">
+                                <label style="color:#101010;">Iva:</label>
+                            </div>
+                            <div class="col-lg-6 text-right">
+                                <p  class="label-strong-primary">{{form.data.ivaDays || form.data.iva || 0 | currency:"$ ":0 }}</p>
+                            </div> 
+
+                            <hr style="1px dashed #858585 !important;" />                       
+
+                            <div class="col-lg-6 text-left">
+                                <label style="color:#101010;">Total a Pagar:</label>
+                            </div>
+                            <div class="col-lg-6 text-right">
+                                <p class="label-strong-primary" style="color:green;!important">{{form.data.total_payment || 0 | currency:"$ ":0}} COP</p>
+                            </div>
+                        </div>
+                                <div class="row" ng-hide="!$root.isLogged || !$root.user" >
+                                    <div class="col-lg-12">
+                                        <a  href="" ng-click="new_credit()" class="btn btn-success btn-block">Solicitar</a>                           
+                                    </div>
+                                </div>
+                                <div class="row" ng-hide="$root.user || $root.isLogged">
+                                    <div class="col-lg-6">
+                                        <a  href="#/empezar" ui-sref="home.empezar({credit : form})" class="btn btn-primary btn-block btn-sm"></i>&nbsp;¿Eres nuevo?</a>
+                                        
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <a href="#/continuar" ui-sref="home.continuar({credit : form})" class="btn btn-primary btn-block btn-sm"></i>&nbsp;Tengo Cuenta</a>
+                                    </div>                                    
+                                </div>
+                        </div>
+                        <div class="footer-card-data text-center row">
+                            <div class="col-md-3">
+                                <i style="font-size:25px;color: gray;" class="now-ui-icons shopping_credit-card"></i>
+                                <p style="color:gray;font-size:10px;">C. Bancaria</p>
+                            </div>
+                            <div class="col-md-3">
+                                <i style="font-size:25px;color: gray;" class="now-ui-icons tech_mobile"></i>
+                                <p style="color:gray;font-size:10px;">Celular</p>
+                            </div>
+                            <div class="col-md-3">
+                                <i style="font-size:25px;color: gray;" class="now-ui-icons ui-1_email-85"></i>
+                                <p style="color:gray;font-size:10px;">Email</p>
+                            </div>
+                            <div class="col-md-3">
+                                <i style="font-size:25px;color: gray;" class="now-ui-icons business_badge"></i>
+                                <p style="color:gray;font-size:10px;">Colombiano <button class="btn btn-primary btn-icon  btn-icon-mini btn-round btn-circle-badge" type="button">
+                                   +18
+                                </button></p>
+                            </div>
+                        </div>
+                    </form>
+
+                </div>
+                    </div>
+                    <div class="col-lg-12">
+
+                    </div>                      
+                </div>
+            </div>
+        </div>
+        <footer class="footer hidden-md-down footer-opacity">
+            <div class="container">
+                <nav>
+                    <ul>
+                        <li>
+                            <a href="#">
+                                Ayuda
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                               Acerca de
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                Terminos
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                Politicas de Privacidad
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+                <div class="copyright">
+                    &copy;
+                    <script>
+                    </script>2017, Todos los Derechos Reservados
+                    <a href="http://www.daimont.com" target="_blank">Daimont</a>. Creado por
+                    <a href="https://www.zarko.com.co" target="_blank">Zarko.com.co</a>.
+                </div>
+            </div>
+        </footer>
+    </div>
+</div>
