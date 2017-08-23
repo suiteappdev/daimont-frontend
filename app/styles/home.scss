@@ -4,7 +4,22 @@
     background-image: none;	
 }	
 
-.label-strong-primary{
-	color: #00999f;
+.label-strong-warning{
+	color: #fdeb00!important;
+}
+
+.navbar.navbar-transparent {
+    background-color: rgba(62, 62, 62, 0.3) !important;
+    box-shadow: none;
+    color: #fff;
+    padding-top: 20px;
+}
+
+
+.login-page .card-credit-resume {
+    padding-bottom: 0.7rem;
+    max-width: 340px;
+    background-image: none!important;;
+    background-color:transparent;
 }
 

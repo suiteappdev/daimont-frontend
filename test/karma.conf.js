@@ -56,6 +56,7 @@ module.exports = function(config) {
       'bower_components/Datedropper3/datedropper.min.js',
       'bower_components/jquery.maskedinput/dist/jquery.maskedinput.js',
       'bower_components/angular-i18n/angular-locale_es-co.js',
+      'bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.js',
       'bower_components/angular-mocks/angular-mocks.js',
       // endbower
       'app/scripts/**/*.js',

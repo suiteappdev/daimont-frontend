@@ -31,11 +31,11 @@ angular.module('shoplyApp')
         return;
     }
         $scope.counter--;
-        mytimeout = $timeout($scope.onTimeout,1000);
+        $scope.mytimeout = $timeout($scope.onTimeout,1000);
     }
         
     $scope.stop = function(){
-        $timeout.cancel(mytimeout);
+        $timeout.cancel($scope.mytimeout);
     }
 
     $scope.go_back = function(){
@@ -49,7 +49,7 @@ angular.module('shoplyApp')
                 console.log(res);
                 storage.update("user", $rootScope.user);
                 $scope.updated = true;
-                var mytimeout = $timeout($scope.onTimeout,1000);
+                $scope.mytimeout = $timeout($scope.onTimeout,1000);
                 delete $rootScope.beforeUpdate;
             }
         });

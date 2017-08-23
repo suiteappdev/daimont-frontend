@@ -5,6 +5,8 @@ angular.module('shoplyApp')
   	function ctrl($scope, api, modal, $rootScope){
         $scope.records = [
           {name : 'Bancolombia.', img : 'images/bancolombia.png', account:'11111111', owner:'Daimont.' },
+          {name : 'Efecty.', img : 'images/efecty.png', account:'11031022862', owner:'Luis Alvarez.' },
+          {name : 'PSE.', img : 'images/pse.png', account:'11031022862', owner:'Luis Alvarez.' },
           {name : 'Davivienda', img : 'images/davivienda.png', account:'2222222', owner:'luis fernando alvarez'  },
           {name : 'Banco BBVA.', img : 'images/bbva.png', account:'333333333', owner:'luis fernando alvarez'  },
           {name : 'Banco de Bogota', img : 'images/bogota.png', account:'44444444', owner:'luis fernando alvarez'  },

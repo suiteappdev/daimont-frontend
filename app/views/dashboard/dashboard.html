@@ -1,77 +1,5 @@
 <div class="login-page" ng-controller="DashboardCtrl" ng-init="load()">
-    <!-- Navbar -->
-    <nav class="navbar navbar-toggleable-md bg-primary fixed-top navbar-transparent hidden-md-down" color-on-scroll="500">
-        <div class="container">
-            <div class="dropdown button-dropdown">
-                <a href="" class="dropdown-toggle" id="navbarDropdown" data-toggle="dropdown">
-                    <span class="button-bar"></span>
-                    <span class="button-bar"></span>
-                    <span class="button-bar"></span>
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-header">Administrador</a>
-                    <a class="dropdown-item" href="#">Planes</a>
-                    <a class="dropdown-item" href="#">Empleados</a>
-                    <a class="dropdown-item" href="#">Pagos</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#">Consultar Perfiles</a>
-                </div>
-            </div>
-            <div class="navbar-translate">
-                <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-bar bar1"></span>
-                    <span class="navbar-toggler-bar bar2"></span>
-                    <span class="navbar-toggler-bar bar3"></span>
-                </button>
-            </div>
-            <div class="collapse navbar-collapse justify-content-end" id="navigation" data-nav-image="images/blurred-image-1.jpg">
-                <ul class="navbar-nav">
-                    <li class="nav-item" ng-show="!$root.isLogged">
-                        <a class="nav-link" href="#/signup" ui-sref="signup">Registrarse</a>
-                    </li>
-                    <li class="nav-item" ng-show="!$root.isLogged">
-                        <a class="nav-link" href="#/login" ui-sref="login" >Entrar</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" rel="tooltip" title="Follow us on Twitter" data-placement="bottom" href="https://twitter.com/CreativeTim" target="_blank">
-                            <i class="fa fa-twitter"></i>
-                            <p class="hidden-lg-up">Twitter</p>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" rel="tooltip" title="Like us on Facebook" data-placement="bottom" href="https://www.facebook.com/CreativeTim" target="_blank">
-                            <i class="fa fa-facebook-square"></i>
-                            <p class="hidden-lg-up">Facebook</p>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" rel="tooltip" title="Follow us on Instagram" data-placement="bottom" href="https://www.instagram.com/CreativeTimOfficial" target="_blank">
-                            <i class="fa fa-instagram"></i>
-                            <p class="hidden-lg-up">Instagram</p>
-                        </a>
-                    </li>
-                        <div class="pull-right navbar-text" ng-show="$root.user || $root.isLogged">
-                          <div class="dropdown">
-                              <a href="" class="dropdown-toggle" id="about-us" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                  <img ng-show="user.picture.data.url" ng-src="{{user.picture.data.url}}">
-                                  <img ng-show="!user.picture.data.avatar" class="rounded-circle img-raised" ng-src="images/no_avatar.gif">
-                                  <div class="dropdown-menu dropdown-menu-right" aria-labelledby="about-us">
-                                    <a class="dropdown-header">Opciones</a>
-                                    <a class="dropdown-item" href="#"><span class="badge badge-default">Plan Basico</span></a>
-                                    <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="#">Configuración</a>
-                                    <a class="dropdown-item" href="#">Creditos</a>
-                                    <a class="dropdown-item" href="#">Planes</a>
-                                     <a class="dropdown-item" href="#" ng-click="logout()" >Salir</a>
-                                  </div>
-                              </a>                    
-                          </div>
-                        </div>
-                </ul>
-            </div>
-        </div>
-    </nav>
-    <!-- End Navbar -->
+    <daimont-header></daimont-header>
     <div class="page-header" filter-color="orange">
         <div class="profile-header-image"></div>
         <div class="container">
@@ -103,8 +31,10 @@
                     <div class="row col-lg-12 text-left">
                         <span class="badge badge-default" ng-show="current_credit.data.status == 'Pendiente'">PENDIENTE</span>
                         <span class="badge badge-success" ng-show="current_credit.data.status == 'Aceptado'">ACEPTADO</span>
+                        <span class="badge badge-success" ng-show="current_credit.data.status == 'Consignado'">CONSIGNADO</span>
                         <span class="badge badge-danger" ng-show="current_credit.data.status == 'Rechazado'">RECHAZADO</span>
                         <span class="badge badge-warning" ng-show="current_credit.data.status == 'Desactualizado'">REQUIERE ACTUALIZACION</span>
+                        <p class="warn-text" class="animated bounceIn" ng-show="payment_done"><i class=""></i>su pago esta sujeto a verificacíon.</p>
                     </div>
                     <hr />
                 </div>
@@ -161,7 +91,7 @@
                         <p style="font-size:12px;margin-bottom:0px;"><strong>Total a Pagar:</strong></p>
                     </div>
                     <div class="col-lg-6 text-right" style="font-size:14px;">
-                        <p class="n-m" style="padding:10px;"><strong>{{current_credit.data.total_payment | currency:"$ "}}</strong></p>
+                        <p class="n-m" style="padding:10px;"><strong>{{current_credit.data.total_payment | currency:"$ "}} COP</strong></p>
                     </div>                    
                 </div>
 
@@ -170,7 +100,7 @@
 
                     </div>
                     <div class="col-lg-6 text-right">
-                        <button class="btn btn-primary btn-sm" ng-click="payment()">PAGAR AHORA</button>
+                        <button class="btn btn-primary btn-sm" ng-click="payment()">PAGAR</button>
                         <button class="btn btn-warning btn-sm" ng-click="more_details = more_details ? false : true;">DETALLES</button>
                     </div>                    
                 </div>

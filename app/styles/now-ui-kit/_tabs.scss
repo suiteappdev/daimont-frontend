@@ -43,7 +43,8 @@
         > .nav-item{
             > .nav-link{
                 color: $white-color;
-
+                cursor: pointer;
+                
                 &.active{
                     border-color: $opacity-5;
                     color: $white-color;

@@ -32,7 +32,8 @@
     "bootstrap": "v4.0.0-alpha.6",
     "Datedropper3": "https://github.com/felicegattuso/Datedropper3.git",
     "jquery.maskedinput": "^1.4.1",
-    "angular-i18n": "^1.6.5"
+    "angular-i18n": "^1.6.5",
+    "bootstrap-datepicker": "https://github.com/uxsolutions/bootstrap-datepicker.git#^1.7.1"
   },
   "devDependencies": {
     "angular-mocks": "^1.4.0"

@@ -28,7 +28,7 @@ angular
     'ui.map',
     'facebook'
   ])
-  .config(function ($stateProvider, $httpProvider, constants, $urlRouterProvider, FacebookProvider, paginationTemplateProvider) {
+  .config(function ($stateProvider, $httpProvider, constants, $urlRouterProvider, FacebookProvider, paginationTemplateProvider, $locationProvider) {
         FacebookProvider.init('448351572192242');
         paginationTemplateProvider.setPath('views/system-utils/pagination.tpl.html');
         $httpProvider.interceptors.push(function($injector, $q, sweetAlert, storage) {
@@ -162,16 +162,31 @@ angular
               url: '/acercade',
               templateUrl: 'views/aboutus/aboutus.html',
               data: {
-                pageTitle: 'Acerca de'
+                pageTitle: 'Que es Daimont?'
+              }
+          })
+          .state('how', {
+              url: '/como-empezar',
+              templateUrl: 'views/how-start/how-start.html',
+              data: {
+                pageTitle: 'Como solicitar un credito?'
               }
           })
           .state('faq', {
-              url: '/preguntas frecuentes',
+              url: '/preguntas-frecuentes',
               templateUrl: 'views/faq/faq.html',
               data: {
                 pageTitle: 'FAQ'
               }
           })
+          .state('contact', {
+              url: '/contacto',
+              templateUrl: 'views/contact/contact.html',
+              data: {
+                pageTitle: 'Contactanos'
+              }
+          })
+
           .state('login', {
               url: '/login',
               templateUrl: 'views/login/login.html',
@@ -266,6 +281,36 @@ angular
                 },
                 data: {
                   pageTitle: 'Cambiar clave'
+                }
+          })
+          .state('payments-detail', {
+                url: '/payments/:payment',
+                access: { requiredAuthentication: true },
+                templateUrl: 'views/payments/payments_detail.html',
+                params: {
+                  payment: null
+                },
+                data: {
+                  pageTitle: 'Detalle del pago'
+                }
+          })
+          .state('payments', {
+                url: '/payments',
+                access: { requiredAuthentication: true },
+                templateUrl: 'views/payments/payments.html',
+                params: {
+                  payment: null
+                },
+                data: {
+                  pageTitle: 'Pagos'
+                }
+          })
+          .state('credits', {
+                url: '/credits',
+                access: { requiredAuthentication: true },
+                templateUrl: 'views/credits/credits.html',
+                data: {
+                  pageTitle: 'Creditos'
                 }
           })
           .state('dashboard', {

@@ -13,7 +13,7 @@ angular.module('shoplyApp')
     $scope.register = function(){
       var _success = function(data){
         if(data){
-           toastr.warning('Gracias por Registrarte');
+           toastr.success('Gracias por Registrarte');
            delete $scope.formRegister;
            $state.go('login');
         }
@@ -200,9 +200,8 @@ angular.module('shoplyApp')
               storage.save('token', _token);
               storage.save('user', _user);
               storage.save('uid', _user._id);
-
               $rootScope.isLogged = true;
-              $rootScope.user = res;
+              $rootScope.user = _user;
 
               $state.go('login', {mailed : true});
           }

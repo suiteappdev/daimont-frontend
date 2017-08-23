@@ -117,7 +117,6 @@ angular.module('shoplyApp')
         var _success = function(res){
           if(res.user.type == "EMPLOYE" || res.user.type == "ADMINISTRATOR" || res.user.type == "OWNER"){
               var  _user =  res.user;
-              var  _permission = res.user._permission;
               var  _token = res.token;
 
               storage.save('token', _token);

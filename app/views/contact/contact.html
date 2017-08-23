@@ -1,0 +1,88 @@
+<div class="login-page" ng-controller="HomeCtrl">
+<daimont-header></daimont-header>
+</div>
+<div class="wrap" style="width:100%;height:100%;background: #001a1b url('images/particles_bg-white.png');">
+    <div class="container" style="height:100vh;">
+       <div class="row featurette text-center" style="top:5%;position:relative;">
+        <div class="col-lg-12">
+        <h2 class="text-white" style="margin-bottom:20px;">Escribenos...</h2>
+        <p class="text-muted">Responderemos lo mas pronto posible.</p>  
+     <div class="card card-login card-padding animated bounceIn" style="width:400px;">
+    <form class="form ng-pristine ng-scope ng-invalid ng-invalid-required ng-valid-email" name="signup" method="" action="" ng-controller="signupCtrl">
+            <div class="content">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="form-group">
+                        <input type="text" required="true" ng-model="formRegister.data.name" class="form-control" placeholder="Nombres" value="">
+                    </div>
+                </div>
+                
+                <div class="col-lg-6">
+                    <div class="form-group">
+                        <input type="text" required="true" ng-model="formRegister.data.last_name" class="form-control" placeholder="Apellidos" value="">
+                    </div>
+                </div>
+                <div class="col-lg-12">
+                    <div class="form-group">
+                        <input type="text" required="true" ng-model="formRegister.data.email" class="form-control" placeholder="Correo electronico" >
+                    </div>
+                </div>
+                <div class="col-lg-12">
+                    <div class="form-group">
+                        <input type="text" required="true" ng-model="formRegister.data.subjet" class="form-control" placeholder="Asunto" value="">
+                    </div>
+                </div>
+               
+                <div class="col-lg-12">
+                    <div class="form-group">
+                        <textarea col="10" row="10" style="border: 1px solid #e6e6e6;border-radius: 5px;" required="true" ng-model="formRegister.data.body" class="form-control" placeholder="Mensaje"></textarea>
+                    </div>
+                </div>                
+            </div>
+            </div>
+            <div class="footer text-center">
+                <a href="" ng-click="register_and_request()" class="btn btn-primary btn-round btn-lg"><i class="now-ui-icons ui-1_send"></i>&nbsp;Enviar</a>
+            </div>
+        </form>
+    
+    </div>
+        </div>
+      </div>
+    </div>    
+</div>
+<footer class="footer hidden-md-down footer-opacity">
+            <div class="container">
+                <nav>
+                    <ul>
+                        <li>
+                            <a href="#">
+                                Ayuda
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                               Acerca de
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                Terminos
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                Politicas de Privacidad
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+                <div class="copyright">
+                    ©
+                    <script>
+                    </script>2017, Todos los Derechos Reservados
+                    <a href="http://www.daimont.com" target="_blank">Daimont</a>. Creado por
+                    <a href="https://www.zarko.com.co" target="_blank">Zarko.com.co</a>.
+                </div>
+            </div>
+        </footer>
+

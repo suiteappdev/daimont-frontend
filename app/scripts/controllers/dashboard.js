@@ -65,9 +65,8 @@ angular.module('shoplyApp')
                     headers: {'Content-Type':undefined, enctype:'multipart/form-data'}
                 }).success(function(res){
             if(res){
-                $scope.payment_done = true;
+                $scope.$parent.$parent.payment_done = true;
                 $scope.$close();
-                $scope.$apply();
             }
           });
 

@@ -5,7 +5,7 @@
 
     return {
       replace:true,
-      template: '<input data-theme="datedrop-custom-theme" data-translate-mode="true" data-modal="true" data-large-default="true" data-large-mode="true" data-format="d-m-Y" type="text"  id="fecha" data-lang="es" class="form-control" />',
+      template: '<input data-theme="datedrop-custom-theme"  data-modal="true" data-large-default="true" data-large-mode="true" data-format="d-m-Y" type="text"  id="fecha" data-lang="es" class="form-control" placeholder="Cuando Pagaste?" aria-describedby="basic-addon2" enableread>',
       restrict: 'EA',
       scope : {
         ngModel : "=",
@@ -21,3 +21,5 @@
       }
     };
   });
+
+  
