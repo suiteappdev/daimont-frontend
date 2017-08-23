@@ -52,7 +52,8 @@
     },
     "bootstrap-datepicker": {
       "main": [
-        "dist/locale/bootstrap-datepicker.es.min.js"
+        "dist/js/bootstrap-datepicker.min.js",
+        "dist/locales/bootstrap-datepicker.es.min.js"
       ]
     },
     "nouislider": {

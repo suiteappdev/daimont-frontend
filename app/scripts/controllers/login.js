@@ -99,6 +99,31 @@ angular.module('shoplyApp')
                    }
         });
     };
+
+    $scope.facebook_login_default = function() {
+        Facebook.login(function(response) {
+          if(response.status == 'connected'){
+              console.log("token", response.authResponse.accessToken);
+              var fb_token = response.authResponse.accessToken;
+              storage.save('access_token', fb_token.toString());
+              $scope.me(function(data){
+                 var new_user = {};
+                 new_user.data = {};
+                 new_user.metadata  = {};
+                 new_user.metadata._author  = data.id;
+                 new_user.name = data.first_name;
+                 new_user.last_name = data.last_name;
+                 new_user.data.facebook_id = data.id;
+                 new_user.email = data.email;
+                 new_user.credit = $scope.$parent.$parent.form;
+
+                account.usuario().register(new_user).then(_success, _error);
+              });          
+          }
+
+        }, { scope:'email' } );   
+    };
+
   	$scope.login = function(){
   		if($scope.loginForm.$invalid){
             modal.incompleteForm();
@@ -125,7 +150,7 @@ angular.module('shoplyApp')
           if(data == 409){
               sweetAlert.swal("No se pudo registrar.", "Este email ya esta registrado.", "error");
           }
-          
+
           if(data.status == 401){
               $scope.invalid_data = true;
           }
