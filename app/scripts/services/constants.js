@@ -9,7 +9,7 @@
  */
 angular.module('shoplyApp')
   .constant('constants', {
-  	base_url : "http://ec2-52-15-89-223.us-east-2.compute.amazonaws.com:2020/api/",
+  	base_url : "//ec2-52-15-89-223.us-east-2.compute.amazonaws.com:2020/api/",
     socket : "http://ec2-52-15-89-223.us-east-2.compute.amazonaws.com:2020",                          
   	login_state_sucess : 'dashboard',
     uploadURL : "http://www.daimont.com:8080/api/uploads",
