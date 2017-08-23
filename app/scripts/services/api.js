@@ -24,6 +24,7 @@ angular.module('shoplyApp')
     this.recover = function(){ this.url = constants.base_url + "recover/"; return this;};
     this.reset_password = function(){ this.url = constants.base_url + "reset/"; return this;};
     this.credits = function(credit){if(credit) this.url = constants.base_url + "credits/" + credit; else this.url = constants.base_url + "credits/"; return this;};
+    this.contact = function(){ this.url = constants.base_url + "contact/"; return this;};
     this.payments = function(payment){if(payment) this.url = constants.base_url + "payments/" + credit; else this.url = constants.base_url + "payments/"; return this;};
     this.upload = function(){ this.url = constants.uploadURL; return this};
     this.uploadLocal = function(){ this.url = constants.base_url + "upload-local/"; return this};

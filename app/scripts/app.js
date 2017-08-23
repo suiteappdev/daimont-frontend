@@ -178,7 +178,7 @@ angular
               }
           })
           .state('contact', {
-              url: '/contacto',
+              url: '/contact',
               templateUrl: 'views/contact/contact.html',
               data: {
                 pageTitle: 'Contactanos'
