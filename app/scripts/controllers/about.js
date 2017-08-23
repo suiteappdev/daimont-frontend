@@ -8,10 +8,13 @@
  * Controller of the shoplyApp
  */
 angular.module('shoplyApp')
-  .controller('AboutCtrl', function () {
-    this.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
+  .controller('aboutCtrl', function ($scope) {
+    $scope.myInterval = 3000;
+  	
+  	$scope.slides = [
+  		{image: 'http://lorempixel.com/400/200/'},
+  		{ image: 'http://lorempixel.com/400/200/food'},
+  		{image: 'http://lorempixel.com/400/200/sports'},
+  		{image: 'http://lorempixel.com/400/200/people'}
+	];
   });
