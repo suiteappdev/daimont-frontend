@@ -75,10 +75,9 @@ angular
                  switch(rejection.status){
 
                     case 401:
-
-                    window.localStorage.clear();
-                    delete rootScope.isLogged;
-                    delete rootScope.user;
+                     window.localStorage.clear();
+                     delete rootScope.isLogged;
+                     delete rootScope.user;
                     
                     if(!window.location.hash.match("login")){
                          sweetAlert.swal({
@@ -99,16 +98,15 @@ angular
 
                          rootScope.$apply();
                     }
-                    else
-                       rootScope.$apply();
+                    else{
                        return $q.reject(rejection);
+                    }
 
-                      break;
+                    break;
 
                     default:
                     return $q.reject(rejection);
                     break;
-
                  }
                   
                 }

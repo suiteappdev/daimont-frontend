@@ -50,6 +50,11 @@
         "locale/es.js"
       ]
     },
+    "bootstrap-datepicker": {
+      "main": [
+        "dist/locale/bootstrap-datepicker.es.min.js"
+      ]
+    },
     "nouislider": {
       "main": [
         "distribute/nouislider.min.js"

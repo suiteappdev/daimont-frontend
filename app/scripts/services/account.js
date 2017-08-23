@@ -17,10 +17,16 @@ angular.module('shoplyApp')
                 $http.post(constants.base_url + 'login', data)
                 .success(function(data, status, headers, config) {
                     async.resolve(data);
-                    
                   })
                 .error(function(data, status, headers, config) {
-                    async.reject(data);
+                    var response = {
+                      data : data,
+                      status : status,
+                      headers : headers,
+                      config : config
+                    }
+
+                    async.reject(response);
                   });
 
               return async.promise;

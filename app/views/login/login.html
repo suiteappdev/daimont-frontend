@@ -10,6 +10,11 @@
                         Hemos enviado un correo activación a tu correo.
                     </div>
                 </div>
+                <div class="row alert alert-danger" role="alert" ng-show="invalid_data" style="font-size:12px;position:relative;top:-12px;">
+                    <div class="container">
+                       Correo y contraseña incorrectos.
+                    </div>
+                </div>
                     <form name="loginForm" class="form" method="" action="">
                         <div class="header header-primary text-center">
                             <div class="logo-container">
@@ -35,8 +40,9 @@
                             </div>
                         </div>
                         <div class="footer text-center">
-                            <a  href="" ng-click="login()" class="btn btn-primary btn-round btn-lg btn-block">Entrar</a>
-                            <a href="" ng-click="facebook_login()" class="btn btn-round btn-lg btn-block btn-facebook-auth"><i class="fa fa-facebook" ></i>&nbsp;Entrar con Facebook</a>
+                            <button type="submit" ng-click="login()" class="btn btn-primary btn-round btn-lg btn-block">Entrar</button>
+
+                            <a href="#" ng-click="facebook_login()" class="btn btn-round btn-lg btn-block btn-facebook-auth"><i class="fa fa-facebook" ></i>&nbsp;Entrar con Facebook</a>
                         </div>
                         <div class="pull-left">
                             <h6>
