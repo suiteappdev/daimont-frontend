@@ -74,8 +74,11 @@ angular.module('shoplyApp')
                                      $rootScope.user = new_user;
                                      $rootScope.loggedIn = true;
 
-                                     storage.save('uid', data._id);
+                                     storage.save('uid', data.id);
                                      storage.save('user', new_user);
+
+                                     $state.go(constants.login_state_sucess); 
+
                               });          
                           }
 
@@ -92,6 +95,7 @@ angular.module('shoplyApp')
               storage.save('access_token', fb_token.toString());
               $scope.me(function(data){
                  var new_user = {};
+                 
                  new_user.data = {};
                  new_user.metadata  = {};
                  new_user.metadata._author  = data.id;
@@ -99,13 +103,15 @@ angular.module('shoplyApp')
                  new_user.last_name = data.last_name;
                  new_user.data.facebook_id = data.id;
                  new_user.email = data.email;
-                 new_user.credit = $scope.$parent.$parent.form;
+
                  $rootScope.isLogged = true;
                  $rootScope.user = new_user;
                  $rootScope.loggedIn = true;
-
-                 storage.save('uid', data._id);
+                 storage.save('uid', data.id);
                  storage.save('user', new_user);
+
+                 $state.go(constants.login_state_sucess); 
+
               });          
           }
 
