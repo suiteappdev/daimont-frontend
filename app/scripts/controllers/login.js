@@ -115,7 +115,9 @@ angular.module('shoplyApp')
       };
 
       var _error = function(data){
-        if(data == 409){
+        if(data == 409 && storage.get('access_token')){
+            sweetAlert.swal("registrado.", "registra e ingresado", "success");
+        }else if(data == 409){
             sweetAlert.swal("No se pudo registrar.", "Este email ya esta registrado.", "error");
         }
       };
