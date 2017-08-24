@@ -1,7 +1,7 @@
   angular.module('shoplyApp').directive('datePicker', function ( $timeout ) {
     return {
       replace : true,
-      template : '<input type="text" class="form-control date-picker" data-datepicker-color="primary">',
+      template : '<input type="text" placeholder="{{placeholder}}" class="form-control date-picker" data-datepicker-color="primary">',
       restrict: 'EA',
       scope : {
         ngModel : "=",

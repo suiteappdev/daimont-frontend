@@ -34,11 +34,13 @@
                         <p>Contacto</p>
                     </a>
                 </li>
-                <li class="nav-item" ui-sref-active="active">
+                <li class="nav-item" ui-sref-active="active" ng-hide="$root.user">
                     <a class="nav-link" ui-sref="login()" href="#/login">
+                        <i class="now-ui-icons users_circle-08"></i>
                         <p>Entrar</p>
                     </a>
-                </li>                <div class="pull-right navbar-text" ng-show="$root.user">
+                </li>               
+                 <div class="pull-right navbar-text" ng-show="$root.user">
                   <div class="dropdown">
                      <a href="" class="dropdown-toggle" id="about-us" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                           <img ng-show="user.picture.data.url" ng-src="{{user.picture.data.url}}">
