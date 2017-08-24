@@ -49,10 +49,10 @@ angular.module('shoplyApp')
     $scope.facebook_login = function() {
       var _success = function(data){
         if(data){
+              storage.save('uid', data._id);
+              storage.save('user', data);
             $scope.me(function(response){
                $rootScope.isLogged = true;
-               storage.save('uid', response.id.toString());
-               storage.save('user', response);
                $rootScope.user = response;
                $rootScope.loggedIn = true;
                $state.go('dashboard');
@@ -101,6 +101,25 @@ angular.module('shoplyApp')
     };
 
     $scope.facebook_login_default = function() {
+       var _success = function(data){
+        if(data){
+              storage.save('uid', data._id);
+              storage.save('user', data);
+            $scope.me(function(response){
+               $rootScope.isLogged = true;
+               $rootScope.user = response;
+               $rootScope.loggedIn = true;
+               $state.go('dashboard');
+            });
+        }
+      };
+
+      var _error = function(data){
+        if(data == 409){
+            sweetAlert.swal("No se pudo registrar.", "Este email ya esta registrado.", "error");
+        }
+      };
+
         Facebook.login(function(response) {
           if(response.status == 'connected'){
               console.log("token", response.authResponse.accessToken);
