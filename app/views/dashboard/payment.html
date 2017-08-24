@@ -31,6 +31,18 @@
                                     <p class="text-left monospace">{{bank_obj.owner}}</p>
                                 </div>
                             </div>
+                            <div class="col-lg-6" >
+                                <div class="form-group text-left font-12">
+                                    <label>Tipo de Cuenta</label>
+                                    <p class="text-left monospace">{{bank_obj.type}}</p>
+                                </div>
+                            </div>
+                            <div class="col-lg-6" ng-show="bank_obj.cc">
+                                <div class="form-group text-left font-12">
+                                    <label>Cedula de Ciudadania</label>
+                                    <p class="text-left monospace">{{bank_obj.cc}}</p>
+                                </div>
+                            </div>
                         </div>                         
                     <br />
                     <div class="row">
