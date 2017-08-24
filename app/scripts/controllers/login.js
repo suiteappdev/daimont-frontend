@@ -47,25 +47,6 @@ angular.module('shoplyApp')
     };
 
     $scope.facebook_login = function() {
-      var _success = function(data){
-        if(data){
-              storage.save('uid', data._id);
-              storage.save('user', data);
-            $scope.me(function(response){
-               $rootScope.isLogged = true;
-               $rootScope.user = response;
-               $rootScope.loggedIn = true;
-               $state.go('dashboard');
-            });
-        }
-      };
-
-      var _error = function(data){
-        if(data == 409){
-            sweetAlert.swal("No se pudo registrar.", "Este email ya esta registrado.", "error");
-        }
-      };
-
        modal.confirm({
                closeOnConfirm : true,
                title: "Está Seguro?",
@@ -82,16 +63,19 @@ angular.module('shoplyApp')
                               storage.save('access_token', fb_token.toString());
                               $scope.me(function(data){
                                  var new_user = {};
-                                 new_user.data = {};
-                                 new_user.metadata  = {};
-                                 new_user.metadata._author  = data.id;
-                                 new_user.name = data.first_name;
-                                 new_user.last_name = data.last_name;
-                                 new_user.data.facebook_id = data.id;
-                                 new_user.email = data.email;
-                                 new_user.credit = $scope.$parent.$parent.form;
+                                     new_user.data = {};
+                                     new_user.metadata  = {};
+                                     new_user.metadata._author  = data.id;
+                                     new_user.name = data.first_name;
+                                     new_user.last_name = data.last_name;
+                                     new_user.data.facebook_id = data.id;
+                                     new_user.email = data.email;
+                                     $rootScope.isLogged = true;
+                                     $rootScope.user = new_user;
+                                     $rootScope.loggedIn = true;
 
-                                account.usuario().register(new_user).then(_success, _error);
+                                     storage.save('uid', data._id);
+                                     storage.save('user', new_user);
                               });          
                           }
 
@@ -101,27 +85,6 @@ angular.module('shoplyApp')
     };
 
     $scope.facebook_login_default = function() {
-       var _success = function(data){
-        if(data){
-              storage.save('uid', data._id);
-              storage.save('user', data);
-            $scope.me(function(response){
-               $rootScope.isLogged = true;
-               $rootScope.user = response;
-               $rootScope.loggedIn = true;
-               $state.go('dashboard');
-            });
-        }
-      };
-
-      var _error = function(data){
-        if(data == 409 && storage.get('access_token')){
-            sweetAlert.swal("registrado.", "registra e ingresado", "success");
-        }else if(data == 409){
-            sweetAlert.swal("No se pudo registrar.", "Este email ya esta registrado.", "error");
-        }
-      };
-
         Facebook.login(function(response) {
           if(response.status == 'connected'){
               console.log("token", response.authResponse.accessToken);
@@ -137,8 +100,12 @@ angular.module('shoplyApp')
                  new_user.data.facebook_id = data.id;
                  new_user.email = data.email;
                  new_user.credit = $scope.$parent.$parent.form;
+                 $rootScope.isLogged = true;
+                 $rootScope.user = new_user;
+                 $rootScope.loggedIn = true;
 
-                account.usuario().register(new_user).then(_success, _error);
+                 storage.save('uid', data._id);
+                 storage.save('user', new_user);
               });          
           }
 
