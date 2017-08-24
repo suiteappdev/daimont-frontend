@@ -70,6 +70,7 @@ angular.module('shoplyApp')
                                      new_user.last_name = data.last_name;
                                      new_user.data.facebook_id = data.id;
                                      new_user.email = data.email;
+                                     
                                      $rootScope.isLogged = true;
                                      $rootScope.user = new_user;
                                      $rootScope.loggedIn = true;
@@ -90,9 +91,9 @@ angular.module('shoplyApp')
     $scope.facebook_login_default = function() {
         Facebook.login(function(response) {
           if(response.status == 'connected'){
-              console.log("token", response.authResponse.accessToken);
               var fb_token = response.authResponse.accessToken;
               storage.save('access_token', fb_token.toString());
+
               $scope.me(function(data){
                  var new_user = {};
                  
@@ -101,17 +102,16 @@ angular.module('shoplyApp')
                  new_user.metadata._author  = data.id;
                  new_user.name = data.first_name;
                  new_user.last_name = data.last_name;
-                 new_user.data.facebook_id = data.id;
                  new_user.email = data.email;
 
                  $rootScope.isLogged = true;
                  $rootScope.user = new_user;
                  $rootScope.loggedIn = true;
+
                  storage.save('uid', data.id);
                  storage.save('user', new_user);
 
-                 $state.go(constants.login_state_sucess); 
-
+                 $state.go(constants.login_state_sucess);
               });          
           }
 

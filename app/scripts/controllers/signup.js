@@ -137,16 +137,24 @@ angular.module('shoplyApp')
       Facebook.api('/me', { "fields" :"id, name, email, first_name, last_name, picture" }, callback);
     };
 
-    $scope.facebook_login = function() {
+    $scope.facebook_register = function() {
       var _success = function(data){
         if(data){
             $scope.me(function(response){
-               $rootScope.isLogged = true;
-               storage.save('uid', response.id.toString());
-               storage.save('user', response);
-               $rootScope.user = response;
-               $rootScope.loggedIn = true;
-               $state.go('dashboard');
+               var new_user = {};
+                 
+                 new_user.data = {};
+                 new_user.metadata  = {};
+                 new_user.metadata._author  = response.id;
+                 new_user.name = response.first_name;
+                 new_user.last_name = response.last_name;
+                 new_user.email = response.email;
+                 $rootScope.isLogged = true;
+                 $rootScope.user = new_user;
+                 $rootScope.loggedIn = true;
+
+                 storage.save('uid', response.id);
+                 storage.save('user', new_user);
             });
         }
       };
@@ -181,8 +189,8 @@ angular.module('shoplyApp')
                                  new_user.data.facebook_id = data.id;
                                  new_user.email = data.email;
                                  new_user.credit = $scope.$parent.$parent.form;
-
-                                account.usuario().register(new_user).then(_success, _error);
+                                 
+                                 account.usuario().register(new_user).then(_success, _error);
                               });          
                           }
 
