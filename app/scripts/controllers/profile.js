@@ -7,15 +7,12 @@ angular.module('shoplyApp')
             api.user().add('activate/').post({ activation_token : $stateParams.token }).success(function(res){
                 if(res){
                     $scope.activated = true;
+                    $scope.form = {};
+                    $scope.form.data = {};
+                    $scope.form.data.name = res.name;
+                    $scope.form.data.last_name = res.last_name;
                 }
             });            
-        }
-
-        if($rootScope.user){
-            $scope.form = {};
-            $scope.form.data = {};
-            $scope.form.data.name = $rootScope.user.name;
-            $scope.form.data.last_name = $rootScope.user.last_name;
         }
 
         $state.go('profile.basic');
