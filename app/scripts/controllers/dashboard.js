@@ -101,6 +101,7 @@ angular.module('shoplyApp')
                         if(res){
                             sweetAlert.close();
                             $state.go('dashboard');
+                            $scope.load();
                         } 
                       });
                       
