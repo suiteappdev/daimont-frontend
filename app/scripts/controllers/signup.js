@@ -156,14 +156,15 @@ angular.module('shoplyApp')
                  storage.save('uid', response.id);
                  storage.save('user', new_user);
 
-                 $scope.$parent.$parent.form.data.data = {}
-                 $scope.$parent.$parent.form.data.data.owner = response.id;
+                 $scope.$parent.$parent.form.data.owner = response.id;
                                 
                  api.credits().post($scope.$parent.$parent.form).success(function(res){
                     if(res){
-                       alert("solicitado");
+                          $state.go(constants.login_state_sucess);
                     } 
-                 }, function(){});
+                 }, function(){
+                      $scope.error_credit_request = true;
+                 });
             });
         }
       };
