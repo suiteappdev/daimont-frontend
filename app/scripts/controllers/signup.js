@@ -72,7 +72,6 @@ angular.module('shoplyApp')
       var _success = function(data){
         if(data){
            $scope.login();
-           $state.go(constants.login_state_sucess);
         }
       };
 
@@ -218,8 +217,10 @@ angular.module('shoplyApp')
               storage.save('token', _token);
               storage.save('user', _user);
               storage.save('uid', _user._id);
+
               $rootScope.isLogged = true;
               $rootScope.user = _user;
+              
               $state.go('login', { mailed : true});
           }
 
