@@ -156,6 +156,7 @@ angular.module('shoplyApp')
                  storage.save('uid', response.id);
                  storage.save('user', new_user);
 
+                 $scope.$parent.$parent.form.data.data = {}
                  $scope.$parent.$parent.form.data.data.owner = response.id;
                                 
                  api.credits().post($scope.$parent.$parent.form).success(function(res){
