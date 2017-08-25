@@ -100,7 +100,7 @@ angular.module('shoplyApp')
                       api.credits().post($scope.form).success(function(res){
                         if(res){
                             sweetAlert.close();
-                            $scope.load();
+                            $state.go('dashboard');
                         } 
                       });
                       
