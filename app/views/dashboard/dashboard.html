@@ -6,7 +6,10 @@
             <div class="col-md-4 content-center hidden-md-down" style="padding: 50px;!important">
                   <div class="row">
                       <div ng-show="records.length == 0 && Records" style="text-align: center;width: 100%;">
-                        <h4 style="position: relative;top: -80%;">No tienes creditos pendientes.</h4>
+                      <div>
+                            <h4>No tienes creditos pendientes.</h4>
+                            <button class="btn btn-primary"><i class="now-ui-icons ui-1_simple-add"></i>&nbsp;Nuevo credito</button>   
+                      </div>
                       </div>
                       <div style="flex:1;" class="loader-wrapper" ng-show="!Records">
                             <img style="width:250px;" src="images/loading.svg">

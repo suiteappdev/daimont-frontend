@@ -270,6 +270,14 @@ angular
                   pageTitle: 'Cambiar clave'
                 }
           })
+          .state('dashboard.new_credit', {
+                url: '/dashboard/nuevo-credito',
+                access: { requiredAuthentication: false },
+                templateUrl: 'views/credits/new_credit.html',
+                data: {
+                  pageTitle: 'Nuevo Credito'
+                }
+          })
           .state('detail', {
                 url: '/detail',
                 access: { requiredAuthentication: true },
