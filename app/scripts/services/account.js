@@ -35,7 +35,7 @@ angular.module('shoplyApp')
           register : function(data){
               var async = $q.defer();
 
-                $http.post(constants.base_url + 'user', data)
+                $http.post(constants.base_url + 'user/client', data)
                 .success(function(data, status, headers, config) {
                     async.resolve(data);
                     

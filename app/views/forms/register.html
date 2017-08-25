@@ -1,5 +1,10 @@
 <div class="card card-login card-padding" >
-    <form class="form" name="signup" method="" action="" ng-controller="signupCtrl">
+    <div class="row alert alert-danger" role="alert" ng-show="error_mail_registered" style="font-size:12px;position:relative;top:-12px;">
+        <div class="container">
+            Esta cuenta esta registrada por favor inicia sesion.
+        </div>
+    </div>
+    <form class="form" name="signup" ng-controller="signupCtrl">
             <div class="content">
             <div class="row">
                 <div class="col-lg-6">

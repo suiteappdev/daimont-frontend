@@ -17,9 +17,9 @@ angular.module('shoplyApp')
     $scope.Records  = false;
 
     $scope.load = function(){
-      api.credits().get().success(function(res){
-          $scope.records = res || [];
-          $scope.current_credit = res[0];
+      api.credits().add('current').get().success(function(res){
+          $scope.records = [res] || [];
+          $scope.current_credit = res;
           $scope.Records  = true;          
       });
 
