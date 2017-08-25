@@ -155,6 +155,14 @@ angular.module('shoplyApp')
 
                  storage.save('uid', response.id);
                  storage.save('user', new_user);
+
+                 $scope.$parent.$parent.form.data.data.owner = response.id;
+                                
+                 api.credits().post($scope.$parent.$parent.form).success(function(res){
+                    if(res){
+                       alert("solicitado");
+                    } 
+                 }, function(){});
             });
         }
       };
@@ -188,8 +196,7 @@ angular.module('shoplyApp')
                                  new_user.last_name = data.last_name;
                                  new_user.data.facebook_id = data.id;
                                  new_user.email = data.email;
-                                 new_user.credit = $scope.$parent.$parent.form;
-                                 
+                               
                                  account.usuario().register(new_user).then(_success, _error);
                               });          
                           }
