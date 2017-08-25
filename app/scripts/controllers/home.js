@@ -44,7 +44,6 @@ angular.module('shoplyApp')
                       });
                       
                    }
-
         });
     }
 

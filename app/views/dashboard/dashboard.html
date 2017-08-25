@@ -3,12 +3,12 @@
     <div class="page-header" filter-color="orange">
         <div class="profile-header-image"></div>
         <div class="container">
-            <div class="col-md-4 content-center hidden-md-down" style="padding: 50px;!important">
-                  <div class="row">
+            <div class="col-md-4 content-center hidden-md-down row" ui-view>
+                  <div class="row col-lg-12" ng-show="records.length == 0 && Records">
                       <div ng-show="records.length == 0 && Records" style="text-align: center;width: 100%;">
-                      <div>
+                      <div style="position: relative;top: -50%;">
                             <h4>No tienes creditos pendientes.</h4>
-                            <button class="btn btn-primary"><i class="now-ui-icons ui-1_simple-add"></i>&nbsp;Nuevo credito</button>   
+                            <a  href="#/nuevo-credito" ui-sref=".new_credit()" class="btn btn-primary"><i class="now-ui-icons ui-1_simple-add"></i>&nbsp;Nuevo credito</a>   
                       </div>
                       </div>
                       <div style="flex:1;" class="loader-wrapper" ng-show="!Records">
@@ -28,7 +28,7 @@
                             </button>
                         </div>
                     </div>
-            <div class="main-wrap" ng-show="records.length > 0">
+            <div class="main-wrap col-lg-12" ng-show="records.length > 0">
                <div class="typography-line">
                     <h3 class="text-left" style="margin-bottom: 5px;">Credito Actual <span style="font-size: 12px;text-align: right;float: right;">Tu plan de credito es : <span class="badge badge-primary">Basico</span></span></h3>
                     <div class="row col-lg-12 text-left">
