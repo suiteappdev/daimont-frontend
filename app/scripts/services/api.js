@@ -11,7 +11,7 @@ angular.module('shoplyApp')
   .service('api', function ($http, constants) {
     this.get = function(){ var url = this.url; this.reset(); return $http.get(url); };
     this.post = function(data, header){  var url = this.url; this.reset(); return $http.post(url, data || {}, header || { headers : {'Content-Type': 'application/json'} }); };
-    this.put = function(data){ var url = this.url; this.reset(); return $http.put(url, data || {}); } ;  
+    this.put = function(data, header){ var url = this.url; this.reset(); return $http.put(url, data || {}, header || { headers : {'Content-Type': 'application/json'} }); } ;  
     this.delete = function(){ var url = this.url; this.reset(); return $http.delete(url); };
     
     this.Headers = null;

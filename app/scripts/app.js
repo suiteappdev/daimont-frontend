@@ -113,7 +113,7 @@ angular
         };
     });
 
-      $urlRouterProvider.otherwise("/dashboard");
+      $urlRouterProvider.otherwise("/");
       $stateProvider
           .state('home', {
               url: '/',
@@ -279,14 +279,14 @@ angular
                 }
           })
           .state('detail', {
-                url: '/detail',
+                url: '/detail/:credit',
                 access: { requiredAuthentication: true },
                 templateUrl: 'views/credits/credit_detail.html',
                 params: {
                   credit: null
-                },
+                },        
                 data: {
-                  pageTitle: 'Cambiar clave'
+                  pageTitle: 'Detalle del credito.'
                 }
           })
           .state('payments-detail', {

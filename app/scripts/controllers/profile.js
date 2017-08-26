@@ -11,6 +11,8 @@ angular.module('shoplyApp')
                     $scope.form.data = {};
                     $scope.form.data.name = res.name;
                     $scope.form.data.last_name = res.last_name;
+
+                    $rootScope.user_id = res._id;
                 }
             });            
         }
@@ -41,7 +43,7 @@ angular.module('shoplyApp')
 
     $scope.update = function(){
         $scope.form.data.updated = true;
-        api.user($rootScope.user._id).put($scope.form).success(function(res){
+        api.user($rootScope.user_id).put($scope.form).success(function(res){
             if(res){
                 console.log(res);
                 storage.update("user", $rootScope.user);

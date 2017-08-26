@@ -29,85 +29,89 @@
                         </div>
                     </div>
             <div class="main-wrap col-lg-12" ng-show="records.length > 0">
-               <div class="typography-line">
-                    <h3 class="text-left" style="margin-bottom: 5px;">Credito Actual <span style="font-size: 12px;text-align: right;float: right;">Tu plan de credito es : <span class="badge badge-primary">Basico</span></span></h3>
-                    <div class="row col-lg-12 text-left">
-                        <span class="badge badge-default" ng-show="current_credit.data.status == 'Pendiente'">PENDIENTE</span>
-                        <span class="badge badge-success" ng-show="current_credit.data.status == 'Aceptado'">ACEPTADO</span>
-                        <span class="badge badge-success" ng-show="current_credit.data.status == 'Consignado'">CONSIGNADO</span>
-                        <span class="badge badge-danger" ng-show="current_credit.data.status == 'Rechazado'">RECHAZADO</span>
-                        <span class="badge badge-warning" ng-show="current_credit.data.status == 'Desactualizado'">REQUIERE ACTUALIZACION</span>
-                        <p class="warn-text" class="animated bounceIn" ng-show="payment_done"><i class=""></i>su pago esta sujeto a verificacíon.</p>
+                <div style="top: -70px;position: relative;"> 
+                   <div class="typography-line">
+                        <h3 class="text-left" style="margin-bottom: 5px;">Credito Actual <span style="font-size: 12px;text-align: right;float: right;">Tu plan de credito es : <span class="badge badge-primary">Basico</span></span></h3>
+                        <a ng-show="current_credit.data.status == 'Consignado' && current_credit.data.deposit" target="_blank" ng-href="{{current_credit.data.deposit}}" class="text-primary" style="text-align: left;"><p ><i class="fa fa-paperclip" aria-hidden="true"></i>&nbsp; Archivo adjunto</p></a>
+                        <div class="row col-lg-12 text-left">
+                            <label> Estado de tu credito:&nbsp;</label>
+                            <span class="badge badge-default" ng-show="current_credit.data.status == 'Pendiente'">PENDIENTE</span>
+                            <span class="badge badge-success" ng-show="current_credit.data.status == 'Aceptado'">APROBADO</span>
+                            <span class="badge badge-success" ng-show="current_credit.data.status == 'Consignado'">CONSIGNADO</span>
+                            <span class="badge badge-danger" ng-show="current_credit.data.status == 'Rechazado'">RECHAZADO</span>
+                            <span class="badge badge-warning" ng-show="current_credit.data.status == 'Desactualizado'">REQUIERE ACTUALIZACION</span>
+                            
+                            <p   class="warn-text" class="animated bounceIn" ng-show="payment_done"><i class=""></i>su pago esta sujeto a verificacíon.</p>
+                        </div>
                     </div>
-                    <hr />
-                </div>
-                <div class="row credit-item-border align-middle">
-                  <div class="col-lg-6 text-left">
-                        <p style="font-size:12px;margin-bottom:0px;">Fecha de Pago:</p>
-                    </div>  
-                    <div class="col-lg-6 text-right" style="font-size:14px;margin-bottom:0px;">
-                        <p><span class="badge badge-warning">{{current_credit.data.pay_day | moment: 'format': 'MMMM DD, YYYY' }}</span></p>
-                    </div>                    
-                </div>
-                <div class="row credit-item-border align-middle">
-                    <div class="col-lg-6 text-left"> 
-                        <p style="font-size:12px;margin-bottom:0px;">Tu Monto Solicitado es de:</p>
+                    <div class="row credit-item-border align-middle">
+                      <div class="col-lg-6 text-left">
+                            <p style="font-size:12px;margin-bottom:0px;">Fecha de Pago:</p>
+                        </div>  
+                        <div class="col-lg-6 text-right" style="font-size:14px;margin-bottom:0px;">
+                            <p><span class="badge badge-warning">{{current_credit.data.pay_day | moment: 'format': 'MMMM DD, YYYY' }}</span></p>
+                        </div>                    
                     </div>
-                    <div class="col-lg-6 text-right" style="font-size:14px;">
-                        <p class="n-m" style="padding:10px;">{{current_credit.data.amount[0] | currency:"$ "}}</p>
-                    </div>                    
-                </div>
-                <div class="row credit-item-border align-middle">
-                    <div class="col-lg-6 text-left">
-                        <p style="font-size:12px;margin-bottom:0px;">Intereses:</p>
+                    <div class="row credit-item-border align-middle" ng-show="more_details">
+                        <div class="col-lg-6 text-left"> 
+                            <p style="font-size:12px;margin-bottom:0px;">Tu Monto Solicitado es de:</p>
+                        </div>
+                        <div class="col-lg-6 text-right" style="font-size:14px;">
+                            <p class="n-m" style="padding:10px;">{{current_credit.data.amount[0] | currency:"$ "}}</p>
+                        </div>                    
                     </div>
-                    <div class="col-lg-6 text-right" style="font-size:14px;">
-                        <p class="n-m" style="padding:10px;">{{current_credit.data.interestsDays | currency:"$ "}}</p>
-                    </div>                    
-                </div>
-                <div class="row credit-item-border animated bounceIn align-middle" ng-show="more_details">
-                    <div class="col-lg-6 text-left">
-                        <p style="font-size:12px;margin-bottom:0px;">Gestión de credito:</p>
+                    <div class="row credit-item-border align-middle" ng-show="more_details">
+                        <div class="col-lg-6 text-left">
+                            <p style="font-size:12px;margin-bottom:0px;">Intereses:</p>
+                        </div>
+                        <div class="col-lg-6 text-right" style="font-size:14px;">
+                            <p class="n-m" style="padding:10px;">{{current_credit.data.interestsDays | currency:"$ "}}</p>
+                        </div>                    
                     </div>
-                    <div class="col-lg-6 text-right" style="font-size:14px;">
-                        <p class="n-m" style="padding:10px;">{{current_credit.data.system_quoteDays | currency:"$ "}}</p>
-                    </div>                    
-                </div>
-                <div class="row credit-item-border animated bounceIn align-middle" ng-show="more_details">
-                    <div class="col-lg-6 text-left">
-                        <p style="font-size:12px;margin-bottom:0px;">Costo de financiación:</p>
+                    <div class="row credit-item-border animated bounceIn align-middle" ng-show="more_details">
+                        <div class="col-lg-6 text-left">
+                            <p style="font-size:12px;margin-bottom:0px;">Gestión de credito:</p>
+                        </div>
+                        <div class="col-lg-6 text-right" style="font-size:14px;">
+                            <p class="n-m" style="padding:10px;">{{current_credit.data.system_quoteDays | currency:"$ "}}</p>
+                        </div>                    
                     </div>
-                    <div class="col-lg-6 text-right" style="font-size:14px;">
-                        <p class="n-m" style="padding:10px;">{{current_credit.data.finance_quote | currency:"$ "}}</p>
-                    </div>                    
-                </div>
-                <div class="row credit-item-border align-middle">
-                    <div class="col-lg-6 text-left">
-                        <p style="font-size:12px;margin-bottom:0px;">IVA:</p>
+                    <div class="row credit-item-border animated bounceIn align-middle" ng-show="more_details">
+                        <div class="col-lg-6 text-left">
+                            <p style="font-size:12px;margin-bottom:0px;">Costo de financiación:</p>
+                        </div>
+                        <div class="col-lg-6 text-right" style="font-size:14px;">
+                            <p class="n-m" style="padding:10px;">{{current_credit.data.finance_quote | currency:"$ "}}</p>
+                        </div>                    
                     </div>
-                    <div class="col-lg-6 text-right" style="font-size:14px;">
-                        <p class="n-m" style="padding:10px;">{{current_credit.data.ivaDays | currency:"$ "}}</p>
-                    </div>                    
-                </div> 
-                <div class="row align-middle">
-                    <div class="col-lg-6 text-left">
-                        <p style="font-size:12px;margin-bottom:0px;"><strong>Total a Pagar:</strong></p>
+                    <div class="row credit-item-border align-middle" ng-show="more_details">
+                        <div class="col-lg-6 text-left">
+                            <p style="font-size:12px;margin-bottom:0px;">IVA:</p>
+                        </div>
+                        <div class="col-lg-6 text-right" style="font-size:14px;">
+                            <p class="n-m" style="padding:10px;">{{current_credit.data.ivaDays | currency:"$ "}}</p>
+                        </div>                    
+                    </div> 
+                    <div class="row align-middle">
+                        <div class="col-lg-6 text-left">
+                            <p style="font-size:12px;margin-bottom:0px;"><strong>Total a Pagar:</strong></p>
+                        </div>
+                        <div class="col-lg-6 text-right" style="font-size:14px;">
+                            <p class="n-m" style="padding:10px;">{{current_credit.data.total_payment | currency:"$ "}} COP</p>
+                        </div>                    
                     </div>
-                    <div class="col-lg-6 text-right" style="font-size:14px;">
-                        <p class="n-m" style="padding:10px;"><strong>{{current_credit.data.total_payment | currency:"$ "}} COP</strong></p>
-                    </div>                    
-                </div>
 
-                <div class="row">
-                    <div class="col-lg-6 text-left">
+                    <div class="row">
+                        <div class="col-lg-6 text-left">
 
+                        </div>
+                        <div class="col-lg-6 text-right">
+                            <button class="btn btn-primary btn-sm" ng-click="payment()" ng-disabled="current_credit.data.status != 'Consignado'" >PAGAR</button>
+                            <button class="btn btn-warning btn-sm" ng-click="more_details = more_details ? false : true;">DETALLES</button>
+                        </div>                    
                     </div>
-                    <div class="col-lg-6 text-right">
-                        <button class="btn btn-primary btn-sm" ng-click="payment()">PAGAR</button>
-                        <button class="btn btn-warning btn-sm" ng-click="more_details = more_details ? false : true;">DETALLES</button>
-                    </div>                    
+
                 </div>
-                <hr />                    
                 </div>
             </div>
         </div>

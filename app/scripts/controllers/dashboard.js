@@ -55,7 +55,7 @@ angular.module('shoplyApp')
     }
 
     $scope.detail = function(){
-      $state.go('detail', { credit : this.record } );
+      $state.go('detail', { credit : this.record._id } );
     }
 
     $scope.payment = function(){

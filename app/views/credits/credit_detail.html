@@ -1,57 +1,5 @@
 <div class="dashboard" ng-controller="CreditDetailCtrl" ng-init="load()">
- <nav class="navbar navbar-toggleable-md" style="background-color:#002223!important;">
-    <div class="container">
-        <div class="navbar-translate">
-            <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#example-navbar-info" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-bar bar1"></span>
-                <span class="navbar-toggler-bar bar2"></span>
-                <span class="navbar-toggler-bar bar3"></span>
-            </button>
-            <a class="navbar-brand" ui-sref="home()" href="#/home" >
-              <img class="hidden-xs" style="width:70%;" src="images/logo-main.png">
-              <span class="animated bounceInLeft" style="display: block;position: absolute;font-size: 7px;bottom: 0px;left: 44px;">Creditos rapidos y seguros</span>
-            </a>
-        </div>
-        <div class="collapse navbar-collapse justify-content-end" id="example-navbar-info">
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link" ui-sref="dashboard()" href="#/dashboard">
-                        <i class="now-ui-icons objects_diamond"></i>
-                        <p>Creditos</p>
-                    </a>
-                </li>
-                <li class="nav-item active">
-                    <a class="nav-link" ui-sref="profile()" href="#/profile">
-                        <i class="now-ui-icons users_single-02"></i>
-                        <p>Perfil</p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#pablo">
-                        <i class="now-ui-icons ui-1_settings-gear-63"></i>
-                        <p>Settings</p>
-                    </a>
-                </li>
-                <div class="pull-right navbar-text" ng-show="$root.user">
-                  <div class="dropdown">
-                     <a href="" class="dropdown-toggle" id="about-us" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                          <img ng-src="{{user.picture.data.url}}">
-                          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="about-us">
-                            <a class="dropdown-header">Opciones</a>
-                            <a class="dropdown-item" href="#"><span class="badge badge-default">Plan Basico</span></a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#">Configuración</a>
-                            <a class="dropdown-item" href="#">Creditos</a>
-                            <a class="dropdown-item" href="#">Planes</a>
-                            <a class="dropdown-item" href="#" ng-click="logout()" >Salir</a>
-                          </div>
-                    </a>                   
-                  </div>
-                </div>
-            </ul>
-        </div>
-    </div>
-</nav>
+<daimont-header></daimont-header>
 <div class="container">
   <div class="row">
       <ol class="breadcrumb" style="width:100%;">
@@ -70,7 +18,7 @@
           </div>
           <div class="col col-xs-6 text-right">
             <button type="button" ng-click="approve()" class="btn btn-primary btn-create"></i>Aprobar</button>
-           <button type="button" ng-click="done()" class="btn btn-primary btn-create">Desembolsar</button>
+           <button type="button" ng-click="done()" class="btn btn-primary btn-create">Depositar</button>
           </div>
         </div>
     </div>
@@ -79,19 +27,23 @@
     <div class="panel-body">
       <div class="row">
       <div class="col-lg-12">
-       <p class="pull-right"><span class="badge badge-success" ng-show="credit._user.data.updated">Actualizado</span>
+       <p class="pull-right">
+            <span class="badge badge-success" ng-show="credit._user.data.updated">Actualizado</span>
             <span class="badge badge-danger" ng-show="!credit._user.data.updated">Desactualizado</span></p>
    <!-- Tabs with Background on Card -->
                               <div class="card">
                                   <ul style="background-color: #002223!important;" class="nav nav-tabs nav-tabs-neutral justify-content-left" role="tablist">
                                       <li class="nav-item">
-                                          <a class="nav-link" ng-click="tab = 'IC'" ng-class="{'active' : tab === 'IC'}">Información del Cliente</a>
+                                          <a class="nav-link" style="border-radius:0;" ng-click="tab = 'IC'" ng-class="{'active' : tab === 'IC'}">Información del Cliente</a>
                                       </li>
                                       <li class="nav-item">
-                                          <a class="nav-link" ng-click="tab = 'IP'" ng-class="{'active' : tab === 'IP'}">Información de credito</a>
+                                          <a class="nav-link" style="border-radius:0;" ng-click="tab = 'IP'" ng-class="{'active' : tab === 'IP'}">Información de credito</a>
                                       </li>
                                       <li class="nav-item">
-                                          <a class="nav-link" ng-click="tab = 'IF'" ng-class="{'active' : tab === 'IF'}">Información Financiera</a>
+                                          <a class="nav-link" style="border-radius:0;" ng-click="tab = 'IF'" ng-class="{'active' : tab === 'IF'}">Información Financiera</a>
+                                      </li>
+                                        <li class="nav-item">
+                                          <a class="nav-link" style="border-radius:0;" ng-click="tab = 'DP'" ng-class="{'active' : tab === 'DP'}"><i class="fa fa-paperclip" aria-hidden="true"></i>&nbsp;Adjuntar Deposito</a>
                                       </li>
                                   </ul>
                                   <div class="card-block">
@@ -115,6 +67,10 @@
                                                   <label class="bold">CC:</label>
                                                   <p>{{credit._user.data.cedula || 'No Definido'}}</p>
                                               </div> 
+                                              <div class="form-group col-lg-6">
+                                                  <label class="bold">Telefono:</label>
+                                                  <p>{{credit._user.phone || 'No Definido'}}</p>
+                                              </div>
                                               <div class="form-group col-lg-6">
                                                   <label class="bold">Departamento</label>
                                                   <p>{{credit._user.data.departamento || 'No Definido'}}</p>
@@ -204,6 +160,15 @@
                                                       <p>{{credit._user.data.numero_cuenta || 'No Definido'}}</p>
                                                   </div>
                                               </div>
+                                          </div>
+                                            <div class="tab-pane" id="home1" role="tabpanel" ng-show="tab == 'DP'" ng-class="{'active' : tab == 'DP'}">
+                                              <div class="row"> 
+                                              <form name="approvedForm">
+                                                  <div class="form-group">
+                                                       <input type="file" name="evidence" name="pic" accept="image/*" ng-model="file" required reader="credit.deposit">      
+                                                  </div>                                                
+                                              </form>
+                                            </div>  
                                           </div>
                                       </div>
                                   </div>

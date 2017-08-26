@@ -11,7 +11,11 @@ angular.module('shoplyApp')
   .controller('CreditDetailCtrl', function ($scope, modal,  api, storage, $state, $rootScope, $timeout, $stateParams) {
 
     $scope.load = function(){
-      $scope.credit = $stateParams.credit || null;
+      if($stateParams.credit){
+          api.credits($stateParams.credit).get().success(function(res){
+                $scope.credit = res;
+          });
+      }
     }
 
 
@@ -25,7 +29,7 @@ angular.module('shoplyApp')
                function(isConfirm){ 
                    if (isConfirm) {
                    		$scope.credit.data.status = 'Aceptado';
-            						api.credits($scope.credit._id).put($scope.credit).success(function(res){
+            						api.credits().add("approved/" + $scope.credit._id).put($scope.credit).success(function(res){
             							if(res){
                             swal({
                                 title: "Aprobado",
@@ -40,6 +44,33 @@ angular.module('shoplyApp')
         });
     }
 
+    $scope.toFormData = function(obj, form, namespace) {
+        var fd = form || new FormData();
+        var formKey;
+        
+        for(var property in obj) {
+          if(obj.hasOwnProperty(property) && obj[property]) {
+            if (namespace) {
+              formKey = namespace + '[' + property + ']';
+            } else {
+              formKey = property;
+            }
+           
+            // if the property is an object, but not a File, use recursivity.
+            if (obj[property] instanceof Date) {
+              fd.append(formKey, obj[property].toISOString());
+            }
+            else if (typeof obj[property] === 'object' && !(obj[property] instanceof File)) {
+              $scope.toFormData(obj[property], fd, formKey);
+            } else { // if it's a string or a File object
+              fd.append(formKey, obj[property]);
+            }
+          }
+        }
+        
+        return fd;
+    }
+
     $scope.done = function(){
        modal.confirm({
                closeOnConfirm : true,
@@ -49,9 +80,11 @@ angular.module('shoplyApp')
                type: "success" },
                function(isConfirm){ 
                    if (isConfirm) {
-                   		$scope.credit.data.status = 'Consignado';
-                      
-          						api.credits($scope.credit._id).put($scope.credit).success(function(res){
+                      $scope.credit.data.status = 'Consignado';
+          						api.credits().add("deposited/" + $scope.credit._id).put($scope.toFormData($scope.credit),{
+                        transformRequest: angular.identity,
+                        headers: {'Content-Type':undefined, enctype:'multipart/form-data'}
+                    }).success(function(res){
           							if(res){
                                swal({
                                 title: "Bien Hecho",
