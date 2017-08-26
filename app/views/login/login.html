@@ -10,9 +10,14 @@
                         Hemos enviado un correo activación a tu correo.
                     </div>
                 </div>
+                 <div class="row alert alert-danger" role="alert" ng-show="email_no_exist" style="font-size:12px;position:relative;top:-12px;">
+                    <div class="container">
+                       Este correo no se encuentra registrado.
+                    </div>
+                </div>
                 <div class="row alert alert-danger" role="alert" ng-show="invalid_data" style="font-size:12px;position:relative;top:-12px;">
                     <div class="container">
-                       Correo y contraseña incorrectos.
+                       Correo y contraseña incorrecto.
                     </div>
                 </div>
                     <form name="loginForm" class="form">

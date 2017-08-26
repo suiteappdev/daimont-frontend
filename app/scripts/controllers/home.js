@@ -47,7 +47,6 @@ angular.module('shoplyApp')
         });
     }
 
-
     $scope.$watch(function() {
       return Facebook.isReady();
     }, function(newVal) {

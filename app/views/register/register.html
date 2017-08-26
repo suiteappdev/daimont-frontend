@@ -6,6 +6,11 @@
          <div style="padding: 6px;" class="alert alert-danger" ng-show="signup.$valid && formRegister.data.password != formRegister.data.confirm">
           <strong></strong> Las contraseñas no coinciden.
           </div>
+        <div class="row alert alert-danger" role="alert" ng-show="error_mail_registered" style="font-size:12px;position:relative;top:-12px;">
+          <div class="container">
+              Esta cuenta esta registrada por favor inicia sesion.
+          </div>
+       </div>
           <div class="form-group">
           <label class="text-white">Nombres*:</label>
             <input type="text" required="true" name="nombres" ng-model="formRegister.data.name" class="form-control" placeholder="Nombres">

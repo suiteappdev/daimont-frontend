@@ -141,12 +141,12 @@ angular.module('shoplyApp')
         };
 
         var _error = function(data){
-          if(data == 409){
-              sweetAlert.swal("No se pudo registrar.", "Este email ya esta registrado.", "error");
-          }
-
           if(data.status == 401){
               $scope.invalid_data = true;
+          }
+
+          if(data.status == 404){
+              $scope.email_no_exist = true;
           }
         };
 
