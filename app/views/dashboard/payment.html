@@ -55,7 +55,7 @@
                                 </div>                    
                             </div>
                         </div>
-                        <div class="form-wrap col-lg-12" ng-show="continue">
+                        <div class="form-wrap col-lg-12" ng-hide="!continue">
                             <form name="payment">
                                 <div class="row">
                                     <div class="col-lg-12">
@@ -109,12 +109,10 @@
                         </div>
 
                     </div>
-                    <div class="modal-footer row">
-                        <button type="button" ng-show="continue && bank_obj" ng-click="$parent.$parent.print_payment_order()" style="margin-right:5px;" class="btn btn-primary"><i class="fa fa-print" aria-hidden="true" ></i>&nbsp;Imprimir</button>
-                        <button type="button" class="btn btn-warning" ng-click="cancel()">Cancelar</button>
-
-                        <button type="button" class="btn btn-primary" ng-hide="continue == true" ng-click="continue = true;">Continuar</button>
-                        <button type="button" ng-show="continue == true" class="btn btn-primary" ng-click="ok()">Pagar</button>
+                    <div class="modal-footer row pull-right">
+                        <button type="button" ng-show="bank_obj" ng-click="$parent.$parent.print_payment_order()" style="margin-right:5px;" class="btn btn-primary"><i class="fa fa-print" aria-hidden="true" ></i>&nbsp;Imprimir</button>
+                        <button type="button" style="margin-right:5px;" class="btn btn-success" ng-hide="!continue" ng-disabled="!bank_obj"  ng-click="ok()" ng-cloak>Pagar</button>
+                        <button type="button" style="margin-right:5px;" class="btn btn-primary" ng-show="!continue" ng-click="continue=true;" ng-cloak>Siguiente paso.</button>
                     </div>
                 </div>
             </div>

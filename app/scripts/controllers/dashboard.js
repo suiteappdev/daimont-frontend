@@ -98,16 +98,29 @@ angular.module('shoplyApp')
 
     $scope.payment = function(){
       window.modal = modal.show({templateUrl : 'views/dashboard/payment.html', size:'lg', scope: this, backdrop: 'static', keyboard  : false}, function($scope){
-          
-          api.payments().post($scope.toFormData($scope.$parent.form.data), {
-                    transformRequest: angular.identity,
-                    headers: {'Content-Type':undefined, enctype:'multipart/form-data'}
-                }).success(function(res){
-            if(res){
-                $scope.$parent.$parent.payment_done = true;
-                $scope.$close();
-            }
-          });
+          modal.confirm({
+               closeOnConfirm : true,
+               title: "Está Seguro?",
+               text: "Confirma que quiere gestionar este pago ?",
+               confirmButtonColor: "#008086",
+               type: "success" },
+
+               function(isConfirm){ 
+                   if (isConfirm) {
+                      $scope.$parent.form.data = $scope.paymentForm;
+                      
+                      delete $scope.bank_obj.$order;
+                      $scope.$parent.form.data.bank = $scope.bank_obj;
+                      
+                      api.payments().post($scope.$parent.form).success(function(res){
+                        if(res){
+                            $scope.$parent.$parent.payment_done = true;
+                            $scope.$close();
+                        }
+                      });                      
+                  }
+        });
+
 
       }); 
     }
@@ -141,10 +154,10 @@ angular.module('shoplyApp')
                             sweetAlert.close();
                             $state.go('dashboard');
                             $scope.load();
-                        } 
+                    
+                           } 
                       });
-                      
-                   }
+                  }
         });
     }
 
