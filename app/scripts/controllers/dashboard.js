@@ -111,11 +111,13 @@ angular.module('shoplyApp')
                       
                       delete $scope.bank_obj.$order;
                       $scope.$parent.form.data.bank = $scope.bank_obj;
-                      
+                      $scope.$parent.form.data.status = 'Gestion';
+
                       api.payments().post($scope.$parent.form).success(function(res){
                         if(res){
                             $scope.$parent.$parent.payment_done = true;
                             $scope.$close();
+                            $scope.load();
                         }
                       });                      
                   }
@@ -211,8 +213,17 @@ angular.module('shoplyApp')
           });
     }
 
-    $scope.update_credit = function(){
+    $scope.update_payment = function(payment){
 
+      payment._credit = $scope.current_credit._id;
+      api.payments().add("confirm").put($scope.toFormData(payment), {
+                    transformRequest: angular.identity,
+                    headers: {'Content-Type':undefined, enctype:'multipart/form-data'}
+      }).success(function(res){
+          if(res){
+              $scope.load();
+          }
+      });  
     }
 
     $scope.pay_day = function (days){
