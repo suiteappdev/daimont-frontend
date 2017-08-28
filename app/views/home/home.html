@@ -31,19 +31,6 @@
                                             <p  class="label-strong-primary">{{form.data.interestsDays || form.data.interests || 0 | currency:"$ ":0}} </p>
                                         </div> 
                                         <div class="col-lg-6 text-left">
-                                            <label style="color:#101010;" class="text-white">Gestión de Credito:</label>
-                                        </div>
-                                        <div class="col-lg-6 text-right">
-                                            <p  class="label-strong-primary">{{form.data.system_quoteDays || form.data.system_quote || 0   | currency:"$ ":0 }}</p>
-                                        </div>
-                                        <div class="col-lg-6 text-left">
-                                            <label style="color:#101010;" class="text-white">Costo de financiación:</label>
-                                        </div>
-                                        <div class="col-lg-6 text-right">
-                                            <p  class="label-strong-primary">{{form.data.finance_quote || 0 | currency:"$ "}}</p>
-                                        </div> 
-
-                                        <div class="col-lg-6 text-left">
                                             <label style="color:#101010;" class="text-white">Iva:</label>
                                         </div>
                                         <div class="col-lg-6 text-right">
@@ -62,7 +49,7 @@
                                             <label style="color:#101010;" class="text-white">Total a Pagar:</label>
                                         </div>
                                         <div class="col-lg-6 text-right">
-                                            <p class="label-strong-warning" style="color:green;!important">{{form.data.total_payment || 0 | currency:"$ ":0}} COP</p>
+                                            <p class="text-warning">{{form.data.total_payment || 0 | currency:"$ ":0}} COP</p>
                                         </div>
                                     </div>
                                     <div class="row" ng-hide="!$root.user || $root.isLogged">
@@ -70,15 +57,15 @@
                                              <a href="" ng-click="new_credit()" class="btn btn-success btn-block">Solicitar</a>                           
                                         </div>
                                     </div>
-                                        <div class="row" ng-hide="$root.user || $root.isLogged">
-                                            <div class="col-lg-6">
-                                                <a  href="#/empezar" ui-sref="home.empezar({ credit : form})" class="btn btn-primary btn-block btn-sm"></i>&nbsp;Registrarme</a>
-                                                
-                                            </div>
-                                            <div class="col-lg-6">
-                                                <a href="#/continuar" ui-sref="home.continuar({ credit : form})" class="btn btn-primary btn-block btn-sm"></i>&nbsp;Tengo Cuenta</a>
-                                            </div>                                    
+                                    <div class="row" ng-hide="$root.user || $root.isLogged">
+                                        <div class="col-lg-6">
+                                            <a  href="#/empezar" ui-sref="home.empezar({ credit : form})" class="btn btn-primary btn-block btn-sm"></i>&nbsp;Registrarme</a>
+                                            
                                         </div>
+                                        <div class="col-lg-6">
+                                            <a href="#/continuar" ui-sref="home.continuar({ credit : form})" class="btn btn-primary btn-block btn-sm"></i>&nbsp;Tengo Cuenta</a>
+                                        </div>                                    
+                                    </div>
                                 </div>
                                 <div class="footer-card-data text-center row">
                                     <div class="col-md-3">
@@ -154,15 +141,8 @@
                                             <label style="color:#101010;" class="text-white">Gestión de Credito:</label>
                                         </div>
                                         <div class="col-lg-6 text-right">
-                                            <p  class="label-strong-primary">{{form.data.system_quoteDays || form.data.system_quote  | currency:"$ ":0 }}</p>
+                                            <p  class="label-strong-primary">{{form.data.system_quote | currency:"$ ":0 }}</p>
                                         </div> 
-                                        <div class="col-lg-6 text-left">
-                                            <label style="color:#101010;" class="text-white">Costo de financiación:</label>
-                                        </div>
-                                        <div class="col-lg-6 text-right">
-                                            <p  class="label-strong-primary">{{form.data.finance_quote || 0 | currency:"$ "}}</p>
-                                        </div> 
-
                                         <div class="col-lg-6 text-left">
                                             <label style="color:#101010;" class="text-white">Iva:</label>
                                         </div>
@@ -176,7 +156,7 @@
                                             <label style="color:#101010;" class="text-white">Total a Pagar:</label>
                                         </div>
                                         <div class="col-lg-6 text-right">
-                                            <p class="label-strong-warning" style="color:green;!important">{{form.data.total_payment || 0 | currency:"$ ":0}} COP</p>
+                                            <p class="text-warning">{{form.data.total_payment || 0 | currency:"$ ":0}} COP</p>
                                         </div>
                                     </div>
                                     <div class="row" ng-hide="!$root.isLogged || !$root.user" >

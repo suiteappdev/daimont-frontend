@@ -31,7 +31,7 @@
             <div class="main-wrap col-lg-12" ng-show="records.length > 0">
                 <div style="top: -70px;position: relative;"> 
                    <div class="typography-line">
-                        <h3 class="text-left" style="margin-bottom: 5px;">Credito Actual <span style="font-size: 12px;text-align: right;float: right;">Tu plan de credito es : <span class="badge badge-primary">Basico</span></span></h3>
+                        <h3 class="text-left" style="margin-bottom: 5px;">{{current_credit.data.total_payment | currency:"$ "}} COP <span style="font-size: 12px;text-align: right;float: right;">Tu plan de credito es : <span class="badge badge-primary">Basico</span></span></h3>
                         <a ng-show="current_credit.data.status == 'Consignado' && current_credit.data.deposit" target="_blank" ng-href="{{current_credit.data.deposit}}" class="text-primary" style="text-align: left;"><p ><i class="fa fa-paperclip" aria-hidden="true"></i>&nbsp; Archivo adjunto</p></a>
                         <div class="row col-lg-12 text-left">
                             <label> Estado de tu credito:&nbsp;</label>
@@ -73,15 +73,7 @@
                             <p style="font-size:12px;margin-bottom:0px;">Gestión de credito:</p>
                         </div>
                         <div class="col-lg-6 text-right" style="font-size:14px;">
-                            <p class="n-m" style="padding:10px;">{{current_credit.data.system_quoteDays | currency:"$ "}}</p>
-                        </div>                    
-                    </div>
-                    <div class="row credit-item-border animated bounceIn align-middle" ng-show="more_details">
-                        <div class="col-lg-6 text-left">
-                            <p style="font-size:12px;margin-bottom:0px;">Costo de financiación:</p>
-                        </div>
-                        <div class="col-lg-6 text-right" style="font-size:14px;">
-                            <p class="n-m" style="padding:10px;">{{current_credit.data.finance_quote | currency:"$ "}}</p>
+                            <p class="n-m" style="padding:10px;">{{current_credit.data.system_quote | currency:"$ "}}</p>
                         </div>                    
                     </div>
                     <div class="row credit-item-border align-middle" ng-show="more_details">
@@ -92,25 +84,14 @@
                             <p class="n-m" style="padding:10px;">{{current_credit.data.ivaDays | currency:"$ "}}</p>
                         </div>                    
                     </div> 
-                    <div class="row align-middle">
-                        <div class="col-lg-6 text-left">
-                            <p style="font-size:12px;margin-bottom:0px;"><strong>Total a Pagar:</strong></p>
+                    <div class="row align-middle" ng-show="payments.length == 0">
+                        <div class="col-lg-12 text-cener">
+                            <p style="font-size:12px;margin-bottom:0px;margin-top:10px;"><h5>Usted no tiene registro de pagos</h5></p>
                         </div>
-                        <div class="col-lg-6 text-right" style="font-size:14px;">
-                            <p class="n-m" style="padding:10px;">{{current_credit.data.total_payment | currency:"$ "}} COP</p>
+                        <div class="col-lg-12 text-center" style="font-size:14px;">
+                            <button class="btn btn-primary btn-sm" ng-click="payment()" ng-disabled="current_credit.data.status != 'Consignado'">Pagar</button>
                         </div>                    
                     </div>
-
-                    <div class="row">
-                        <div class="col-lg-6 text-left">
-
-                        </div>
-                        <div class="col-lg-6 text-right">
-                            <button class="btn btn-primary btn-sm" ng-click="payment()" ng-disabled="current_credit.data.status != 'Consignado'" >PAGAR</button>
-                            <button class="btn btn-warning btn-sm" ng-click="more_details = more_details ? false : true;">DETALLES</button>
-                        </div>                    
-                    </div>
-
                 </div>
                 </div>
             </div>

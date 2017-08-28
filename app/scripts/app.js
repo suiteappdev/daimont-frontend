@@ -272,7 +272,7 @@ angular
           })
           .state('dashboard.new_credit', {
                 url: '/nuevo-credito',
-                access: { requiredAuthentication: false },
+                access: { requiredAuthentication: true },
                 templateUrl: 'views/credits/new_credit.html',
                 data: {
                   pageTitle: 'Nuevo Credito'

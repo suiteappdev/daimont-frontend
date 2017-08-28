@@ -2,7 +2,7 @@
 <daimont-header></daimont-header>
 <div class="container">
   <div class="row">
-      <ol class="breadcrumb" style="width:100%;">
+      <ol class="breadcrumb" style="width:100%;margin-top:10px;">
         <li class="breadcrumb-item"><a href="#">Daimont</a></li>
         <li class="breadcrumb-item active">Panel</li>
       </ol>
@@ -52,13 +52,12 @@
         <thead>
           <tr>
             <th></th>
+            <th>Cliente</th>
             <th>Estado del Credito</th>
             <th>Fecha de pago</th>
             <th>Perfil</th>
             <th>Monto</th>
             <th>Interes</th>
-            <th>C. Gestión</th>
-            <th>C. Financiación</th>
             <th>Iva</th>
             <th>Total</th>
             <th style="width: 36px;"></th>
@@ -73,6 +72,7 @@
             <td ng-click="$event.stopPropagation()">
                 <input id="checkbox1" type="checkbox" ng-model="record.add" ng-change="add_to_task()">
             </td>
+            <td>{{record._user.full_name}}</td>
             <td>
               <span class="badge badge-default" ng-show="current_credit.data.status == 'Pendiente'">PENDIENTE</span>
               <span class="badge badge-success" ng-show="current_credit.data.status == 'Aceptado'">APROBADO</span>
@@ -85,8 +85,6 @@
             <span class="badge badge-danger" ng-show="!record._user.data.updated">Desactualizado</span></p></td>
             <td>{{record.data.amount[0] | currency:"$ ":0}}</td>
             <td>{{record.data.interestsDays | currency:"$ ":0}}</td>
-            <td>{{record.data.system_quoteDays | currency:"$ ":0}}</td>
-            <td>{{record.data.finance_quote | currency:"$ ":0}}</td>
             <td>{{record.data.ivaDays | currency:"$ ":0}}</td>
             <td>{{record.data.total_payment | currency:"$ ":0}}</td>
           </tr>

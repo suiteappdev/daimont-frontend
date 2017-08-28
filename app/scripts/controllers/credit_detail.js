@@ -80,7 +80,10 @@ angular.module('shoplyApp')
                type: "success" },
                function(isConfirm){ 
                    if (isConfirm) {
+                      
                       $scope.credit.data.status = 'Consignado';
+                      $scope.credit.data.deposited_time = new Date().toString();
+
           						api.credits().add("deposited/" + $scope.credit._id).put($scope.toFormData($scope.credit),{
                         transformRequest: angular.identity,
                         headers: {'Content-Type':undefined, enctype:'multipart/form-data'}
@@ -98,5 +101,29 @@ angular.module('shoplyApp')
                    }
         });
     }
+
+   $scope.reject = function(){
+       modal.confirm({
+               closeOnConfirm : true,
+               title: "Está Seguro?",
+               text: "Confirma que rechaza el credito de este cliente?",
+               confirmButtonColor: "#008086",
+               type: "success" },
+               function(isConfirm){ 
+                   if (isConfirm) {
+                      api.credits($scope.credit._id).put($scope.credit).success(function(res){
+                        if(res){
+                               swal({
+                                title: "Bien Hecho",
+                                text: "Credito Rechazado",
+                                type: "success",
+                                confirmButtonColor: "#008086",
+                                closeOnConfirm: true,
+                              });
+                        }
+                      }); 
+                   }
+        });
+    } 
 
   });

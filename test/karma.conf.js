@@ -58,6 +58,7 @@ module.exports = function(config) {
       'bower_components/angular-i18n/angular-locale_es-co.js',
       'bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js',
       'bower_components/bootstrap-datepicker/dist/locales/bootstrap-datepicker.es.min.js',
+      'bower_components/handlebars/handlebars.js',
       'bower_components/angular-mocks/angular-mocks.js',
       // endbower
       'app/scripts/**/*.js',

@@ -12,7 +12,8 @@ angular.module('shoplyApp')
   	$scope.current_date = new Date();
     $scope.form = {};
     $scope.form.data = {};
-    $scope.form.data.finance_quote = 12990;
+    $scope.form.data.finance_quoteFixed = 12990;
+    $scope.form.data.finance_quoteChange = 960;
 
     $scope.load = function(){
       if(storage.get("rememberEmail")){
@@ -162,7 +163,7 @@ angular.module('shoplyApp')
     }
 
     $scope.totalize = function(){
-      $scope.form.data.total_payment = ($scope.form.data.amount[0]) + ($scope.form.data.interestsDays || $scope.form.data.interests) + ($scope.form.data.system_quoteDays || $scope.form.data.system_quote || 0) + ($scope.form.data.ivaDays || $scope.form.data.iva || 0) + ( $scope.form.data.finance_quote || 0);
+      $scope.form.data.total_payment = ($scope.form.data.amount[0]) + ($scope.form.data.interestsDays || $scope.form.data.interests) + ($scope.form.data.system_quote || $scope.form.data.system_quote || 0) + ($scope.form.data.ivaDays || $scope.form.data.iva || 0) + ( $scope.form.data.finance_quote || 0);
     }
 
     $scope.$watch('form.data.days', function(o, n){
@@ -170,10 +171,7 @@ angular.module('shoplyApp')
             $scope.form.data.pay_day = $scope.pay_day(n[0]); 
             $scope.form.data.interestsPeerDays = ( angular.copy($scope.form.data.interests) / 30 );
             $scope.form.data.interestsDays = ($scope.form.data.interestsPeerDays) * n[0];
-
-            $scope.form.data.system_quotePeerDays = (angular.copy($scope.form.data.system_quote) / 30 ); 
-            $scope.form.data.system_quoteDays = ($scope.form.data.system_quotePeerDays) * (n[0]);
-
+            $scope.form.data.system_quote = ($scope.form.data.finance_quoteFixed + $scope.form.data.finance_quoteChange * n[0]);
             $scope.form.data.ivaPeerdays = (angular.copy($scope.form.data.iva) / 30);
             $scope.form.data.ivaDays = ($scope.form.data.finance_quote + $scope.form.data.system_quoteDays || $scope.form.data.system_quote ) * (19 / 100);
             
@@ -186,9 +184,7 @@ angular.module('shoplyApp')
             $scope.form.data.interestsPeerDays = ( angular.copy($scope.form.data.interests) / 30 );
             $scope.form.data.interestsDays = $scope.form.data.interestsPeerDays * o[0];
 
-            $scope.form.data.system_quotePeerDays = (angular.copy($scope.form.data.system_quote) / 30 ); 
-            $scope.form.data.system_quoteDays = ($scope.form.data.system_quotePeerDays) * (o[0]);
-
+            $scope.form.data.system_quote = ($scope.form.data.finance_quoteFixed + $scope.form.data.finance_quoteChange * o[0]);
             $scope.form.data.ivaPeerdays = (angular.copy($scope.form.data.iva) / 30);
             $scope.form.data.ivaDays = ($scope.form.data.finance_quote + $scope.form.data.system_quoteDays || $scope.form.data.system_quote ) * (19 / 100);
             
@@ -198,8 +194,8 @@ angular.module('shoplyApp')
 
     $scope.$watch('form.data.amount', function(o, n){
         if(n){
-              $scope.form.data.interests = (n[0] * (2.499 / 100));
-              $scope.form.data.system_quote = (o[0] * (5.99 / 100));
+              $scope.form.data.interests = (n[0] * (2.4991666667 / 100));
+              $scope.form.data.system_quote = ($scope.form.data.finance_quoteFixed + $scope.form.data.finance_quoteChange * $scope.form.data.days[0]);
               $scope.form.data.iva = (($scope.form.data.system_quote + $scope.form.data.finance_quote) * (19 / 100));
               
               $scope.form.data.interestsPeerDays = ( angular.copy($scope.form.data.interests) / 30 );
@@ -214,8 +210,9 @@ angular.module('shoplyApp')
         }
 
         if(o){
-              $scope.form.data.interests = (o[0] * (2.499 / 100));
-              $scope.form.data.system_quote = (o[0] * (5.99 / 100));
+              $scope.form.data.interests = (o[0] * (2.4991666667 / 100));
+              $scope.form.data.system_quote = ($scope.form.data.finance_quoteFixed + $scope.form.data.finance_quoteChange * $scope.form.data.days[0]);
+
               $scope.form.data.iva = (($scope.form.data.system_quote + $scope.form.data.finance_quote) * (19 / 100));
               
               $scope.form.data.interestsPeerDays = ( angular.copy($scope.form.data.interests) / 30 );

@@ -3,13 +3,26 @@
 angular.module('shoplyApp')
   .directive('banksField', function () {
   	function ctrl($scope, api, modal, $rootScope){
-        $scope.records = [
-          {name : 'Bancolombia.', img : 'images/bancolombia.png', account:'08280125459', nit:'901091741', owner:'DAIMONT S.A.S.', type:'Ahorros' },
-          {name : 'Davivienda', img : 'images/davivienda.png', account:'206000722424', owner:'LINA CONCEPCION PENATES CHIMA', cc:'1100690755', type:'Ahorros'},
-          {name : 'Banco BBVA.', img : 'images/bbva.png', account:'0013048873', nit:'901091741', owner:'DAIMONT S.A.S.', type:'Corriente' },
-          {name : 'Banco de Bogota', img : 'images/bogota.png', account:'592622575', owner:'LUIS FERNANDO ALVAREZ FLOREZ', cc:'1098735034', type:'Ahorros' }
-        ]
 
+        if($scope.showAll){
+            $scope.records = [
+              {name : 'Bancolombia.', img : 'images/bancolombia.png', account:'08280125459', nit:'901091741', owner:'DAIMONT S.A.S.', type:'Ahorros' },
+              {name : 'Davivienda', img : 'images/davivienda.png', account:'206000722424', owner:'LINA CONCEPCION PENATES CHIMA', cc:'1100690755', type:'Ahorros'},
+              {name : 'Banco BBVA.', img : 'images/bbva.png', account:'0013048873', nit:'901091741', owner:'DAIMONT S.A.S.', type:'Corriente' },
+              {name : 'Banco de Bogota', img : 'images/bogota.png', account:'592622575', owner:'LUIS FERNANDO ALVAREZ FLOREZ', cc:'1098735034', type:'Ahorros' },
+              {name : 'Banco de Occidente', img : 'images/occidente.png' },
+              {name : 'Banco Av Villas.', img : 'images/avvillas.png'},
+              {name : 'Banco Popular', img : 'images/popular.png'}
+            ]          
+          }else{
+            $scope.records = [
+              {name : 'Bancolombia.', img : 'images/bancolombia.png', account:'08280125459', nit:'901091741', owner:'DAIMONT S.A.S.', type:'Ahorros' },
+              {name : 'Davivienda', img : 'images/davivienda.png', account:'206000722424', owner:'LINA CONCEPCION PENATES CHIMA', cc:'1100690755', type:'Ahorros'},
+              {name : 'Banco BBVA.', img : 'images/bbva.png', account:'0013048873', nit:'901091741', owner:'DAIMONT S.A.S.', type:'Corriente' },
+              {name : 'Banco de Bogota', img : 'images/bogota.png', account:'592622575', owner:'LUIS FERNANDO ALVAREZ FLOREZ', cc:'1098735034', type:'Ahorros' }
+            ]        
+          } 
+               
         $scope.myConfig = {
           noResultText :'aun no tenemos registrado este banco.',
           create:false,
@@ -50,6 +63,7 @@ angular.module('shoplyApp')
       	ngModel : "=",
         setObject:"=",
         setFocus : "=",
+        showAll : "@",
         key : "@",
         label : "@",
         searchby:"=",

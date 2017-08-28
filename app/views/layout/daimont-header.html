@@ -50,8 +50,10 @@
                             <a class="dropdown-item" href="#"><span class="badge badge-default">Plan Basico</span></a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="#">Configuración</a>
-                            <a class="dropdown-item" href="#">Creditos</a>
-                            <a class="dropdown-item" href="#">Planes</a>
+                            <a class="dropdown-item" href="#/dashboard" ui-sref="dashboard()" >Creditos</a>
+                            <a class="dropdown-item" href="#/clients" ui-sref="clients()" ng-show="$root.user.type =='ADMINISTRATOR'">Clientes</a>
+                            <a class="dropdown-item" href="#/credits" ui-sref="credits()" ng-show="$root.user.type =='ADMINISTRATOR'">Solicitudes</a>
+                            <a class="dropdown-item" href="#" ng-show="$root.user.type =='ADMINISTRATOR'">Planes</a>
                             <a class="dropdown-item" href="#" ng-click="logout()" >Salir</a>
                           </div>
                     </a>                   

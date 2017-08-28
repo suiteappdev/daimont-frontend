@@ -2,7 +2,7 @@
 <daimont-header></daimont-header>
 <div class="container">
   <div class="row">
-      <ol class="breadcrumb" style="width:100%;">
+      <ol class="breadcrumb" style="width:100%;margin-top:10px;">
         <li class="breadcrumb-item"><a href="#">Daimont</a></li>
         <li class="breadcrumb-item active">Panel</li>
       </ol>
@@ -15,10 +15,14 @@
           <div class="col col-xs-6">
             <h3 class="panel-title" style="margin-bottom: 10px;!important;"><i class="fa fa-credit-card text-primary"></i>&nbsp;Detalle de Credito</h3>
             <p class="text-muted">Información del credito actual.</p>
+           <p class="pull-left">
+            <span class="badge badge-success" ng-show="credit._user.data.updated">Actualizado</span>
+            <span class="badge badge-danger" ng-show="!credit._user.data.updated">Desactualizado</span></p>
           </div>
           <div class="col col-xs-6 text-right">
             <button type="button" ng-click="approve()" class="btn btn-primary btn-create"></i>Aprobar</button>
            <button type="button" ng-click="done()" class="btn btn-primary btn-create">Depositar</button>
+           <button type="button" ng-click="reject()" class="btn btn-danger btn-create">Rechazar</button>
           </div>
         </div>
     </div>
@@ -27,9 +31,7 @@
     <div class="panel-body">
       <div class="row">
       <div class="col-lg-12">
-       <p class="pull-right">
-            <span class="badge badge-success" ng-show="credit._user.data.updated">Actualizado</span>
-            <span class="badge badge-danger" ng-show="!credit._user.data.updated">Desactualizado</span></p>
+
    <!-- Tabs with Background on Card -->
                               <div class="card">
                                   <ul style="background-color: #002223!important;" class="nav nav-tabs nav-tabs-neutral justify-content-left" role="tablist">
@@ -101,11 +103,7 @@
                                                 </div> 
                                                 <div class="form-group col-lg-6 text-left">
                                                     <label class="bold monospace">Gestión de credito</label>
-                                                    <p>{{credit.data.finance_quote | currency:"$ ":0 || 0}}</p>
-                                                </div> 
-                                                <div class="form-group col-lg-6 text-left">
-                                                    <label class="bold monospace">Costo de financiación</label>
-                                                    <p>{{credit.data.finance_quote | currency:"$ ":0 || 0}}</p>
+                                                    <p>{{credit.data.system_quote | currency:"$ ":0 || 0}}</p>
                                                 </div> 
                                                 <div class="form-group col-lg-6 text-left">
                                                     <label class="bold monospace">Iva</label>
