@@ -23,6 +23,39 @@ angular.module('shoplyApp')
       }
   	}
 
+    $scope.inc_amount = function(){
+        var _current_amount = $scope.amount_instance.get();
+        var steps = $scope.amount_instance.options.step;
+        var value = (parseInt(_current_amount) + steps);
+
+        $scope.amount_instance.set(value);        
+    }
+
+    $scope.dec_amount = function(){
+        var _current_amount = $scope.amount_instance.get();
+        var steps = $scope.amount_instance.options.step;
+        var value = (parseInt(_current_amount) - steps);
+
+        $scope.amount_instance.set(value);      
+    }
+
+    $scope.inc_days = function(){
+        var _current_day = $scope.days_instance.get();
+        var steps = $scope.days_instance.options.step;
+        var value = (parseInt(_current_day) + steps);
+
+        $scope.days_instance.set(value);  
+    }
+
+    $scope.dec_days = function(){
+        var _current_day = $scope.days_instance.get();
+        var steps = $scope.days_instance.options.step;
+        var value = (parseInt(_current_day) - steps);
+
+        $scope.days_instance.set(value);  
+    }
+
+
     $scope.new_credit = function(){
        modal.confirm({
                closeOnConfirm : true,

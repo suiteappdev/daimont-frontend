@@ -92,9 +92,12 @@
                         <div class="col-lg-6 container" ng-hide="$root.switch_summary">
                             <div class="simulator_wrapper">
                                 <h5 class="text-left">¿Cuánto dinero necesitas?</h5>
-                                <i ng-click="inc()" style="position: relative;left: -220px;top: 13px;border:1px solid;border-radius:20%;padding:5px;" class="now-ui-icons ui-1_simple-delete"></i>
-                                <slider step="50000" id="amount" ng-model="form.data.amount" initial="200000" range="[100000, 500000]"></slider>
-                                <i  ng-click="dec()" style="position: relative;right: -220px;top: -15px;border:1px solid;border-radius:20%;padding: 5px;" class="now-ui-icons ui-1_simple-add"></i>
+                                <i  ng-click="dec_amount()" style="cursor:pointer;position: relative;left: -220px;top: 13px;border:1px solid;border-radius:20%;padding:5px;" class="now-ui-icons ui-1_simple-delete"></i>
+
+                                <slider step="50000" instance="amount_instance" id="amount" ng-model="form.data.amount" initial="200000" range="[100000, 500000]"></slider>
+                                
+                                <i  ng-click="inc_amount()" style="cursor:pointer;position: relative;right: -220px;top: -15px;border:1px solid;border-radius:20%;padding: 5px;" class="now-ui-icons ui-1_simple-add"></i>
+
                                 <div class="row">
                                     <div class="col-lg-6 text-left">{{''}}</div>
                                     <div style="font-size:20px;margin-top: 5px;" class="col-lg-6 text-right">{{form.data.amount[0] || 0 | currency:"COP $ "}}</div>
@@ -102,9 +105,9 @@
                                 <br />
                                 <br />
                                 <h5 class="text-left">¿Cuándo puedes pagar?</h5>
-                                <i style="position: relative;left: -220px;top: 13px;border:1px solid;border-radius:20%;padding:5px;" class="now-ui-icons ui-1_simple-delete"></i>
-                                <slider step="1" ng-model="form.data.days" initial="15" range="[1, 30]"></slider>
-                                <i  style="position: relative;right: -220px;top: -15px;border:1px solid;border-radius:20%;padding: 5px;" class="now-ui-icons ui-1_simple-add"></i>
+                                <i ng-click="dec_days()" style="cursor:pointer;position: relative;left: -220px;top: 13px;border:1px solid;border-radius:20%;padding:5px;" class="now-ui-icons ui-1_simple-delete"></i>
+                                <slider step="1" instance="days_instance" ng-model="form.data.days" initial="15" range="[1, 30]"></slider>
+                                <i  ng-click="inc_days()" style="cursor:pointer;position: relative;right: -220px;top: -15px;border:1px solid;border-radius:20%;padding: 5px;" class="now-ui-icons ui-1_simple-add"></i>
                                 <div class="row">
                                     <div style="font-size:20px;margin-top: 20px;" class="col-lg-6 text-left"></div>
                                     <div style="font-size:20px;margin-top: 5px;" ng-init="form.data.date = currentDate" class="col-lg-6 text-right">{{'en ' + form.data.days + ' dias.'}}</div>                            
@@ -199,7 +202,7 @@
                         </div>
                 </div>
             </div>
-        <daimont-footer></daimont-footer>
+            <daimont-footer></daimont-footer>
         </div>
     </div>
 </div>

@@ -1,14 +1,15 @@
 'use strict';
 
 angular.module('shoplyApp')
-  .directive('slider', function ($rootScope) {
+  .directive('slider', function ($rootScope, $timeout) {
     return {
       replace:true,
-      template: '<div class="slider"></div>',
+      template: '<div class="slider"><div/>',
       restrict: 'EA',
       scope : {
       	range : "=",
         initial :"@",
+        instance  : "=",
         ngModel:"=",
         step:"@"
       },
@@ -24,14 +25,14 @@ angular.module('shoplyApp')
             }
         });
 
-        console.log("slider", _slider)
+        scope.instance = _slider;
+        
         _slider.on('update', function(values, handle){
-          
-          scope.ngModel = values.map(function(val){
-            return Math.round(val);
-          })
-
-          scope.$apply();
+            $timeout(function(){
+              scope.ngModel = values.map(function(val){
+                return Math.round(val);
+              })              
+            });
         });
       }
     };
