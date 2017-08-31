@@ -26,6 +26,30 @@ var navbar_initialized,
     toggle_initialized = false;
 
 $(document).ready(function(){
+    
+    var docElem = window.document.documentElement,
+        support = { animations : Modernizr.cssanimations },
+        animEndEventNames = {
+            'WebkitAnimation' : 'webkitAnimationEnd',
+            'OAnimation' : 'oAnimationEnd',
+            'msAnimation' : 'MSAnimationEnd',
+            'animation' : 'animationend'
+        },
+        // animation end event name
+        animEndEventName = animEndEventNames[ Modernizr.prefixed( 'animation' ) ];
+    
+    /**
+     * extend obj function
+     */
+    function extend( a, b ) {
+        for( var key in b ) { 
+            if( b.hasOwnProperty( key ) ) {
+                a[key] = b[key];
+            }
+        }
+        return a;
+    }
+
     //  Activate the Tooltips
     $('[data-toggle="tooltip"], [rel="tooltip"]').tooltip();
 
@@ -97,8 +121,6 @@ $(document).ready(function(){
                 $('.datepicker').removeClass('open');
             });
     });
-
-
 });
 
 $(window).resize(function(){

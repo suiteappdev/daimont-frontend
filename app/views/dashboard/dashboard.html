@@ -3,10 +3,10 @@
     <div class="page-header" filter-color="orange">
         <div class="profile-header-image"></div>
         <div class="container">
-            <div class="col-md-4 content-center hidden-md-down row" ui-view>
+            <div class="" ui-view>
                   <div class="row col-lg-12" ng-show="records.length == 0 && Records">
                       <div ng-show="records.length == 0 && Records" style="text-align: center;width: 100%;">
-                      <div style="position: relative;top: -50%;">
+                      <div style="position: relative;margin-top: 20%;">
                             <h4>No tienes creditos pendientes.</h4>
                             <a  href="#/nuevo-credito" ui-sref=".new_credit()" class="btn btn-primary"><i class="now-ui-icons ui-1_simple-add"></i>&nbsp;Nuevo credito</a>   
                       </div>
@@ -15,100 +15,84 @@
                             <img style="width:250px;" src="images/loading.svg">
                       </div>
                   </div>
-                <div class="main-wrap col-lg-12" ng-show="records.length > 0">
-                <div style="top: -70px;position: relative;"> 
-                   <div class="typography-line">
-                    <div class="alert alert-success" role="alert" ng-show="payment_done">
-                        <div class="container">
-                            <div class="alert-icon">
-                                <i class="now-ui-icons ui-2_like"></i>
+                  <div class="main-wrap row col-lg-12" style="width: 900px;margin: 0 auto;" >
+                      <div class="row" style="width: 100%;top: 70%;position: relative;padding-top:5%;" ng-show="records.length > 0">
+                             <div class="col-lg-4" style="height: 400px;background-color: rgba(0, 0, 0, 0.28);display:flex;">
+                                <form name="approvedForm">
+                                    <div class="form-group">
+                                         <input type="file" id="transaction" name="evidence" name="pic" accept="image/*" ng-model="file" required reader="credit.deposit" style="display:none;">      
+                                    </div>                                                
+                                </form>
+                                <a href="" ng-click="upload()" style="align-items: center;position: relative;display: flex;vertical-align: baseline;margin:0 auto;"><i class="fa fa-upload" aria-hidden="true" style="color: #fff;font-size: 50px;"></i></a>
+
+                                <button class="btn btn-primary" type="button"  ng-click="payment()" ng-disabled="current_credit.data.status != 'Consignado'" style="position: absolute;bottom: 19px;text-align: center;    left: 27%;">¿ Donde Pagar ?</button>
+                             </div>
+                            <div class="col-lg-8">
+                            <div class="row col-lg-12">
+                                <div class="col-lg-8">
+                                    <h3 class="float-left" style="margin-bottom: 5px;">Resumen de Credito </h3>
+                                </div>
+                                <div class="col-lg-4">
+                                    <span class="float-right"><a href="" class="text-primary" style="top: 10px;
+    position: relative;">Detallado</a></span>
+                                </div>
                             </div>
-                            <strong>Muy Bien!</strong> Has empezado a gestionar tu pago.
-                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                <span aria-hidden="true">
-                                    <i class="now-ui-icons ui-1_simple-remove"></i>
-                                </span>
-                            </button>
-                        </div>
-                    </div>
-                        <h3 class="text-left" style="margin-bottom: 5px;">{{current_credit.data.total_payment | currency:"$ "}} COP <span style="font-size: 12px;text-align: right;float: right;">Tu plan de credito es : <span class="badge badge-primary">Basico</span></span></h3>
-                        <a ng-show="current_credit.data.status == 'Consignado' && current_credit.data.deposit" target="_blank" ng-href="{{current_credit.data.deposit}}" class="text-primary" style="text-align: left;"><p ><i class="fa fa-paperclip" aria-hidden="true"></i>&nbsp; Archivo adjunto</p></a>
-                        <div class="row col-lg-12 text-left">
-                            <label> Estado de tu credito:&nbsp;</label>
-                            <span class="badge badge-default" ng-show="current_credit.data.status == 'Pendiente'">PENDIENTE</span>
-                            <span class="badge badge-success" ng-show="current_credit.data.status == 'Aceptado'">APROBADO</span>
-                            <span class="badge badge-success" ng-show="current_credit.data.status == 'Consignado'">CONSIGNADO</span>
-                            <span class="badge badge-danger" ng-show="current_credit.data.status == 'Rechazado'">RECHAZADO</span>
-                            <span class="badge badge-warning" ng-show="current_credit.data.status == 'Desactualizado'">REQUIERE ACTUALIZACION</span>
-                            
-                            <p   class="warn-text" class="animated bounceIn" ng-show="payment_done"><i class=""></i>su pago esta sujeto a verificacíon.</p>
-                        </div>
-                    </div>
-                    <div class="row credit-item-border align-middle">
-                      <div class="col-lg-6 text-left">
-                            <p style="font-size:12px;margin-bottom:0px;">Fecha de Pago:</p>
-                        </div>  
-                        <div class="col-lg-6 text-right" style="font-size:14px;margin-bottom:0px;">
-                            <p><span class="badge badge-warning">{{current_credit.data.pay_day | moment: 'format': 'MMMM DD, YYYY' }}</span></p>
-                        </div>                    
-                    </div>
-                    <div class="row credit-item-border align-middle" ng-show="more_details">
-                        <div class="col-lg-6 text-left"> 
-                            <p style="font-size:12px;margin-bottom:0px;">Tu Monto Solicitado es de:</p>
-                        </div>
-                        <div class="col-lg-6 text-right" style="font-size:14px;">
-                            <p class="n-m" style="padding:10px;">{{current_credit.data.amount[0] | currency:"$ "}}</p>
-                        </div>                    
-                    </div>
-                    <div class="row credit-item-border align-middle" ng-show="more_details">
-                        <div class="col-lg-6 text-left">
-                            <p style="font-size:12px;margin-bottom:0px;">Intereses:</p>
-                        </div>
-                        <div class="col-lg-6 text-right" style="font-size:14px;">
-                            <p class="n-m" style="padding:10px;">{{current_credit.data.interestsDays | currency:"$ "}}</p>
-                        </div>                    
-                    </div>
-                    <div class="row credit-item-border animated bounceIn align-middle" ng-show="more_details">
-                        <div class="col-lg-6 text-left">
-                            <p style="font-size:12px;margin-bottom:0px;">Gestión de credito:</p>
-                        </div>
-                        <div class="col-lg-6 text-right" style="font-size:14px;">
-                            <p class="n-m" style="padding:10px;">{{current_credit.data.system_quote | currency:"$ "}}</p>
-                        </div>                    
-                    </div>
-                    <div class="row credit-item-border align-middle" ng-show="more_details">
-                        <div class="col-lg-6 text-left">
-                            <p style="font-size:12px;margin-bottom:0px;">IVA:</p>
-                        </div>
-                        <div class="col-lg-6 text-right" style="font-size:14px;">
-                            <p class="n-m" style="padding:10px;">{{current_credit.data.ivaDays | currency:"$ "}}</p>
-                        </div>                    
-                    </div> 
-                    <div class="row align-middle" ng-show="payments.length == 0">
-                        <div class="col-lg-12 text-cener">
-                            <p style="font-size:12px;margin-bottom:0px;margin-top:10px;"><h5>Usted no tiene registro de pagos</h5></p>
-                        </div>
-                        <div class="col-lg-12 text-center" style="font-size:14px;">
-                            <button class="btn btn-primary btn-sm" ng-click="payment()" ng-disabled="current_credit.data.status != 'Consignado'">Pagar</button>
-                        </div>
-                    </div>
-                    <div class="row align-middle" ng-show="payments.length > 0">
-                        <div class="col-lg-12">
-                            <h5 style="margin-bottom:5px;margin-top:5px;" class="text-left">Pagos</h5>
-                        </div>
-                        <div class="col-lg-12 text-left" ng-repeat="payment in payments" style="margin-top:20px;padding-top:5px;padding-bottom:20px;border:1px solid #808080;border-style: dashed;">
-                            <h5 style="margin-bottom:0px;">{{payment.data.total_payment  | currency:"$ "}}</h5>
-                            <p>{{payment.data.bank.name}}</p>
-                           <span class="badge badge-success" ng-show="payment.data.transaction">Pagado</span>
-                            <form name="updatePayment">
-                               <p>Por favor sube la evidencia de consignación</p>
-                               <input type="file" name="evidence" name="pic" accept="image/*" ng-model="file" required reader="payment.transaction">  
-                               <button class="btn btn-success btn-small animated bounceIn pull-right" ng-click="$parent.$parent.update_payment(payment)" ng-show="file">Confirmar Pago</button>
-                            </form>
-                        </div>                            
-                    </div>
-                </div>
-                </div>
+                            <div class="row col-lg-12">
+                               <div class="progress-container progress-primary" style="width:100%;">
+                                    <div class="progress">
+                                        <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-lg-6 text-left">
+                                           Dias transcurridos {{payForDays}} / 15
+                                        </div>
+                                        <div class="col-lg-6 text-right">
+                                            <span class="badge badge-warning"style="margin-top:5px;margin-bottom: 30px;">{{current_credit.data.pay_day | moment: 'format': 'MMMM DD, YYYY' }}</span>
+                                        </div>
+                                    </div>
+                                    <div class="row" style="margin-bottom: 5px;">
+                                        <div class="col-lg-6 text-left">Estado</div>
+                                    </div>
+                                    <div class="row text-left" style="margin-bottom:15px;">
+                                        <div class="col-lg-12">
+                                                <span class="badge badge-default" ng-show="current_credit.data.status == 'Pendiente'">PENDIENTE</span>
+                                                <span class="badge badge-success" ng-show="current_credit.data.status == 'Aceptado'">APROBADO</span>
+                                                <span class="badge badge-success" ng-show="current_credit.data.status == 'Consignado'">CONSIGNADO</span>
+                                                <span class="badge badge-danger" ng-show="current_credit.data.status == 'Rechazado'">RECHAZADO</span>
+                                                <span class="badge badge-warning" ng-show="current_credit.data.status == 'Desactualizado'">REQUIERE ACTUALIZACION</span>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-lg-6 text-left">Total a pagar</div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                              <h3 class="float-left">{{current_credit.data.amount[0] | currency:"$ "}} COP</h3>
+                                            
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-lg-6 text-left">Total a pagar Hoy</div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                              <h3 class="float-left animated bounceIn">{{paymentForm.total_payment | currency:"$ "}} COP</h3>
+                                            
+                                        </div>
+                                    </div>
+                                      <div class="row">
+                                        <div class="col-lg-12">
+                                            <p ng-hide="" style="padding: 5px;background-color: rgba(8, 8, 8, 0.74);;color: #c1c1c1;"><i class="fa fa-exclamation-circle" aria-hidden="true" style="color: #f28427;"></i>&nbsp;Sube la foto de tu transacción o consignación solo cuando hayas pagado.</p>
+
+                                            <p ng-show="" class="animated bounceIn" style="padding: 5px;background-color: rgba(8, 8, 8, 0.74);;color: #c1c1c1;"><i class="fa fa-thumbs-up" aria-hidden="true" style="color:#18ce0f;"></i>&nbsp;Pago Recibido.</p>                                           
+                                        </div>
+                                    </div>
+                                </div> 
+                            </div>
+                            </div>
+                      </div>
+                  </div>
             </div>
         </div>
         <daimont-footer></daimont-footer>

@@ -22,7 +22,8 @@ angular.module('shoplyApp')
       api.credits().add('current').get().success(function(res){
             $scope.records = res.length == 0 ? [] : [res];
             $scope.current_credit = $scope.records[0];  
-            $scope.Records  = true;          
+            $scope.Records  = true;
+            $scope.early_payment();
       });
 
       api.payments().get().success(function(res){
@@ -163,11 +164,15 @@ angular.module('shoplyApp')
         });
     }
 
+    $scope.upload = function(){
+      $('#transaction').click();
+    }
+
     $scope.early_payment = function(){
       $scope.paymentForm = {};
 
       var system = moment($scope.current_credit.data.deposited_time);
-      var now = moment("Sun Aug 30 2017 14:43:31 GMT-0500 (Hora est. Pacífico, Sudamérica");
+      var now = moment($scope.current_credit.data.pay_day);
 
       $scope.payForDays  = now.diff(system, 'days');
       $scope.paymentForm.interests = ($scope.current_credit.data.amount[0] * (2.4991666667 / 100));
