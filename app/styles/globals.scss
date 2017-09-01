@@ -1193,6 +1193,22 @@ div.datedropper.datedrop-custom-theme.picker-lkd .pick-submit {
 .accordion-toggle.active {color: #ff0000;}
 
 
-[ng\:cloak], [ng-cloak], .ng-cloak {
-  display: none !important;
+.upload_link{
+    align-items: center;
+    position: relative;
+    display: flex;
+    vertical-align: baseline;
+    margin: 0 auto;
+}
+
+.upload_link:focus{
+  outline:0;
+}
+
+.upload_link:active{
+  outline:0;
+}
+
+.upload_link:visited{
+  outline:0;
 }

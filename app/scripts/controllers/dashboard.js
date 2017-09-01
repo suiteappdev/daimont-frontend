@@ -23,7 +23,10 @@ angular.module('shoplyApp')
             $scope.records = res.length == 0 ? [] : [res];
             $scope.current_credit = $scope.records[0];  
             $scope.Records  = true;
-            $scope.early_payment();
+
+            if($scope.current_credit){
+                $scope.early_payment();
+            }
       });
 
       api.payments().get().success(function(res){
@@ -33,38 +36,71 @@ angular.module('shoplyApp')
       $scope.form.data.pay_day = $scope.pay_day($scope.form.data.days[0]);
     }
 
+     $scope.inc_amount = function(){
+            var _current_amount = $scope.amount_instance.get();
+            var steps = $scope.amount_instance.options.step;
+            var value = (parseInt(_current_amount) + steps);
 
-    $scope.print_payment_order = function(){
-      Handlebars.registerHelper('formatCurrency', function(value) {
-          return $filter('currency')(value);
-      });
+            $scope.amount_instance.set(value);        
+      }
 
-      Handlebars.registerHelper("debug", function(optionalValue) {
-          console.log("Current Context");
-          console.log("====================");
-          console.log(this);
-         
-          if (optionalValue) {
-              console.log("Value");
-              console.log("====================");
-              console.log(optionalValue);
-          }
-      }); 
+      $scope.dec_amount = function(){
+          var _current_amount = $scope.amount_instance.get();
+          var steps = $scope.amount_instance.options.step;
+          var value = (parseInt(_current_amount) - steps);
 
-      var out = [];
+          $scope.amount_instance.set(value);      
+      }
 
+      $scope.inc_days = function(){
+          var _current_day = $scope.days_instance.get();
+          var steps = $scope.days_instance.options.step;
+          var value = (parseInt(_current_day) + steps);
 
-      $http.get('views/prints/payment_order.html').success(function(res){
-        var _template = Handlebars.compile(res);
-        console.log("template", _template);
+          $scope.days_instance.set(value);  
+      }
 
-        var w = window.open("", "_blank", "scrollbars=yes,resizable=no,top=200,left=200,width=350");
-        
-        w.document.write(_template({_out : out}));
-        w.print();
-        w.close();
-      });
-  }
+      $scope.dec_days = function(){
+          var _current_day = $scope.days_instance.get();
+          var steps = $scope.days_instance.options.step;
+          var value = (parseInt(_current_day) - steps);
+
+          $scope.days_instance.set(value);  
+      }
+
+    $scope.$watch('new_payment_form.transaction', function(o, n){
+      if(n){
+            modal.confirm({
+                     closeOnConfirm : true,
+                     title: "Está Seguro?",
+                     text: "Confirma que has realizado el pago ?",
+                     confirmButtonColor: "#008086",
+                     type: "success" },
+
+                     function(isConfirm){ 
+
+                        if (isConfirm) {
+                            $scope.new_payment();
+                        }
+              });
+      }
+
+      if(o){
+        modal.confirm({
+             closeOnConfirm : true,
+             title: "Está Seguro?",
+             text: "Confirma que has realizado el pago ?",
+             confirmButtonColor: "#008086",
+             type: "success" },
+
+             function(isConfirm){ 
+
+                if (isConfirm) {
+                    $scope.new_payment();
+                }
+        });  
+      }
+    });
 
     $scope.toFormData = function(obj, form, namespace) {
         var fd = form || new FormData();
@@ -97,35 +133,34 @@ angular.module('shoplyApp')
       $state.go('detail', { credit : this.record._id } );
     }
 
-    $scope.payment = function(){
+    $scope.show_banks = function(){
       window.modal = modal.show({templateUrl : 'views/dashboard/payment.html', size:'lg', scope: this, backdrop: 'static', keyboard  : false}, function($scope){
-          modal.confirm({
-               closeOnConfirm : true,
-               title: "Está Seguro?",
-               text: "Confirma que quiere gestionar este pago ?",
-               confirmButtonColor: "#008086",
-               type: "success" },
-
-               function(isConfirm){ 
-                   if (isConfirm) {
-                      $scope.$parent.form.data = $scope.paymentForm;
-                      
-                      delete $scope.bank_obj.$order;
-                      $scope.$parent.form.data.bank = $scope.bank_obj;
-                      $scope.$parent.form.data.status = 'Gestion';
-
-                      api.payments().post($scope.$parent.form).success(function(res){
-                        if(res){
-                            $scope.$parent.$parent.payment_done = true;
-                            $scope.$close();
-                            $scope.load();
-                        }
-                      });                      
-                  }
-        });
-
-
+          $scope.$close();
       }); 
+    }
+
+    $scope.show_details = function(){
+        $scope.show_detail = $scope.show_detail ? false : true;
+    }
+
+    $scope.new_payment = function(){
+      $scope.new_payment_form.data = $scope.paymentForm;
+      $scope.new_payment_form._credit = $scope.current_credit._id;
+
+      api.payments().post($scope.toFormData($scope.new_payment_form), {
+        transformRequest: angular.identity,
+        headers: {'Content-Type':undefined, enctype:'multipart/form-data'}
+        }).success(function(res){
+             new NotificationFx({
+                  message : '<p>Tu evidencia de pago a sido recibida.</p>',
+                  layout : 'growl',
+                  effect : 'genie',
+                  type : 'notice', // notice, warning or error
+                  onClose : function() {
+                    
+                  }
+            }).show();     
+        });
     }
 
     $scope.add_to_task = function(){
@@ -183,8 +218,7 @@ angular.module('shoplyApp')
       $scope.paymentForm.interestsPeerDays = ( angular.copy($scope.current_credit.data.interests) / 30 );
       $scope.paymentForm.interestsDays = ($scope.current_credit.data.interestsPeerDays) * $scope.payForDays;
 
-      $scope.paymentForm.system_quotePeerDays = (angular.copy($scope.form.data.system_quote) / 30 ); 
-      $scope.paymentForm.system_quoteDays = ($scope.current_credit.data.system_quotePeerDays) * ($scope.payForDays);
+      $scope.paymentForm.system_quote = ($scope.current_credit.data.system_quote) * ($scope.payForDays);
       
       $scope.totalizePayment();        
 
@@ -216,29 +250,6 @@ angular.module('shoplyApp')
                      }
 
           });
-    }
-
-    $scope.update_payment = function(payment){
-
-      payment._credit = $scope.current_credit._id;
-      api.payments().add("confirm").put($scope.toFormData(payment), {
-                    transformRequest: angular.identity,
-                    headers: {'Content-Type':undefined, enctype:'multipart/form-data'}
-      }).success(function(res){
-          if(res){
-              $scope.load();
-          }
-      });  
-    }
-
-    $scope.pay_day = function (days){
-      var today = new Date();
-
-      return  new Date(today.getTime() + (days * 24 * 3600 * 1000));
-    }
-
-    $scope.totalize = function(){
-      $scope.form.data.total_payment = ($scope.form.data.amount[0]) + ($scope.form.data.interests) + ($scope.form.data.system_quote || 0);
     }
 
     $scope.totalizePayment = function(){
@@ -293,6 +304,22 @@ angular.module('shoplyApp')
 
     $scope.$watch('form.data.amount', function(o, n){
         if(n){
+              if(n[0] >= 300000){
+                if(!$scope.notification_showed){
+                    new NotificationFx({
+                        message : '<p>El monto maximo de tu primer credito es de <span style="color:#00d2da;">$300.000 COP</span> <a href="#">Preguntas Frecuentes</a>.</p>',
+                        layout : 'growl',
+                        effect : 'genie',
+                        type : 'notice', // notice, warning or error
+                        onClose : function() {
+                          
+                        }
+                      }).show();                  
+                }
+
+                $scope.notification_showed = true;
+              }
+
               $scope.form.data.interests = (n[0] * (2.4991666667 / 100));
               $scope.form.data.system_quote = ($scope.form.data.finance_quoteFixed + $scope.form.data.finance_quoteChange * $scope.form.data.days[0]);
               $scope.form.data.iva = (($scope.form.data.system_quote + $scope.form.data.finance_quote) * (19 / 100));
@@ -325,4 +352,5 @@ angular.module('shoplyApp')
               $scope.totalize();       
         }
     });
+  
   });
