@@ -1,9 +1,8 @@
 'use strict';
 
 angular.module('shoplyApp')
-  .controller('profileCtrl', function ($scope, api, modal, constants, $state, storage, account, $rootScope, $stateParams, $timeout) {
+  .controller('profileCtrl', function ($scope, api, modal, constants, $state, storage, account, $rootScope, $stateParams, $timeout, $http) {
     $scope.load = function(){
-        console.log("PARAMS", $stateParams.contract);
         if($stateParams.token){
             api.user().add('activate/').post({ activation_token : $stateParams.token }).success(function(res){
                 if(res){
@@ -25,6 +24,22 @@ angular.module('shoplyApp')
         }
 
         $state.go('profile.basic');
+    }
+
+    $scope.viewContract = function(){
+          Handlebars.registerHelper('formatCurrency', function(value) {
+              return $filter('currency')(value);
+          });
+
+          $http.get('views/prints/contract.html').success(function(res){
+                var _template = Handlebars.compile(res);
+
+                var w = window.open("", "_blank", "scrollbars=yes,resizable=no,top=200,left=200,width=350");
+                
+                w.document.write(_template({}));
+                w.print();
+                w.close();
+          });
     }
 
     $scope.counter = 5;
