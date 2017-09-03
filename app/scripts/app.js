@@ -75,41 +75,18 @@ angular
                  switch(rejection.status){
 
                     case 401:
-                     window.localStorage.clear();
-                     delete rootScope.isLogged;
-                     delete rootScope.user;
-                    
-                    if(!window.location.hash.match("login")){
-                         sweetAlert.swal({
-                                title: "La sesión ha expirado",
-                                text: "Tiempo de sesión agotado, por favor ingrese nuevamente",
-                                imageUrl:"images/expired.png"
-                            }, function(){
-
-                                 if(window.sweet)
-                                    window.sweet.hide();
-                                 if(window.modal)
-                                    window.modal.close();
-
-                                window.localStorage.clear();
-                                window.location = "#/login";
-                               
-                            });
-
-                         rootScope.$apply();
-                    }
-                    else{
-                       return $q.reject(rejection);
-                    }
-
+                       window.localStorage.clear();
+                       delete rootScope.isLogged;
+                       delete rootScope.user;
+                      return $q.reject(rejection);
                     break;
 
                     default:
-                    return $q.reject(rejection);
+                      return $q.reject(rejection);
                     break;
                  }
                   
-                }
+            }
         };
     });
 
@@ -204,7 +181,7 @@ angular
                 }
           })
           .state('profile', {
-                url: '/profile/:token',
+                url: '/profile/:token/:contract',
                 access: { requiredAuthentication: false },
                 templateUrl: 'views/profile/profile.html',
                 controller:'profileCtrl',
@@ -287,6 +264,14 @@ angular
                 },        
                 data: {
                   pageTitle: 'Detalle del credito.'
+                }
+          })
+          .state('administrators', {
+                url: '/administrators',
+                access: { requiredAuthentication: true },
+                templateUrl: 'views/administrators/administrators.html',
+                data: {
+                  pageTitle: 'Empleados.'
                 }
           })
           .state('payments-detail', {

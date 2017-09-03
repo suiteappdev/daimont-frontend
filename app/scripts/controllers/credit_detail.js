@@ -82,7 +82,7 @@ angular.module('shoplyApp')
                    if (isConfirm) {
                       
                       $scope.credit.data.status = 'Consignado';
-                      $scope.credit.data.deposited_time = new Date().toString();
+                      $scope.credit.data.deposited_time = new Date().toISOString();
 
           						api.credits().add("deposited/" + $scope.credit._id).put($scope.toFormData($scope.credit),{
                         transformRequest: angular.identity,

@@ -25,7 +25,7 @@
                                 </form>
                                 <a href="" ng-click="upload()" class="upload_link" ><i class="fa fa-upload" aria-hidden="true" style="color: #fff;font-size: 50px;"></i></a>
 
-                                <button class="btn btn-primary" type="button"  ng-click="show_banks()" ng-disabled="current_credit.data.status != 'Consignado'" style="position: absolute;bottom: 19px;text-align: center;    left: 27%;">¿ Donde Pagar ?</button>
+                                <button class="btn btn-primary" type="button"  ng-click="show_banks()" style="position: absolute;bottom: 19px;text-align: center;    left: 27%;">¿ Donde Pagar ?</button>
                              </div>
                             <div class="col-lg-8">
                             <div class="row col-lg-12">
@@ -45,7 +45,7 @@
                                     </div>
                                     <div class="row">
                                         <div class="col-lg-6 text-left">
-                                           Dias transcurridos {{payForDays}} / 15
+                                           Dias transcurridos : {{payForDays}}
                                         </div>
                                         <div class="col-lg-6 text-right">
                                             <span class="badge badge-warning"style="margin-top:5px;margin-bottom: 30px;">{{current_credit.data.pay_day | moment: 'format': 'MMMM DD, YYYY' }}</span>
@@ -99,7 +99,7 @@
                                     </div>
                                     <div class="row">
                                         <div class="col-lg-6 text-left">
-                                           Dias transcurridos {{payForDays}} / 15
+                                           Dias transcurridos {{payForDays}}
                                         </div>
                                         <div class="col-lg-6 text-right">
                                             <span class="badge badge-warning"style="margin-top:5px;margin-bottom: 30px;">{{current_credit.data.pay_day | moment: 'format': 'MMMM DD, YYYY' }}</span>
@@ -114,7 +114,7 @@
                                         </div>
                                         <div class="col-lg-6">
                                           <div class="form-group">
-                                             <label style="display:inline;" class="col-lg-6 text-left">G. de Credito</label>
+                                             <label style="display:inline;" class="col-lg-6 text-left">Gestión de Credito</label>
                                               <h3>{{paymentForm.system_quote | currency:"$ "}} COP</h3>                                      
                                           </div>
                                         </div>                                      
@@ -133,6 +133,9 @@
                                           </div>
                                         </div>                                      
                                     </div>
+                                    <br>
+                                    <br>
+                                    <br>
                                   <div class="row">
                                         <div class="col-lg-12">
                                             <p ng-hide="" style="padding: 5px;background-color: rgba(8, 8, 8, 0.74);;color: #c1c1c1;"><i class="fa fa-exclamation-circle" aria-hidden="true" style="color: #f28427;"></i>&nbsp;Sube la foto de tu transacción o consignación solo cuando hayas pagado.</p>
