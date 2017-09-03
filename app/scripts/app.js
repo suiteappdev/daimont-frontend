@@ -185,6 +185,10 @@ angular
                 access: { requiredAuthentication: false },
                 templateUrl: 'views/profile/profile.html',
                 controller:'profileCtrl',
+                params: {
+                  token: null,
+                  contract: null
+                },  
                 data: {
                   pageTitle: 'Perfil'
                 }
