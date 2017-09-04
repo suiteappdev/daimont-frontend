@@ -18,6 +18,30 @@ angular.module('shoplyApp')
       }
     }
 
+    $scope.upgrade_plan = function(){
+        var _user = angular.copy($scope.credit._user);
+
+        window.modal = modal.show({templateUrl : 'views/credits/upgrade_plan.html', size:'lg', scope: this, backdrop: 'static', keyboard  : false}, function($scope){
+             _user._plan = $scope.formPlan.data._plan;
+              
+              api.user(_user._id).put(_user).success(function(res){
+                if(res){
+                      new NotificationFx({
+                          message : '<p>Plan actualizado.</p>',
+                          layout : 'growl',
+                          effect : 'genie',
+                          type : 'notice', // notice, warning or error
+                          onClose : function() {
+                            
+                          }
+                        }).show();   
+
+                      $scope.load();
+                      $scope.$close();
+                }
+              });
+        });  
+    }
 
     $scope.approve = function(){
        modal.confirm({

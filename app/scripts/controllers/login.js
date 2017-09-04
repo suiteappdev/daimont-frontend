@@ -135,6 +135,13 @@ angular.module('shoplyApp')
               $rootScope.user = storage.get('user');
               $state.go(constants.login_state_sucess);          
           }else if(res.user.type == "ADMINISTRATOR"){
+              var  _user =  res.user;
+              var  _token = res.token;
+              storage.save('token', _token);
+              storage.save('user', _user);
+              storage.save('uid', _user._id);
+              $rootScope.isLogged = true;
+              $rootScope.user = storage.get('user');
               $state.go("credits");          
           }else{
             sweetAlert.swal("Inhabilitado.", "Privilegios son insuficientes.", "error");

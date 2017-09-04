@@ -1,10 +1,10 @@
-<div class="dashboard" ng-controller="EmployeesCtrl" ng-init="load()">
+<div class="dashboard" ng-controller="PlanesCtrl" ng-init="load()">
 <daimont-header></daimont-header>
 <div class="container">
   <div class="row">
       <ol class="breadcrumb" style="width:100%;margin-top:10px;">
         <li class="breadcrumb-item"><a href="#/credits" ui-sref="credits()">Principal</a></li>
-        <li class="breadcrumb-item active">Administradores</li>
+        <li class="breadcrumb-item active">Planes</li>
       </ol>
   </div>
 </div>
@@ -13,8 +13,8 @@
     <div class="panel-heading">
         <div class="row">
           <div class="col col-xs-6">
-            <h3 class="panel-title" style="margin-bottom: 10px;!important;"><i class="fa fa-credit-card text-primary"></i> Administradores</h3>
-            <p class="text-muted">Crea, actualiza y elimina tus administradores.</p>
+            <h3 class="panel-title" style="margin-bottom: 10px;!important;"><i class="fa fa-credit-card text-primary"></i> Planes</h3>
+            <p class="text-muted">Crea, actualiza y elimina tus Planes.</p>
           </div>
         <div class="col col-xs-6 text-right">
             <button type="button" ng-click="create()" class="btn btn-primary btn-create"><i class="now-ui-icons ui-1_simple-add"></i> Nuevo</button>
@@ -42,10 +42,12 @@
       <table class="table table-hover">
         <thead>
           <tr>
-            <th>Nombres</th>
-            <th>Apellidos</th>
-            <th>Email</th>
-            <th>Celular</th>
+            <th>Plan</th>
+            <th>Monto Minimo</th>
+            <th>Monto Maximo</th>
+            <th>Saltos</th>
+            <th>Dia minimo</th>
+            <th>Dia Maximo</th>
             <th style="width: 36px;"></th>
             <th style="width: 36px;"></th>
           </tr>
@@ -56,10 +58,12 @@
               dir-paginate="record in records | orderBy:'-createdAt'                
               | itemsPerPage: 5 " 
               >
-            <td>{{record.name}}</td>
-            <td>{{record.last_name}}</td>
-            <td>{{record.email }}</td>
-            <td>{{record.phone}}</td>
+            <td>{{record.data.plan}}</td>
+            <td>{{record.data.min_amount | currency:"$"}}</td>
+            <td>{{record.data.max_amount | currency:"$"}}</td>
+            <td>{{record.data.jumps }}</td>
+            <td>{{record.data.min_day}}</td>
+            <td>{{record.data.max_day}}</td>
             <td><button class="btn btn-primary btn-small" ng-click="edit()">Editar</button></td>
             <td><button class="btn btn-danger btn-small" ng-click="delete()">Borrar</button></td>
           </tr>

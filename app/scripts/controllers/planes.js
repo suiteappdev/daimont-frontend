@@ -8,24 +8,23 @@
  * Controller of the shoplyApp
  */
 angular.module('shoplyApp')
-  .controller('EmployeesCtrl', function ($scope, modal,  api, storage, $state, $rootScope, $timeout, $stateParams) {
+  .controller('PlanesCtrl', function ($scope, modal,  api, storage, $state, $rootScope, $timeout, $stateParams) {
     $scope.Records  = false;
 
       $scope.load = function(){
-            api.user().add("employees").get().success(function(res){
+            api.planes().get().success(function(res){
                   $scope.records = res || [];
                   $scope.Records  = true;
             });
       }
 
       $scope.edit = function(){
-      	  $scope.formEdit = angular.copy(this.record);
-      	  delete $scope.formEdit.password;
+      	  $scope.formEditPlan = angular.copy(this.record);
 
-	      window.modal = modal.show({templateUrl : 'views/administrators/edit_administrator.html', size:'lg', scope: this, backdrop: 'static', keyboard  : false}, function($scope){
-	        	if($scope.formEditAdministrator.$valid){
+	      window.modal = modal.show({templateUrl : 'views/plan/edit_plan.html', size:'lg', scope: this, backdrop: 'static', keyboard  : false}, function($scope){
+	        	if($scope.formPlansEdit.$valid){
 
-	        		api.user($scope.formEdit._id).put($scope.formEdit).success(function(res){
+	        		api.planes($scope.formEditPlan._id).put($scope.formEditPlan).success(function(res){
 	        			if(res){
 	                    new NotificationFx({
 	                        message : '<p>Registro actualizado.</p>',
@@ -54,7 +53,7 @@ angular.module('shoplyApp')
                  },
                      function(isConfirm){ 
                         if (isConfirm) {
-				        		api.user(_record).delete().success(function(res){
+				        		api.planes(_record).delete().success(function(res){
 				        			if(res){
 					                    new NotificationFx({
 					                        message : '<p>Registro Borrado.</p>',
@@ -75,13 +74,9 @@ angular.module('shoplyApp')
       }
 
       $scope.create = function(){
-	      window.modal = modal.show({templateUrl : 'views/administrators/new_administrator.html', size:'lg', scope: this, backdrop: 'static', keyboard  : false}, function($scope){
-	        	if($scope.formAdministrator.$valid){
-	        		$scope.form.data.type = 'ADMINISTRATOR';
-	        		
-	        		$scope.form.data.active = true;
-
-	        		api.user().post($scope.form.data).success(function(res){
+	      window.modal = modal.show({templateUrl : 'views/plan/new_plan.html', size:'lg', scope: this, backdrop: 'static', keyboard  : false}, function($scope){
+	        	if($scope.formPlans.$valid){
+	        		api.planes().post($scope.form).success(function(res){
 	        			if(res){
 							new NotificationFx({
 		                        message : '<p>Registro Creado.</p>',
@@ -95,7 +90,6 @@ angular.module('shoplyApp')
 
 	        			   $scope.load();
 	          			   $scope.$close();
-
 	        			}
 	        		});
 	        	}

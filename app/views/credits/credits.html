@@ -1,10 +1,10 @@
-<div class="dashboard" ng-controller="DashboardCtrl" ng-init="load()">
+<div class="dashboard" ng-controller="CreditsCtrl" ng-init="load()">
 <daimont-header></daimont-header>
 <div class="container">
   <div class="row">
       <ol class="breadcrumb" style="width:100%;margin-top:10px;">
-        <li class="breadcrumb-item"><a href="#">Daimont</a></li>
-        <li class="breadcrumb-item active">Panel</li>
+        <li class="breadcrumb-item"><a href="#/home" ui-sref="home()">Principal</a></li>
+        <li class="breadcrumb-item active">Creditos</li>
       </ol>
   </div>
 </div>
@@ -41,7 +41,11 @@
                         <a href="" class="dropdown-item"><span class="badge badge-success" >APROBADO</span></a>
                         <a href="" class="dropdown-item"><span class="badge badge-success">CONSIGNADO</span></a>
                         <a href="" class="dropdown-item"><span class="badge badge-danger">RECHAZADO</span></a>
+                        <a class="dropdown-header">Perfil</a>
+                        <a href="" class="dropdown-item"><span class="badge badge-success">ACTUALIZADO</span></a>
+                        <a href="" class="dropdown-item"><span class="badge badge-danger">DESACTUALIZADO</span></a>
                       </div>
+                       
                     </a>                   
                   </div>
             </div>            
@@ -60,7 +64,6 @@
             <th>Interes</th>
             <th>Iva</th>
             <th>Total</th>
-            <th style="width: 36px;"></th>
           </tr>
         </thead>
         <tbody>
@@ -74,11 +77,11 @@
             </td>
             <td>{{record._user.full_name}}</td>
             <td>
-              <span class="badge badge-default" ng-show="current_credit.data.status == 'Pendiente'">PENDIENTE</span>
-              <span class="badge badge-success" ng-show="current_credit.data.status == 'Aceptado'">APROBADO</span>
-              <span class="badge badge-success" ng-show="current_credit.data.status == 'Consignado'">CONSIGNADO</span>
-              <span class="badge badge-danger" ng-show="current_credit.data.status == 'Rechazado'">RECHAZADO</span>
-              <span class="badge badge-warning" ng-show="current_credit.data.status == 'Desactualizado'">REQUIERE ACTUALIZACION</span>
+              <span class="badge badge-default" ng-show="record.data.status == 'Pendiente'">PENDIENTE</span>
+              <span class="badge badge-success" ng-show="record.data.status == 'Aceptado'">APROBADO</span>
+              <span class="badge badge-success" ng-show="record.data.status == 'Consignado'">CONSIGNADO</span>
+              <span class="badge badge-danger" ng-show="record.data.status == 'Rechazado'">RECHAZADO</span>
+              <span class="badge badge-warning" ng-show="record.data.status == 'Desactualizado'">REQUIERE ACTUALIZACION</span>
             </td>
             <td>{{record.data.pay_day | moment: 'format': 'MMMM DD, YYYY' }}</td>
             <td><span class="badge badge-success" ng-show="record._user.data.updated">Actualizado</span>

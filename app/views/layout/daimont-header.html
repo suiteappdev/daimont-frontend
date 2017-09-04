@@ -47,14 +47,14 @@
                           <img ng-show="!user.picture.data.avatar" class="rounded-circle img-raised" ng-src="images/no_avatar.gif">
                           <div class="dropdown-menu dropdown-menu-right" aria-labelledby="about-us">
                             <a class="dropdown-header">Opciones</a>
-                            <a class="dropdown-item" href="#"><span class="badge badge-default">Plan Basico</span></a>
+                            <a class="dropdown-item" href="#" ng-hide="$root.user.type =='ADMINISTRATOR'"><span class="badge badge-default">Plan Basico</span></a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="#">Configuración</a>
-                            <a class="dropdown-item" href="#/dashboard" ui-sref="dashboard()" >Creditos</a>
+                            <a class="dropdown-item" href="#/dashboard" ui-sref="dashboard()" ng-hide="$root.user.type =='ADMINISTRATOR'">Creditos</a>
                             <a class="dropdown-item" href="#/clients" ui-sref="clients()" ng-show="$root.user.type =='ADMINISTRATOR'">Clientes</a>
                              <a class="dropdown-item" href="#/clients" ui-sref="administrators()" ng-show="$root.user.type =='ADMINISTRATOR'">Administradores</a>
-                            <a class="dropdown-item" href="#/credits" ui-sref="credits()" ng-show="$root.user.type =='ADMINISTRATOR'">Solicitudes</a>
-                            <a class="dropdown-item" href="#" ng-show="$root.user.type =='ADMINISTRATOR'">Planes</a>
+                            <a class="dropdown-item" href="#/credits" ui-sref="credits()" ng-show="$root.user.type =='ADMINISTRATOR'">Solicitudes de credito</a>
+                            <a class="dropdown-item" href="#/planes" ui-sref="plans()" href="#" ng-show="$root.user.type =='ADMINISTRATOR'">Planes</a>
                             <a class="dropdown-item" href="#" ng-click="logout()" >Salir</a>
                           </div>
                     </a>                   

@@ -267,7 +267,7 @@ angular
                   credit: null
                 },        
                 data: {
-                  pageTitle: 'Detalle del credito.'
+                  pageTitle: 'Detalle del credito'
                 }
           })
           .state('administrators', {
@@ -275,7 +275,15 @@ angular
                 access: { requiredAuthentication: true },
                 templateUrl: 'views/administrators/administrators.html',
                 data: {
-                  pageTitle: 'Empleados.'
+                  pageTitle: 'Empleados'
+                }
+          })
+          .state('plans', {
+                url: '/planes',
+                access: { requiredAuthentication: true },
+                templateUrl: 'views/plan/planes.html',
+                data: {
+                  pageTitle: 'Planes'
                 }
           })
           .state('payments-detail', {
