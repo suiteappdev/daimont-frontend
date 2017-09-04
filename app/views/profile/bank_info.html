@@ -1,7 +1,7 @@
 <form name="bank">
     <div class="row alert alert-success" role="alert" ng-show="updated" style="font-size:12px;position:relative;top:-12px;">
             <div class="container">
-                Perfil actualizado, ya puedes disfrutar de tu credito.
+                Perfil actualizado, Un administrador validara esta información.
             </div>
     </div>
     <h2 class="fs-title">Informacion Bancaria</h2>
@@ -38,8 +38,9 @@
         </div>
         <div class="col-lg-12">
             <div class="form-group">
+                <label>Firma de Contrato</label>
                 <input type="text" required readOnly class="text-center" required ng-model="form.data.contract" class="form-control" placeholder="Contrato" >
-                <span style="font-size: 10px;color: #a0a0a0;position: relative;left: -24px;top: -11px;"><i class="now-ui-icons business_bulb-63"></i>Al enviar estoy aceptando los terminos definidos en el <a href="">CONTRATO-CREDITO-{{form.data.contract}}</a>.</span>
+                <span style="font-size: 10px;color: #a0a0a0;position: relative;left: -24px;top: -11px;"><i class="now-ui-icons business_bulb-63"></i>Al enviar estoy de acuerdo con los terminos definidos en el <a href="">CONTRATO-CREDITO-{{form.data.contract}}</a>.</span>
             </div>       
         </div>
     </div>
