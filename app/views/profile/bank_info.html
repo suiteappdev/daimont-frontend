@@ -40,7 +40,7 @@
             <div class="form-group">
                 <label>Firma de Contrato</label>
                 <input type="text" required readOnly class="text-center" required ng-model="form.data.contract" class="form-control" placeholder="Contrato" >
-                <span style="font-size: 10px;color: #a0a0a0;position: relative;left: -24px;top: -11px;"><i class="now-ui-icons business_bulb-63"></i>Al enviar estoy de acuerdo con los terminos definidos en el <a href="">CONTRATO-CREDITO-{{form.data.contract}}</a>.</span>
+                <span style="font-size: 10px;color: #a0a0a0;position: relative;left: -24px;top: -11px;"><i class="now-ui-icons business_bulb-63"></i>Al enviar estoy de acuerdo con los terminos definidos en el <a href="" ng-click="viewContract()">CONTRATO-CREDITO-{{form.data.contract}}</a>.</span>
             </div>       
         </div>
     </div>

@@ -39,6 +39,22 @@ angular.module('shoplyApp')
         $scope.counter--;
         $scope.mytimeout = $timeout($scope.onTimeout,1000);
     }
+
+    $scope.viewContract = function(){
+          Handlebars.registerHelper('formatCurrency', function(value) {
+              return $filter('currency')(value);
+          });
+
+          $http.get('views/prints/contract.html').success(function(res){
+                var _template = Handlebars.compile(res);
+
+                var w = window.open("", "_blank", "scrollbars=yes,resizable=no,top=200,left=200,width=350");
+                
+                w.document.write(_template({}));
+                w.print();
+                w.close();
+          });
+    }
         
     $scope.stop = function(){
         $timeout.cancel($scope.mytimeout);
