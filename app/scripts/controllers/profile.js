@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('shoplyApp')
-  .controller('profileCtrl', function ($scope, api, modal, constants, $state, storage, account, $rootScope, $stateParams, $timeout) {
+  .controller('profileCtrl', function ($scope, api, modal, constants, $state, storage, account, $rootScope, $stateParams, $timeout, $http) {
     $scope.load = function(){
         console.log("PARAMS", $stateParams.contract);
         if($stateParams.token){
