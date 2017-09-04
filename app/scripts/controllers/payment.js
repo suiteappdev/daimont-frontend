@@ -3,7 +3,7 @@
 angular.module('shoplyApp')
   .controller('paymentCtrl', function ($scope, api, modal, constants, $state, storage, account, $rootScope, $stateParams, $timeout) {
     $scope.load = function(){
-    	api.payments().get().success(function(res){
+    	api.payments().add("all").get().success(function(res){
     		$scope.records = res || [];
     	});
 

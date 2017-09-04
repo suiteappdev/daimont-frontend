@@ -146,6 +146,7 @@ angular.module('shoplyApp')
 
     $scope.new_payment = function(){
       $scope.new_payment_form.data = $scope.paymentForm;
+      $scope.new_payment_form.data.bank = $rootScope.banco;
       $scope.new_payment_form._credit = $scope.current_credit._id;
 
       api.payments().post($scope.toFormData($scope.new_payment_form), {

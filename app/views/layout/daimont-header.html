@@ -51,6 +51,7 @@
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="#">Configuración</a>
                             <a class="dropdown-item" href="#/dashboard" ui-sref="dashboard()" ng-hide="$root.user.type =='ADMINISTRATOR'">Creditos</a>
+                             <a class="dropdown-item" href="#/payments" ui-sref="payments()" ng-show="$root.user.type =='ADMINISTRATOR'">Pagos</a>
                             <a class="dropdown-item" href="#/clients" ui-sref="clients()" ng-show="$root.user.type =='ADMINISTRATOR'">Clientes</a>
                              <a class="dropdown-item" href="#/clients" ui-sref="administrators()" ng-show="$root.user.type =='ADMINISTRATOR'">Administradores</a>
                             <a class="dropdown-item" href="#/credits" ui-sref="credits()" ng-show="$root.user.type =='ADMINISTRATOR'">Solicitudes de credito</a>
