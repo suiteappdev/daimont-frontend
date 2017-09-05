@@ -18,3 +18,51 @@
         width: 22px!important;
     }
 }
+
+.navbar-header .nav-icons {
+  padding-top: 12px;
+  position: absolute;
+  display: inline-block;
+  top: 0;
+}
+.navbar-header .nav-icons span {
+  padding-left: 5px;
+  padding-right: 5px;
+  font-size: 20px
+}
+.navbar-header .nav-icons a {
+  color: #fff;
+  text-decoration: none;
+}
+
+.dropdown-toggle::after {
+    display: inline-block;
+    width: 0;
+    height: 0;
+    margin-left: .3em;
+    vertical-align: middle;
+    content: "";
+    border-top: .3em solid;
+    border-right: .3em solid rgba(0, 0, 0, 0);
+    border-left: .3em solid rgba(0, 0, 0, 0);
+}
+
+.page-header[filter-color="orange"] {
+    background: rgba(44, 44, 44, 0.2);
+    background: linear-gradient(0deg, rgba(44, 44, 44, 0.4), #002223);
+}
+
+.requis p {
+    font-size: 11px;
+    font-family: Trebuchet MS,Arial,Helvetica,sans-serif;
+    line-height: 11px;
+    color: #b3b3b3;
+}
+
+.nub-gri {
+    padding: 9px 14px;
+    margin-bottom: 14px;
+    background-color: #fff;
+    border-radius: 8px;
+    height: 85px;
+}

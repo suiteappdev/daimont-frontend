@@ -1,9 +1,72 @@
 <div class="login-page" ng-controller="HomeCtrl">
+    <div class="header-metadata">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6">
+                siguenos en:
+                <a href="" class="text-white" style="font-size:14px;margin-right:10px;"><i class="fa fa-instagram"></i></a>
+                <a href="" class="text-white" style="font-size:14px;margin-right:10px;"><i class="fa fa-facebook"></i></a>
+                </div>
+                <div class="col-lg-6 text-right">
+                    <ul style="margin-bottom:0px;">
+                        <li style="display:inline;margin-right:5px;font-size:12px;" class="text-white"><i class="fa fa-whatsapp text-primary" aria-hidden="true"></i> 311 6957745</li>
+                        <li style="display:inline;margin-right:5px;font-size:12px;" class="text-white"><i class="fa fa-envelope text-primary" aria-hidden="true"></i> atencionalcliente@daimont.com</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>        
     <daimont-header></daimont-header>
+    <div class="container">
+      <div class="row" style="padding-top: 10px;">
+          <div class="col-lg-12">
+              <div class="row text-center">
+                  <div class="col-lg-2 col-sm-6 requis">
+                        <h3 style="color: #929292;margin-top: 18px;">Requisitos:</h3>
+                  </div>
+                  <div class="col-lg-2 col-sm-6 requis animated fadeIn">
+                       <span class="fa-stack fa-lg">
+                        <i class="fa fa-circle fa-stack-2x" style="color:#929292"></i>
+                        <strong class="fa fa-inverse fa-stack-1x" style="font-weight: bold;font-size: 16px;font-family: 'Raleway', sans-serif;">+18</strong>
+                      </span>
+                      <p>
+                          Mayor de edad con cedula de ciudadania <br>
+                      </p>
+                  </div>
+                  <div class="col-lg-2 col-sm-6 requis animated fadeIn">
+                      <i class="fa fa-credit-card" style="font-size: 40px;color: #929292;"></i>
+
+                      <p>Tener una cuenta<br>
+                          bancaria a tu nombre</p>
+                  </div>
+                  <div class="col-lg-2 col-sm-6 requis animated fadeIn">
+                      <span style="color: #929292;font-size: 30px;font-weight: bold;margin-left:-5px;letter-spacing: -2px">CO</span>
+                      <p>Ser residente<br>
+                       en colombia.</p>
+                   </div>
+                  <div class="col-lg-2 col-sm-6 requis animated fadeIn">
+                      <i class="fa fa-envelope-o" style="font-size: 40px;color: #929292;"></i>
+                      <p>Tener un email <br>
+                      personal.</p>
+                  </div>
+
+                  <div class="col-lg-2  col-sm-6 requis animated fadeIn">
+                      <i class="fa fa-mobile" style="font-size: 40px;color: #929292;"></i>
+
+                      <p>Tener un telefono<br> movil propio.
+                        </p>
+                  </div>
+              </div>
+              <div class="col-lg-12">
+                  <p class="text-muted" style="font-size:12px;">Tener cuenta personal de ahorros o corriente personal con alguno de los siguientes bancos: Bancolombia, davivienda, BBVA, Banco Bogota, Banco de Occidente, Banco AV Villas, Banco Popular.</p>
+              </div>
+          </div>
+        </div>  
+    </div>
     <div class="page-header" filter-color="orange">
         <div class="page-header-image"></div>
         <div class="container">
-            <div>
+            <div style="background-color: #fff;border-radius: 5px;display:none;">
                 <div class="row" style="width: 850px;text-align: center;margin: 0 auto;padding-top: 5%;">
                         <div class="simulator_summary col-lg-6" ng-hide="!$root.switch_summary">
                             <div class="card card-credit-resume card-padding">
@@ -91,7 +154,7 @@
                         </div>
                         <div class="col-lg-6 container" ng-hide="$root.switch_summary">
                             <div class="simulator_wrapper">
-                                <h5 class="text-left">¿Cuánto dinero necesitas?</h5>
+                                <h5 class="text-left control-title">¿Cuánto dinero necesitas?</h5>
                                 <i  ng-click="dec_amount()" style="cursor:pointer;position: relative;left: -220px;top: 13px;border:1px solid;border-radius:20%;padding:5px;" class="now-ui-icons ui-1_simple-delete"></i>
 
                                 <slider step="50000" instance="amount_instance" id="amount" ng-model="form.data.amount" initial="200000" range="[100000, 500000]"></slider>
@@ -100,17 +163,17 @@
 
                                 <div class="row">
                                     <div class="col-lg-6 text-left">{{''}}</div>
-                                    <div style="font-size:20px;margin-top: 5px;" class="col-lg-6 text-right">{{form.data.amount[0] || 0 | currency:"COP $ "}}</div>
+                                    <div style="font-size:20px;margin-top: 5px;" class="col-lg-6 text-right control-values">{{form.data.amount[0] || 0 | currency:"COP $ "}}</div>
                                 </div>
                                 <br />
                                 <br />
-                                <h5 class="text-left">¿Cuándo puedes pagar?</h5>
+                                <h5 class="text-left control-title">¿Cuándo puedes pagar?</h5>
                                 <i ng-click="dec_days()" style="cursor:pointer;position: relative;left: -220px;top: 13px;border:1px solid;border-radius:20%;padding:5px;" class="now-ui-icons ui-1_simple-delete"></i>
                                 <slider step="1" instance="days_instance" ng-model="form.data.days" initial="15" range="[1, 30]"></slider>
                                 <i  ng-click="inc_days()" style="cursor:pointer;position: relative;right: -220px;top: -15px;border:1px solid;border-radius:20%;padding: 5px;" class="now-ui-icons ui-1_simple-add"></i>
                                 <div class="row">
                                     <div style="font-size:20px;margin-top: 20px;" class="col-lg-6 text-left"></div>
-                                    <div style="font-size:20px;margin-top: 5px;" ng-init="form.data.date = currentDate" class="col-lg-6 text-right">{{'en ' + form.data.days + ' dias.'}}</div>                            
+                                    <div style="font-size:20px;margin-top: 5px;background-color: #05a0a5;padding: 5px;" ng-init="form.data.date = currentDate" class="col-lg-6 text-right control-values">{{'en ' + form.data.days + ' dias.'}}</div>                            
                                 </div>
                             </div>
 
