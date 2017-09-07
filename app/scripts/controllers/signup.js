@@ -71,6 +71,7 @@ angular.module('shoplyApp')
 
       var _success = function(data){
         if(data){
+            $state.go('login', { mailed : true});
            //$scope.login();
         }
       };
