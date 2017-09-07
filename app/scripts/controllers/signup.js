@@ -71,7 +71,7 @@ angular.module('shoplyApp')
 
       var _success = function(data){
         if(data){
-           $scope.login();
+           //$scope.login();
         }
       };
 

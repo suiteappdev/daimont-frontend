@@ -99,14 +99,14 @@ angular
                 pageTitle: 'Inicio'
               }
           })
-          .state('home.empezar', {
-              url: 'home/empezar',
-              templateUrl: 'views/forms/register.html',
+          .state('empezar', {
+              url: '/empezar',
+              templateUrl: 'views/empezar/empezar.html',
               params: {
                       credit: null
               },
               data: {
-                pageTitle: 'Registrarse y Continuar'
+                pageTitle: 'Empezar'
               }
           })
           .state('home.continuar', {
@@ -163,10 +163,11 @@ angular
           })
 
           .state('login', {
-              url: '/login',
+              url: '/login/:token',
               templateUrl: 'views/login/login.html',
               params : {
-                mailed : null
+                mailed : null,
+                token : null
               },
               data: {
                 pageTitle: 'Entrar'

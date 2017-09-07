@@ -12,6 +12,14 @@ angular.module('shoplyApp')
   	$scope.load = function(){
       $scope.mailed = $stateParams.mailed || null;
       delete $scope.form;
+
+      if($stateParams.token){
+            api.user().add('activate/').post({ activation_token : $stateParams.token }).success(function(res){
+                if(res){
+                    $scope.activated = true;
+                }
+            });   
+      }
       
       if(storage.get("rememberEmail")){
         $scope.fromStore = true;
