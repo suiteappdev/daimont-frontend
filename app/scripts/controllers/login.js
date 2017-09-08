@@ -8,9 +8,10 @@
  * Controller of the shoplyApp
  */
 angular.module('shoplyApp')
-  .controller('LoginCtrl', function ($scope, sweetAlert, constants, $state, storage, account, $rootScope, Facebook, $stateParams, modal) {
+  .controller('LoginCtrl', function ($scope, sweetAlert, constants, $state, storage, account, $rootScope, Facebook, $stateParams, modal, api) {
   	$scope.load = function(){
       $scope.mailed = $stateParams.mailed || null;
+      
       delete $scope.form;
 
       if($stateParams.token){
