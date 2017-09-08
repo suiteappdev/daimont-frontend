@@ -161,7 +161,13 @@ angular
                 pageTitle: 'Contactanos'
               }
           })
-
+          .state('terms', {
+              url: '/terminos-condiciones',
+              templateUrl: 'views/terms/terms.html',
+              data: {
+                pageTitle: 'Terminos y condiciones'
+              }
+          })
           .state('login', {
               url: '/login/:token',
               templateUrl: 'views/login/login.html',
