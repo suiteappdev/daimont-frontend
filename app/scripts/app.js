@@ -188,7 +188,7 @@ angular
                 }
           })
           .state('profile', {
-                url: '/profile/:token/:contract',
+                url: '/perfil',
                 access: { requiredAuthentication: false },
                 templateUrl: 'views/profile/profile.html',
                 controller:'profileCtrl',
@@ -264,6 +264,14 @@ angular
                 templateUrl: 'views/credits/new_credit.html',
                 data: {
                   pageTitle: 'Nuevo Credito'
+                }
+          })
+          .state('dashboard.profile', {
+                url: '/perfil',
+                access: { requiredAuthentication: true },
+                templateUrl: 'views/profile/profile.html',
+                data: {
+                  pageTitle: 'Actualizar Perfil'
                 }
           })
           .state('detail', {

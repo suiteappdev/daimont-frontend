@@ -6,7 +6,11 @@
                 <span class="navbar-toggler-bar bar2"></span>
                 <span class="navbar-toggler-bar bar3"></span>
             </button>
-            <a class="navbar-brand" ui-sref="home()" href="#/home" >
+            <a class="navbar-brand" ui-sref="home()" href="#/home" ng-show="!$root.user">
+              <img class="hidden-xs" style="width:70%;" src="images/logo-main.png">
+              <span class="animated bounceInLeft" style="display: block;position: absolute;font-size: 7px;bottom: 0px;left: 44px;">Creditos rapidos y seguros</span>
+            </a>
+            <a class="navbar-brand" ui-sref="dashboard()" href="#/dashboard" ng-show="$root.user">
               <img class="hidden-xs" style="width:70%;" src="images/logo-main.png">
               <span class="animated bounceInLeft" style="display: block;position: absolute;font-size: 7px;bottom: 0px;left: 44px;">Creditos rapidos y seguros</span>
             </a>
@@ -49,7 +53,6 @@
                             <a class="dropdown-header">Opciones</a>
                             <a class="dropdown-item" href="#" ng-hide="$root.user.type =='ADMINISTRATOR'"><span class="badge badge-default">Ampliar Cupo</span></a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#">Configuración</a>
                             <a class="dropdown-item" href="#/dashboard" ui-sref="dashboard()" ng-hide="$root.user.type =='ADMINISTRATOR'">Creditos</a>
                              <a class="dropdown-item" href="#/payments" ui-sref="payments()" ng-show="$root.user.type =='ADMINISTRATOR'">Pagos</a>
                             <a class="dropdown-item" href="#/clients" ui-sref="clients()" ng-show="$root.user.type =='ADMINISTRATOR'">Clientes</a>

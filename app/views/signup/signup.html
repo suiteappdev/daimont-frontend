@@ -18,26 +18,32 @@
                                 <input type="text" name="last_name" required ng-model="formRegister.data.last_name" class="form-control" placeholder="Apellidos" ng-class="{ 'form-control-danger' : (signup.$submitted || signup.last_name.$touched) && signup.last_name.$invalid }">
                                 </div>
                             </div>
+                            <div class="col-lg-12">
+                                <div class="form-group" ng-class="{ 'has-danger' : (signup.$submitted || signup.email.$touched) && signup.email.$invalid }">
+                                    <input type="email" required name="email" ng-model="formRegister.data.email" class="form-control" placeholder="Corre Electronico" ng-class="{ 'form-control-danger' : (signup.$submitted || signup.email.$touched) && signup.email.$invalid }">
+                                </div>                            
+                            </div>
+                            <div class="col-lg-12">
+                                <div style="margin-bottom:10px;" class="input-group form-group-no-border" ng-class="{ 'has-danger' : (signup.$submitted || signup.phone.$touched) && signup.phone.$invalid }">
+                                    <span class="input-group-addon">
+                                        <i class="now-ui-icons tech_mobile"></i>
+                                    </span>
+                                    <input type="text" required name="phone" ng-model="formRegister.data.phone" class="form-control" placeholder="Numero Celular" ng-class="{ 'form-control-danger' : (signup.$submitted || signup.phone.$touched) && signup.phone.$invalid }">
+                                </div>                                
+                            </div>
+                            <div class="col-lg-12">
+                                <div class="form-group" ng-class="{ 'has-danger' : (signup.$submitted || signup.password.$touched) && signup.password.$invalid }">
+                                    <input type="password" required name="password" disable-right-click ng-cut="$event.preventDefault()" ng-copy="$event.preventDefault()" ng-paste="$event.preventDefault()" ng-model="formRegister.data.password" class="form-control" placeholder="Contraseña"  ng-class="{ 'form-control-danger' : (signup.$submitted || signup.password.$touched) && signup.password.$invalid }">
+                                </div>                                 
+                            </div>
+                            <div class="col-lg-12">
+                                <div class="form-group" ng-class="{ 'has-danger' : (signup.$submitted || signup.confirm_pwd.$touched) && signup.confirm_pwd.$invalid }">
+                                    <div class="form-group">
+                                        <input type="password" required name="confirm_pwd" disable-right-click ng-cut="$event.preventDefault()" ng-copy="$event.preventDefault()" ng-paste="$event.preventDefault()" ng-model="formRegister.data.confirm_password" class="form-control" placeholder="Repetir Contraseña"  ng-class="{ 'form-control-danger' : (signup.$submitted || signup.confirm_pwd.$touched) && signup.confirm_pwd.$invalid }">
+                                    </div>
+                                </div>                                 
+                            </div>
                         </div>
-                            <div class="form-group">
-                                <input type="email" ng-model="formRegister.data.email" class="form-control" placeholder="Corre Electronico" value="">
-                            </div>
-                            <div class="input-group form-group-no-border">
-                                <span class="input-group-addon">
-                                    <i class="now-ui-icons tech_mobile"></i>
-                                </span>
-                                <input type="text" ng-model="formRegister.data.phone" class="form-control" placeholder="Numero Celular">
-                            </div>
-                            <div class="form-group">
-                                <div class="form-group">
-                                    <input type="password" disable-right-click ng-cut="$event.preventDefault()" ng-copy="$event.preventDefault()" ng-paste="$event.preventDefault()" ng-model="formRegister.data.password" class="form-control" placeholder="Contraseña">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="form-group">
-                                    <input type="password" disable-right-click ng-cut="$event.preventDefault()" ng-copy="$event.preventDefault()" ng-paste="$event.preventDefault()" ng-model="formRegister.data.confirm_password" class="form-control" placeholder="Repetir Contraseña">
-                                </div>
-                            </div>
                         </div>
                         <div class="footer text-center">
                             <button type="submit" style="padding: 10px;" ng-disabled="signup.$invalid" ng-click="register_and_request()" class="btn btn-sm btn-primary btn-round btn-lg btn-block">Registrarme</button>

@@ -3,28 +3,9 @@
 angular.module('shoplyApp')
   .controller('profileCtrl', function ($scope, api, modal, constants, $state, storage, account, $rootScope, $stateParams, $timeout, $http) {
     $scope.load = function(){
-        console.log("PARAMS", $stateParams.contract);
-        if($stateParams.token){
-            api.user().add('activate/').post({ activation_token : $stateParams.token }).success(function(res){
-                if(res){
-                    $scope.activated = true;
-
-
-                    $scope.form = {};
-                    $scope.form.data = {};
-                    $scope.form.data.name = res.name;
-                    $scope.form.data.last_name = res.last_name;
-
-                    $rootScope.user_id = res._id;
-                    
-                    if($stateParams.contract){
-                        $scope.form.data.contract = $stateParams.contract || '';
-                    }
-                }
-            });            
-        }
-
         $state.go('profile.basic');
+        $scope.form = {};
+        $scope.form.data = $rootScope.user;
     }
 
     $scope.counter = 5;
@@ -66,7 +47,7 @@ angular.module('shoplyApp')
 
     $scope.update = function(){
         $scope.form.data.updated = true;
-        api.user($rootScope.user_id).put($scope.form).success(function(res){
+        api.user($rootScope.user._id).put($scope.form.data).success(function(res){
             if(res){
                 console.log(res);
                 storage.update("user", $rootScope.user);

@@ -177,7 +177,7 @@ angular.module('shoplyApp')
        modal.confirm({
                closeOnConfirm : true,
                title: "Está Seguro?",
-               text: "Confirma que desea realizar este credito?",
+               text: "Confirma que desea realizar este préstamo?",
                confirmButtonColor: "#008086",
                type: "success" },
 
