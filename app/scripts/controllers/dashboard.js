@@ -135,7 +135,7 @@ angular.module('shoplyApp')
     }
 
     $scope.show_banks = function(){
-      window.modal = modal.show({templateUrl : 'views/dashboard/payment.html', size:'lg', scope: this, backdrop: 'static', keyboard  : false}, function($scope){
+      window.modal = modal.show({templateUrl : 'views/dashboard/payment.html', size:'lg', scope: this, backdrop: true, show : true, keyboard  : true}, function($scope){
           $scope.$close();
       }); 
     }

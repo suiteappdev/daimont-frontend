@@ -10,6 +10,7 @@
 angular.module('shoplyApp')
   .controller('HomeCtrl', function ( $scope, $filter, Facebook, $timeout, storage, $rootScope, modal, api, $state) {
   	$scope.current_date = new Date();
+
     $scope.form = {};
     $scope.form.data = {};
     $scope.form.data.finance_quoteFixed = 12990;
@@ -208,7 +209,9 @@ angular.module('shoplyApp')
             $scope.form.data.ivaPeerdays = (angular.copy($scope.form.data.iva) / 30);
             $scope.form.data.ivaDays = ($scope.form.data.finance_quote + $scope.form.data.system_quoteDays || $scope.form.data.system_quote ) * (19 / 100);
             
-            $scope.totalize();      
+            $scope.totalize();
+
+            $rootScope.credit = $scope.form;      
 
         }
 
@@ -221,7 +224,9 @@ angular.module('shoplyApp')
             $scope.form.data.ivaPeerdays = (angular.copy($scope.form.data.iva) / 30);
             $scope.form.data.ivaDays = ($scope.form.data.finance_quote + $scope.form.data.system_quoteDays || $scope.form.data.system_quote ) * (19 / 100);
             
-            $scope.totalize();      
+            $scope.totalize();
+
+            $rootScope.credit = $scope.form;      
         }
     });
 
@@ -255,7 +260,9 @@ angular.module('shoplyApp')
 
               $scope.form.data.ivaPeerdays = (angular.copy($scope.form.data.iva) / 30);
               $scope.form.data.ivaDays = ($scope.form.data.finance_quote + $scope.form.data.system_quoteDays ||  $scope.form.data.system_quote  ) * (19 / 100);
-              $scope.totalize();      
+              $scope.totalize();
+
+              $rootScope.credit = $scope.form;      
         }
 
         if(o){
@@ -272,7 +279,9 @@ angular.module('shoplyApp')
 
               $scope.form.data.ivaPeerdays = (angular.copy($scope.form.data.iva) / 30);
               $scope.form.data.ivaDays = ($scope.form.data.finance_quote + $scope.form.data.system_quoteDays ||  $scope.form.data.system_quote  ) * (19 / 100);
-              $scope.totalize();       
+              $scope.totalize();
+
+              $rootScope.credit = $scope.form;       
         }
     });
   });

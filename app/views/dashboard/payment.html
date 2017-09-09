@@ -1,6 +1,12 @@
 <div class="modal fade modal-large show" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="display: block;">
             <div class="modal-dialog">
                 <div class="modal-content">
+                    <div class="modal-header justify-content-center">
+                        <button type="button" ng-click="cancel()" class="close" data-dismiss="modal" aria-hidden="true">
+                            <i class="now-ui-icons ui-1_simple-remove"></i>
+                        </button>
+                        <h4 class="title title-up">Modal title</h4>
+                    </div>
                     <div class="modal-body">
                     <div class="row">
                         <div class="form-wrap col-lg-12">
@@ -66,7 +72,7 @@
                         </div>
                     </div>
                     <div class="modal-footer row pull-right">
-                        <button type="button" style="margin-right:5px;" class="btn btn-success" ng-disabled="!bank_obj"  ng-click="ok()" ng-cloak>ENTIENDO</button>
+                        <button type="button" style="margin-right:5px;" class="btn btn-success" ng-disabled="!bank_obj"  ng-click="ok()" ng-cloak>Listo</button>
                     </div>
                 </div>
             </div>

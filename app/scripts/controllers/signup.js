@@ -82,28 +82,23 @@ angular.module('shoplyApp')
         }
       };
 
-     modal.confirm({
-             closeOnConfirm : true,
-             title: "Está Seguro?",
-             text: "Confirma que desea realizar este credito?",
-             confirmButtonColor: "#008086",
-             type: "success" },
-             function(isConfirm){ 
-                 if (isConfirm) {
-                      if($scope.signup.$valid){
-                        if($scope.formRegister.data.password != $scope.formRegister.data.confirm_password){
-                            sweetAlert.swal("Formulario Incompleto.", "las contraseñas no coinciden.", "error");
-                            return;
-                        }
 
-                        $scope.$parent.$parent.form.data.status = 'Pendiente';
-                        account.usuario().register(angular.extend($scope.formRegister.data, {username : $scope.formRegister.data.email, credit : $scope.$parent.$parent.form})).then(_success, _error);
-                      
-                      }else if($scope.signup.$invalid){
-                            modal.incompleteForm();
-                      } 
-                 }
-              })
+      if($scope.signup.$valid){
+        if($scope.formRegister.data.password != $scope.formRegister.data.confirm_password){
+            sweetAlert.swal("Formulario Incompleto.", "las contraseñas no coinciden.", "error");
+            return;
+        }
+
+        if($rootScope.credit){
+            var _credit = {};
+            _credit.data = $rootScope.credit;
+            _credit.data.status = 'Pendiente';
+        }
+
+        account.usuario().register(angular.extend($scope.formRegister.data, {username : $scope.formRegister.data.email, credit : $rootScope.credit || {}})).then(_success, _error);
+      }else if($scope.signup.$invalid){
+            modal.incompleteForm();
+      } 
     }
 
     $scope.load = function(){
