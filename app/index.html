@@ -121,6 +121,7 @@
         <script src="scripts/directives/choose.js"></script>
         <script src="scripts/directives/cropper.js"></script>
         <script src="scripts/directives/header.js"></script>
+        <script src="scripts/directives/carousel.js"></script>
         <script src="scripts/directives/plans.js"></script>
         <script src="scripts/directives/footer.js"></script>
         <script src="scripts/directives/cliente.js"></script>
@@ -198,6 +199,11 @@ var s = document.createElement('script'); s.type = 'text/javascript'; s.async = 
                     }, 300);
                 });
             });
+    
+        $('.carousel').carousel({
+            interval: 10,
+        });
+
         })(window);
         </script>
 </body>

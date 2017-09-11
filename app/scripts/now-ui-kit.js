@@ -101,8 +101,8 @@ $(document).ready(function(){
 
     // Activate Carousel
 	$('.carousel').carousel({
-        interval: 4000
-    });
+        interval: 10,
+    }).carousel();
 
     $('.date-picker').each(function(){
         $(this).datepicker({
