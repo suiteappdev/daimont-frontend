@@ -1,34 +1,5 @@
 <div class="login-page" ng-controller="DashboardCtrl" ng-init="load()">
     <daimont-header></daimont-header>
-    <nav class="navbar navbar-light bg-faded rounded navbar-toggleable-md" style="margin-bottom:0px!important;">
-      <div class="container">
-        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarsExampleContainer" aria-controls="navbarsExampleContainer" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="nav-icons">
-            <a href="#/dashboard" ui-sref="dashboard()" class="text-muted"><span style="font-size: 25px;" class="fa fa-home"></span>
-        </div>
-        <div class="collapse navbar-collapse" id="navbarsExampleContainer">
-          <ul class="navbar-nav mr-auto">
-            <li class="nav-item">
-              <a class="nav-link" href="#/perfil/update/basic" ui-sref="profile()" >Mis Datos</a>
-            </li>
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown02" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Prestamos</a>
-              <div class="dropdown-menu" aria-labelledby="dropdown02">
-                <a class="dropdown-item" href="#/dashboard/nuevo-credito" ui-sref=".new_credit()" >Nueva Solicitud</a>
-                <a class="dropdown-item" href="#/dashboard" ui-sref="dashboard()" >Mi Prestamo actual</a>
-                <a class="dropdown-item" href="#">Pagos</a>
-                <a class="dropdown-item" href="#">Historial de Prestamos</a>
-              </div>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </nav>
-    <div class="container">
-
-    </div>
     <div class="page-header" filter-color="orange">
         <div class="profile-header-image"></div>
         <div class="container">

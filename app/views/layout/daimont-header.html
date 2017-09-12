@@ -15,15 +15,33 @@
               <span class="animated bounceInLeft" style="display: block;position: absolute;font-size: 7px;bottom: 0px;left: 44px;">Creditos rapidos y seguros</span>
             </a>
         </div>
-        <div class="collapse navbar-collapse justify-content-end" id="example-navbar-info">
+        <div ng-show="!$root.user" class="collapse navbar-collapse justify-content-end" id="example-navbar-info">
             <ul class="navbar-nav">
-                <li class="nav-item" ui-sref-active="active">
+                <li class="nav-item" ui-sref-active="active" ng-show="$root.user">
+                    <a href="#/dashboard" ui-sref="dashboard()" class="text-muted"><span style="font-size: 25px;" class="fa fa-home"></span>
+                </li>
+                <li class="nav-item" ui-sref-active="active" ng-show="$root.user">
+                    <a class="nav-link" href="#/perfil/update/basic" ui-sref="profile()">
+                        <p>Mis Datos</p>
+                    </a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a style="text-transform:capitalize!important;" class="nav-link dropdown-toggle" href="http://example.com" id="dropdown02" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Prestamos</a>
+                    <div class="dropdown-menu" aria-labelledby="dropdown02">
+                      <a class="dropdown-item" href="#/dashboard/nuevo-credito" ui-sref=".new_credit()" >Nueva Solicitud</a>
+                      <a class="dropdown-item" href="#/dashboard" ui-sref="dashboard()" >Mi Prestamo actual</a>
+                      <a class="dropdown-item" href="#">Pagos</a>
+                      <a class="dropdown-item" href="#">Historial de Prestamos</a>
+                    </div>
+                </li>
+
+                <li class="nav-item" ui-sref-active="active" ng-show="!$root.user">
                     <a class="nav-link" ui-sref="about()" href="#/acercade">
                         <i class="now-ui-icons objects_diamond"></i>
                         <p>Acerca de</p>
                     </a>
                 </li>
-                <li class="nav-item" ui-sref-active="active">
+                <li class="nav-item" ui-sref-active="active" ng-show="!$root.user">
                     <a ng-show="$root.state.current.name == 'home'" class="nav-link" style="color:white;cursor:pointer;" ng-click="how_to()">
                         <p>Como solicitar tu prestamo</p>
                     </a>
@@ -31,12 +49,12 @@
                         <p>Como solicitar tu prestamo</p>
                     </a>
                 </li>
-                <li class="nav-item" ui-sref-active="active">
+                <li class="nav-item" ui-sref-active="active" ng-show="!$root.user">
                     <a class="nav-link" ui-sref="faq()" href="#/preguntas-frecuentes">
                         <p>Preguntas frecuentes</p>
                     </a>
                 </li>
-                <li class="nav-item" ui-sref-active="active">
+                <li class="nav-item" ui-sref-active="active" ng-show="!$root.user">
                     <a class="nav-link" ui-sref="contact()" href="#/contact">
                         <p>Contactanos</p>
                     </a>
