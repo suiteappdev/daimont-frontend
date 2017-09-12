@@ -1,5 +1,5 @@
 <div id="carouselExampleControls" class="carousel slide">
-    <ol class="carousel-indicators">
+    <ol class="carousel-indicators" ng-show="controls">
         <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
         <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
         <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
@@ -16,10 +16,12 @@
             <img class="d-block" src="http://via.placeholder.com/1440x150" alt="Third slide">
         </div>
     </div>
-    <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-        <i class="now-ui-icons arrows-1_minimal-left"></i>
-    </a>
-    <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-        <i class="now-ui-icons arrows-1_minimal-right"></i>
-    </a>
+    <div class="carousel-wrap" ng-show="controls">
+        <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+            <i class="now-ui-icons arrows-1_minimal-left"></i>
+        </a>
+        <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+            <i class="now-ui-icons arrows-1_minimal-right"></i>
+        </a>        
+    </div>
 </div>

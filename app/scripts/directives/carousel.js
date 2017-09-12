@@ -8,6 +8,7 @@ angular.module('shoplyApp')
       restrict: 'EA',
       scope : {
         interval  : "=",
+        controls : "="
       },
       link: function postLink(scope, element, attrs) {
         $(angular.element(element)[0]).carousel({

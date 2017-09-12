@@ -36,6 +36,10 @@ angular.module('shoplyApp')
                 w.close();
           });
     }
+
+    $scope.go_to = function(state){
+            $state.go(state);
+    }
         
     $scope.stop = function(){
         $timeout.cancel($scope.mytimeout);

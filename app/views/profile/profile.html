@@ -34,10 +34,10 @@
                 <div id="msform">
                   <!-- progressbar -->
                   <ul id="progressbar">
-                    <li ng-class="{active : state.current.name === 'profile.basic'}">Información Basica</li>
-                    <li ng-class="{active : state.current.name === 'profile.location'}">Información Residencial</li>
-                    <li ng-class="{active : state.current.name === 'profile.finance'}">Información laboral</li>
-                    <li ng-class="{active : state.current.name === 'profile.bank'}">Información Bancaria</li>
+                    <li ng-click="go_to('profile.basic')" ng-class="{active : state.current.name === 'profile.basic'}">Información Basica</li>
+                    <li ng-click="go_to('profile.location')" ng-class="{active : state.current.name === 'profile.location'}">Información Residencial</li>
+                    <li ng-click="go_to('profile.finance')" ng-class="{active : state.current.name === 'profile.finance'}">Información laboral</li>
+                    <li ng-click="go_to('profile.bank')" ng-class="{active : state.current.name === 'profile.bank'}">Información Bancaria</li>
                   </ul>
                   <!-- fieldsets -->
                   <fieldset>
