@@ -66,6 +66,10 @@
   text-transform:none;
 }
 
+.carousel .carousel-inner {
+    box-shadow: none!important;
+}
+
 .simulator-background{
     background-image: url(../images/simulator-background.jpg);
     background-position: center;
@@ -77,6 +81,7 @@
     border-bottom: 3px solid #00999f;
     padding-bottom: 10px;
     border-bottom-style: dotted;
+    margin-bottom: 50px;
 }
 
 .steps{
@@ -107,6 +112,15 @@
     display: inline-block;
     padding: 5px;
     font-size: 14px;
+}
+
+.step-number{
+    position: relative !important;
+    top: -29px !important;
+    left: -23px !important;
+    width: 40px !important;
+    height: 40px !important;
+    min-width: 40px !important;
 }
 
 .box-step{
