@@ -25,7 +25,7 @@
                         <p>Mis Datos</p>
                     </a>
                 </li>
-                <li class="nav-item dropdown">
+                <li class="nav-item dropdown" ng-show="$root.user">
                     <a style="text-transform:capitalize!important;" class="nav-link dropdown-toggle" href="http://example.com" id="dropdown02" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Prestamos</a>
                     <div class="dropdown-menu" aria-labelledby="dropdown02">
                       <a class="dropdown-item" href="#/dashboard/nuevo-credito" ui-sref=".new_credit()" >Nueva Solicitud</a>
