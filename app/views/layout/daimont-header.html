@@ -24,7 +24,10 @@
                     </a>
                 </li>
                 <li class="nav-item" ui-sref-active="active">
-                    <a class="nav-link" ui-sref="how()" href="#/como-empezar">
+                    <a ng-show="$root.state.current.name == 'home'" class="nav-link" style="color:white;cursor:pointer;" ng-click="how_to()">
+                        <p>Como solicitar tu prestamo</p>
+                    </a>
+                    <a ng-show="$root.state.current.name != 'home'" class="nav-link" ui-sref="how()" href="#/como-empezar">
                         <p>Como solicitar tu prestamo</p>
                     </a>
                 </li>

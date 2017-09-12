@@ -8,7 +8,7 @@
  * Controller of the shoplyApp
  */
 angular.module('shoplyApp')
-  .controller('HomeCtrl', function ( $scope, $filter, Facebook, $timeout, storage, $rootScope, modal, api, $state) {
+  .controller('HomeCtrl', function ( $scope, $filter, Facebook, $timeout, storage, $rootScope, modal, api, $state, $anchorScroll, $location) {
   	$scope.current_date = new Date();
 
     $scope.form = {};
@@ -23,6 +23,14 @@ angular.module('shoplyApp')
         $scope.form.data.email = storage.get("rememberEmail");
       }
   	}
+
+    $scope.how_to = function(){
+        if ($location.hash() !== 'how_to') {
+            $location.hash('how_to');
+        } else {
+            $anchorScroll();
+        }
+    }
 
     $scope.inc_amount = function(){
         var _current_amount = $scope.amount_instance.get();
