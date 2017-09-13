@@ -37,6 +37,22 @@ angular.module('shoplyApp')
 
     }
 
+    $scope.confirm = function(){
+        if(!$rootScope.user.data.updated){
+            modal.confirm({
+                   closeOnConfirm : true,
+                   title: "Accion requerida",
+                   text: "actualiza tu información personal para continuar...",
+                   confirmButtonColor: "#008086",
+                   type: "success" },
+                   function(isConfirm){ 
+                      if (isConfirm) {
+                        $state.go('profile');
+                      }
+            });          
+        }
+    }
+
      $scope.inc_amount = function(){
             var _current_amount = $scope.amount_instance.get();
             var steps = $scope.amount_instance.options.step;

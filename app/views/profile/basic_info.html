@@ -9,27 +9,27 @@
 
     <div class="row">
         <div class="col-lg-6">
-            <input type="text" required ng-model="form.data.name" class="form-control" name="nombres" placeholder="Nombres" />
+            <input type="text" required ng-model="$root.user.name" class="form-control" name="nombres" placeholder="Nombres" />
         </div>
         <div class="col-lg-6">
-            <input type="text" required ng-model="form.data.last_name" class="form-control" name="apellidos" placeholder="Apellidos" />
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-lg-6">
-            <input type="text" required ng-model="form.data.cedula" class="form-control" name="cedula" placeholder="Cedula" />
-        </div>
-        <div class="col-lg-6">
-            <date-picker required placeholder="Fecha de nacimiento" name="fecha_nacimiento" ng-model="form.data.fecha_nacimiento"><date-picker>
+            <input type="text" required ng-model="$root.user.last_name" class="form-control" name="apellidos" placeholder="Apellidos" />
         </div>
     </div>
     <div class="row">
         <div class="col-lg-6">
-            <date-picker required placeholder="Fecha de expedición" name="fecha_expedicion" ng-model="form.data.fecha_expedicion"><date-picker>
+            <input type="text" required ng-model="$root.user.data.cedula" class="form-control" name="cedula" placeholder="Cedula" />
+        </div>
+        <div class="col-lg-6">
+            <date-picker required placeholder="Fecha de nacimiento" name="fecha_nacimiento" ng-model="$root.user.data.fecha_nacimiento"><date-picker>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-6">
+            <date-picker required placeholder="Fecha de expedición" name="fecha_expedicion" ng-model="$root.user.data.fecha_expedicion"><date-picker>
         </div>
         <div class="col-lg-6">
             <div class="form-group">
-                <selectize name="sexo" required config="{create:false, maxItems:1, valueField: 'value', labelField: 'text', placeholder:'Sexo'}" options='[{value:"Masculino", text:"Masculino"}, {value:"Femenino", text:"Femenino"}]' ng-model="form.data.sexo"></selectize>        
+                <selectize name="sexo" required config="{create:false, maxItems:1, valueField: 'value', labelField: 'text', placeholder:'Sexo'}" options='[{value:"Masculino", text:"Masculino"}, {value:"Femenino", text:"Femenino"}]' ng-model="$root.user.data.sexo"></selectize>        
             </div>
         </div>
     </div> 

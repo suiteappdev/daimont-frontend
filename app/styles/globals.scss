@@ -1241,6 +1241,29 @@ div.datedropper.datedrop-custom-theme.picker-lkd .pick-submit {
   margin-left: 24px;
 }
 
+.credit-item{
+    border-bottom: 1px solid #525252;
+    cursor:pointer;
+}
+
+.credit-item:hover{
+    background-color: rgba(90, 88, 88, 0.09);
+}
+
+.credit-total-text{
+    margin: 0px;
+    margin-left: 10px;
+    top: 5px;
+    position: relative;
+}
+
+.credit-counter{
+    background-color: #03585a;
+    padding: 5px;
+    border-radius: 4px;
+    margin-top: 5px;
+}
+
 
 
 

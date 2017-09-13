@@ -5,12 +5,12 @@
     <div class="row">
         <div class="col-lg-6">
             <div class="form-group">
-                <selectize required config="{create:false, maxItems:1, valueField: 'value', labelField: 'text', placeholder:'Nivel de Estudio'}" options='[{value:"Basica Primaria", text:"Basica Primaria"}, {value:"Bachiller", text:"Bachiller"}, {value:"Tecnico", text:"Tecnico"},  {value:"Tecnologo", text:"Tecnologo"}, {value:"Profesional", text:"Profesional"}, {value:"Doctorado", text:"Doctorado"}]' ng-model="form.data.nivel_estudio"></selectize>
+                <selectize required config="{create:false, maxItems:1, valueField: 'value', labelField: 'text', placeholder:'Nivel de Estudio'}" options='[{value:"Basica Primaria", text:"Basica Primaria"}, {value:"Bachiller", text:"Bachiller"}, {value:"Tecnico", text:"Tecnico"},  {value:"Tecnologo", text:"Tecnologo"}, {value:"Profesional", text:"Profesional"}, {value:"Doctorado", text:"Doctorado"}]' ng-model="$root.user.data.nivel_estudio"></selectize>
             </div>
         </div>
         <div class="col-lg-6">
             <div class="form-group">
-                 <selectize required config="{create:false, maxItems:1, valueField: 'value', labelField: 'text', placeholder:'Actualmente soy'}" options='[{value:"Independiente", text:"Independiente"}, {value:"Empleado", text:"Empleado"}, {value:"Estudiante", text:"Estudiante"}, {value:"Pensionado", text:"Pensionado"}, {value:"Desempleado", text:"Desempleado"}]' ng-model="form.data.perfil_actual"></selectize>
+                 <selectize required config="{create:false, maxItems:1, valueField: 'value', labelField: 'text', placeholder:'Actualmente soy'}" options='[{value:"Independiente", text:"Independiente"}, {value:"Empleado", text:"Empleado"}, {value:"Estudiante", text:"Estudiante"}, {value:"Pensionado", text:"Pensionado"}, {value:"Desempleado", text:"Desempleado"}]' ng-model="$root.user.data.perfil_actual"></selectize>
             </div>
         </div>
         <div class="col-lg-6">
@@ -28,7 +28,7 @@
                         {value:"De 5.000.000 hasta 5.500.000", text:"De 5.000.000 hasta 5.500.000"},
                         {value:"De 5.500.000 hasta 6.000.000", text:"De 5.500.000 hasta 6.000.000"}
                     ]' 
-                    ng-model="form.data.ingresos_totales">
+                    ng-model="$root.user.data.ingresos_totales">
                 </selectize>
             </div>        
         </div>
@@ -47,7 +47,7 @@
                         {value:"De 5.000.000 hasta 5.500.000", text:"De 5.000.000 hasta 5.500.000"},
                         {value:"De 5.500.000 hasta 6.000.000", text:"De 5.500.000 hasta 6.000.000"}
                     ]' 
-                    ng-model="form.data.egresos_totales">
+                    ng-model="$root.user.data.egresos_totales">
                 </selectize>        
             </div>
         </div>        

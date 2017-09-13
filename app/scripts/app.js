@@ -266,6 +266,14 @@ angular
                   pageTitle: 'Nuevo Credito'
                 }
           })
+          .state('dashboard.historial', {
+                url: '/historial',
+                access: { requiredAuthentication: true },
+                templateUrl: 'views/historial/historial.html',
+                data: {
+                  pageTitle: 'historial de Prestamos'
+                }
+          })
           .state('dashboard.profile', {
                 url: '/perfil',
                 access: { requiredAuthentication: true },

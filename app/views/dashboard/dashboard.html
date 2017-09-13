@@ -41,7 +41,7 @@
                                <div class="progress-container progress-primary" style="width:100%;">
                                     <div class="row">
                                         <div class="col-lg-6 text-left">
-                                           Dias transcurridos {{payForDays}}
+                                            {{payForDays}} dias transcurridos.
                                         </div>
                                         <div class="col-lg-6 text-right">
                                             <span class="badge badge-warning"style="margin-top:5px;margin-bottom: 30px;">{{current_credit.data.pay_day | moment: 'format': 'MMMM DD, YYYY' }}</span>
@@ -64,7 +64,7 @@
                                     </div>
                                     <div class="row">
                                         <div class="col-lg-12">
-                                              <h3 style="margin-bottom:10px;" class="float-left">{{current_credit.data.amount[0] | currency:"$ "}} COP</h3>
+                                              <h3 style="margin-bottom:10px;font-size:20px;" class="float-left">{{current_credit.data.amount[0] | currency:"$ "}} COP</h3>
                                             
                                         </div>
                                     </div>
@@ -73,7 +73,7 @@
                                     </div>
                                     <div class="row">
                                         <div class="col-lg-12">
-                                              <h3 style="margin-bottom:10px;" class="float-left animated bounceIn">{{current_credit.data.total_payment | currency:"$ "}} COP</h3>
+                                              <h3 style="margin-bottom:10px;font-size:20px;" class="float-left animated bounceIn">{{current_credit.data.total_payment | currency:"$ "}} COP</h3>
                                         </div>
                                     </div>
                                     <div class="row">
@@ -81,15 +81,13 @@
                                     </div>
                                     <div class="row">
                                         <div class="col-lg-12">
-                                              <h3 style="margin-bottom:10px;" class="float-left animated bounceIn">{{paymentForm.total_payment | currency:"$ "}} COP</h3>
+                                              <h3 style="margin-bottom:10px;font-size:20px;" class="float-left animated bounceIn text-warning">{{paymentForm.total_payment | currency:"$ "}} COP</h3>
                                             
                                         </div>
                                     </div>
                                     <div class="row">
-                                        <div class="col-lg-12">
-                                            <p ng-hide="" style="padding: 5px;background-color: rgba(8, 8, 8, 0.74);;color: #c1c1c1;"><i class="fa fa-exclamation-circle" aria-hidden="true" style="color: #f28427;"></i>&nbsp;Sube la foto de tu transacción o consignación solo cuando hayas pagado.</p>
-
-                                            <p ng-show="" class="animated bounceIn" style="padding: 5px;background-color: rgba(8, 8, 8, 0.74);;color: #c1c1c1;"><i class="fa fa-thumbs-up" aria-hidden="true" style="color:#18ce0f;"></i>&nbsp;Pago Recibido.</p>                                           
+                                        <div class="col-lg-12 text-left">
+                                          <button style="margin-top:10px;" class="btn btn-success btn-sm" ng-click="confirm()">Confirmar Prestamo</button>
                                         </div>
                                     </div>
                                 </div> 
@@ -99,7 +97,7 @@
                                <div class="progress-container progress-primary" style="width:100%;">
                                     <div class="row">
                                         <div class="col-lg-6 text-left">
-                                           Dias transcurridos {{payForDays}}
+                                          {{payForDays}} dias transcurridos.
                                         </div>
                                         <div class="col-lg-6 text-right">
                                             <span class="badge badge-warning"style="margin-top:5px;margin-bottom: 30px;">{{current_credit.data.pay_day | moment: 'format': 'MMMM DD, YYYY' }}</span>
@@ -136,11 +134,9 @@
                                     <br>
                                     <br>
                                     <br>
-                                  <div class="row">
-                                        <div class="col-lg-12">
-                                            <p ng-hide="" style="padding: 5px;background-color: rgba(8, 8, 8, 0.74);;color: #c1c1c1;"><i class="fa fa-exclamation-circle" aria-hidden="true" style="color: #f28427;"></i>&nbsp;Sube la foto de tu transacción o consignación solo cuando hayas pagado.</p>
-
-                                            <p ng-show="" class="animated bounceIn" style="padding: 5px;background-color: rgba(8, 8, 8, 0.74);;color: #c1c1c1;"><i class="fa fa-thumbs-up" aria-hidden="true" style="color:#18ce0f;"></i>&nbsp;Pago Recibido.</p>                                           
+                                    <div class="row">
+                                        <div class="col-lg-12 text-left">
+                                          <button style="margin-top:10px;" class="btn btn-success btn-sm">Confirmar Prestamo</button>
                                         </div>
                                     </div>
                                   </div> 

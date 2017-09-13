@@ -49,10 +49,9 @@ angular.module('shoplyApp')
     }
 
     $scope.update = function(){
-        $scope.form.data.updated = true;
-        api.user($rootScope.user._id).put($scope.form.data).success(function(res){
+        $rootScope.user.data.updated = true;
+        api.user($rootScope.user._id).put($rootScope.user).success(function(res){
             if(res){
-                console.log(res);
                 storage.update("user", $rootScope.user);
                 $scope.updated = true;
                 $scope.mytimeout = $timeout($scope.onTimeout,1000);
