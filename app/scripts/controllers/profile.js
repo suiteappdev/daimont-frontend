@@ -3,7 +3,6 @@
 angular.module('shoplyApp')
   .controller('profileCtrl', function ($scope, api, modal, constants, $state, storage, account, $rootScope, $stateParams, $timeout, $http) {
     $scope.load = function(){
-        $state.go('profile.basic');
         $scope.form = {};
         $scope.form.data = $rootScope.user;
     }

@@ -132,6 +132,16 @@
     background-image: url(../images/crossword.png);
 }
 
+.simulator-warning{
+    position: absolute;
+    width: 85%;
+    height: 85px;
+    background-color: #01555f;
+    z-index: 9;
+    padding: 9px;
+    border: 3px solid #e8e8e8;
+}
+
 
 
 

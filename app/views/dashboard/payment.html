@@ -2,10 +2,9 @@
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header justify-content-center">
-                        <button type="button" ng-click="cancel()" class="close" data-dismiss="modal" aria-hidden="true">
+                        <button style="z-index:9;" type="button" ng-click="cancel()" class="close" data-dismiss="modal" aria-hidden="true">
                             <i class="now-ui-icons ui-1_simple-remove"></i>
                         </button>
-                        <h4 class="title title-up">Modal title</h4>
                     </div>
                     <div class="modal-body">
                     <div class="row">
@@ -64,7 +63,7 @@
                                         </div>
                                         <div class="col-lg-12">
                                             <h6>La suma de :</h6>
-                                            <p>{{paymentForm.total_payment | currency:"$ "}} COP</p>
+                                            <h3>{{paymentForm.total_payment | currency:"$ "}} COP</h3>
                                         </div>
                                     </div>                         
                                 </div>

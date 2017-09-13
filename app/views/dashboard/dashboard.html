@@ -33,19 +33,15 @@
                                     <h3 class="float-left" style="margin-bottom: 5px;">Resumen de Credito </h3>
                                 </div>
                                 <div class="col-lg-4">
-                                    <span class="float-right"><a href="" ng-click="show_details()" class="text-primary" style="top: 10px;
-    position: relative;">{{ show_detail ? 'Ocultar Detalles' : 'Mostrar Detalles' }}</a></span>
+                                    <span class="float-right"><a href="" ng-click="show_details()" class="text-white" style="top: 10px;
+    position: relative;"><i class="fa fa-eye" aria-hidden="true" ng-show="!show_detail"></i> <i class="fa fa-eye-slash" aria-hidden="true" ng-show="show_detail"></i> {{ show_detail ? 'Ocultar Detalles' : 'Mostrar Detalles' }}</a></span>
                                 </div>
                             </div>
                             <div class="row col-lg-12" ng-show="!show_detail">
                                <div class="progress-container progress-primary" style="width:100%;">
-                                    <div class="progress">
-                                        <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">
-                                        </div>
-                                    </div>
                                     <div class="row">
                                         <div class="col-lg-6 text-left">
-                                           Dias transcurridos : {{payForDays}}
+                                           Dias transcurridos {{payForDays}}
                                         </div>
                                         <div class="col-lg-6 text-right">
                                             <span class="badge badge-warning"style="margin-top:5px;margin-bottom: 30px;">{{current_credit.data.pay_day | moment: 'format': 'MMMM DD, YYYY' }}</span>
@@ -101,10 +97,6 @@
 
                             <div class="row col-lg-12" ng-show="show_detail">
                                <div class="progress-container progress-primary" style="width:100%;">
-                                <div class="progress">
-                                        <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">
-                                        </div>
-                                    </div>
                                     <div class="row">
                                         <div class="col-lg-6 text-left">
                                            Dias transcurridos {{payForDays}}

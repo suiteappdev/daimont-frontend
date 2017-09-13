@@ -240,20 +240,10 @@ angular.module('shoplyApp')
 
     $scope.$watch('form.data.amount', function(o, n){
         if(n){
-              if(n[0] >= 300000){
-                if(!$scope.notification_showed){
-                    new NotificationFx({
-                        message : '<p>El monto maximo de tu primer credito es de <span style="color:#00d2da;">$300.000 COP</span> <a href="#">Preguntas Frecuentes</a>.</p>',
-                        layout : 'growl',
-                        effect : 'genie',
-                        type : 'notice', // notice, warning or error
-                        onClose : function() {
-                          
-                        }
-                      }).show();                  
-                }
-
-                $scope.notification_showed = true;
+              if(n[0] >= 300000 && !$scope.show_warning_msg){
+                    $scope.show_warning_msg = true;
+              }else if(n[0] == 300000 && $scope.show_warning_msg){
+                    $scope.show_warning_msg = false;
               }
 
               $scope.form.data.interests = (n[0] * (2.4991666667 / 100));
