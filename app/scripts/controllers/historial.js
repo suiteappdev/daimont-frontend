@@ -3,6 +3,7 @@
 angular.module('shoplyApp')
   .controller('historialCtrl', function ($scope, api, modal, constants, $state, storage, account, $rootScope, $stateParams, $timeout, $http) {
     $scope.Records  = false;
+    $scope.page = 1;
     
     $scope.load = function(){
         api.credits().get().success(function(res){
@@ -10,6 +11,7 @@ angular.module('shoplyApp')
             $scope.Records  = true;
         });
     }
+
 
     $scope.viewContract = function(){
           Handlebars.registerHelper('formatCurrency', function(value) {

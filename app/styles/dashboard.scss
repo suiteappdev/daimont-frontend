@@ -61,3 +61,32 @@
     border-radius: 8px;
     height: 85px;
 }
+
+.pagination .page-item .page-link {
+    border: 0;
+    border-radius: 30px !important;
+    transition: all .3s;
+    padding: 0px 11px;
+    margin: 0 3px;
+    min-width: 30px;
+    text-align: center;
+    height: 30px;
+    line-height: 30px;
+    color: #fff;
+    cursor: pointer;
+    font-size: 14px;
+    text-transform: uppercase;
+    background: rgba(0, 0, 0, 0);
+}
+
+.pagination .page-item .page-link:hover, .pagination .page-item .page-link:focus {
+    color: #fff;
+    background-color: #03585a;
+    border: none;
+}
+
+.historial-wrapper{
+    padding-top: 20px;
+    width: 85%;
+    margin: 0 auto;
+}
