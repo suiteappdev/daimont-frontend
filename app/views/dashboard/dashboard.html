@@ -17,13 +17,13 @@
                   </div>
                   <div class="main-wrap row col-lg-12" style="width: 900px;margin: 0 auto;" >
                       <div class="row" style="width: 100%;top: 70%;position: relative;padding-top:5%;" ng-show="records.length > 0">
-                             <div class="col-lg-4" style="height: 400px;background-color: rgba(0, 0, 0, 0.28);display:flex;">
+                             <div class="col-lg-4 upload-area" style="height: 400px;background-color: rgba(0, 0, 0, 0.28);display:flex;">
                                 <form name="approvedForm">
                                     <div class="form-group">
                                          <input type="file" id="transaction" name="evidence" name="pic" accept="image/*" ng-model="file" required reader="$parent.new_payment_form.transaction" style="display:none;">      
                                     </div>                                                
                                 </form>
-                                <a href="" ng-click="upload()" class="upload_link" ><i class="fa fa-upload" aria-hidden="true" style="color: #fff;font-size: 50px;"></i></a>
+                                <a href="" ng-click="upload()" class="upload_link" ><p>Sube la foto de tu consignación o transferencia bancaria</p></a>
 
                                 <button class="btn btn-primary" type="button"  ng-click="show_banks()" style="position: absolute;bottom: 19px;text-align: center;    left: 27%;">¿ Donde Pagar ?</button>
                              </div>
@@ -59,35 +59,29 @@
                                                 <span class="badge badge-warning" ng-show="current_credit.data.status == 'Desactualizado'">REQUIERE ACTUALIZACION</span>
                                         </div>
                                     </div>
-                                    <div class="row">
-                                        <div class="col-lg-6 text-left">Monto Solicitado</div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-lg-12">
-                                              <h3 style="margin-bottom:10px;font-size:20px;" class="float-left">{{current_credit.data.amount[0] | currency:"$ "}} COP</h3>
-                                            
+                                    <div class="row"> 
+                                      <div class="col-lg-4">
+                                        <div class="form-group">
+                                          <label>Monto</label>
+                                          <h3 style="margin-bottom:10px;font-size:20px;" class="float-left">{{current_credit.data.amount[0] | currency:"$ "}} COP</h3>
+                                        </div>   
+                                      </div>
+                                      <div class="col-lg-4">
+                                        <div class="form-group">
+                                          <label>Total a pagar a la fecha</label>
+                                          <h3 style="margin-bottom:10px;font-size:20px;" class="float-left">{{current_credit.data.total_payment | currency:"$ "}} COP</h3>
                                         </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-lg-6 text-left">Total a pagar hasta fecha limite</div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-lg-12">
-                                              <h3 style="margin-bottom:10px;font-size:20px;" class="float-left animated bounceIn">{{current_credit.data.total_payment | currency:"$ "}} COP</h3>
+                                      </div>
+                                      <div class="col-lg-4">
+                                        <div class="form-group">
+                                          <label>Total a pagar hoy</label>
+                                          <h3 style="margin-bottom:10px;font-size:20px;" class="float-left text-warning">{{paymentForm.total_payment | currency:"$ "}} COP</h3>
                                         </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-lg-6 text-left">Total a pagar hoy</div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-lg-12">
-                                              <h3 style="margin-bottom:10px;font-size:20px;" class="float-left animated bounceIn text-warning">{{paymentForm.total_payment | currency:"$ "}} COP</h3>
-                                            
-                                        </div>
+                                      </div>
                                     </div>
                                     <div class="row">
                                         <div class="col-lg-12 text-left">
-                                          <button style="margin-top:10px;" class="btn btn-success btn-sm" ng-click="confirm()">Confirmar Prestamo</button>
+                                          <a href="#/nuevo-contrato" ui-sref="contract({ credit : current_credit._id})"  class="btn btn-success">CONTINUAR</a>
                                         </div>
                                     </div>
                                 </div> 
@@ -136,7 +130,7 @@
                                     <br>
                                     <div class="row">
                                         <div class="col-lg-12 text-left">
-                                          <button style="margin-top:10px;" class="btn btn-success btn-sm">Confirmar Prestamo</button>
+                                              <a href="#/nuevo-contrato" ui-sref="contract({ credit : current_credit._id})"  class="btn btn-success">CONTINUAR</a>
                                         </div>
                                     </div>
                                   </div> 

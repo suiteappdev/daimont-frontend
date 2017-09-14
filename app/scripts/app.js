@@ -200,6 +200,17 @@ angular
                   pageTitle: 'Perfil'
                 }
           })
+          .state('contract', {
+                url: '/nuevo-contrato/:credit',
+                access: { requiredAuthentication: false },
+                templateUrl: 'views/contract/contract.html',
+                params: {
+                  credit: null,
+                },  
+                data: {
+                  pageTitle: 'Firmar contrato'
+                }
+          })
           .state('profile.basic', {
                 url: '/update/basic',
                 access: { requiredAuthentication: false },
@@ -347,13 +358,18 @@ angular
                   pageTitle: 'Administración'
                 }
           });
-  }).run(["$rootScope", "constants", "storage", "$state","sounds", "api", "$window", function($rootScope, constants, storage, $state, sounds, api, $window){
+  }).run(["$rootScope", "constants", "storage", "$state","sounds", "api", "$window", "$http", function($rootScope, constants, storage, $state, sounds, api, $window, $http){
         $rootScope.currency = constants.currency;
         $rootScope.base = constants.uploadFilesUrl;
         $rootScope.user = angular.fromJson(storage.get('user'));
         $rootScope.isLogged = storage.get('access_token') || storage.get('token')
         $rootScope.state = $state;
         $rootScope.online = navigator.onLine;
+
+        $http.get('https://freegeoip.net/json/').success(function(res){
+            $rootScope.client_metadata = res || {};
+        });
+
 
         $window.addEventListener("offline", function() {
           $rootScope.$apply(function() {
@@ -395,10 +411,8 @@ angular
       $rootScope.$on('$stateChangeStart', function(event, nextRoute, toParams, fromState, fromParams){
             console.log("nextRoute", nextRoute);
 
-            if(nextRoute.name === 'home.empezar' || nextRoute.name === 'home.continuar'){
-                $rootScope.switch_summary = true; 
-            }else{
-                $rootScope.switch_summary = false; 
+            if(nextRoute.name  == 'credits' || nextRoute.name  == 'payments' || nextRoute.name  == 'payments-detail' || nextRoute.name  == 'detail' || nextRoute.name == 'administrators' && $rootScope.user.type == 'CLIENT'){
+                  event.preventDefault();
             }
 
             if(window.modal){

@@ -8,7 +8,7 @@
  * Controller of the shoplyApp
  */
 angular.module('shoplyApp')
-  .controller('DashboardCtrl', function ($scope, modal,  api, storage, $state, $rootScope, $timeout, $http) {
+  .controller('DashboardCtrl', function ($scope, modal,  api, storage, $state, $rootScope, $timeout, $http, $stateParams) {
     $scope.current_date = new Date();
     $scope.form = {};
     $scope.form.data = {};
@@ -29,12 +29,33 @@ angular.module('shoplyApp')
             }
       });
 
+      if($stateParams.credit){
+        var data  = {};
+        
+        data._user = $rootScope.user._id;
+        data._credit = $stateParams.credit;
+
+        api.contracts().post(data).success(function(res){
+            if(res){
+                $scope.code_mailed = true;
+            }
+        });
+      }
+
       api.payments().get().success(function(res){
             $scope.payments = res || [];  
       });
 
       $scope.form.data.pay_day = $scope.pay_day($scope.form.data.days[0]).toISOString();
 
+    }
+
+    $scope.sign = function(){
+      api.contracts().add("verifiy/" + $scope.form.signature).success(function(res){
+        if(res){
+            $scope.signed = true; 
+        }
+      });
     }
 
     $scope.confirm = function(){
@@ -169,6 +190,17 @@ angular.module('shoplyApp')
         transformRequest: angular.identity,
         headers: {'Content-Type':undefined, enctype:'multipart/form-data'}
         }).success(function(res){
+              
+              if(res){
+                  $scope.current_credit._payment = res._id;
+
+                  api.credits($scope.current_credit._id).put($scope.current_credit).success(function(response){
+                    if(response){
+                        alert("credit updated")
+                    }
+                  });
+              }
+
              new NotificationFx({
                   message : '<p>Tu evidencia de pago a sido recibida.</p>',
                   layout : 'growl',
