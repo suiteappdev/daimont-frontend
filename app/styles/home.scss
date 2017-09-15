@@ -71,7 +71,7 @@
 }
 
 .simulator-background{
-    background-image: url(../images/simulator-background.jpg);
+    background-image: url(../images/z.jpg);
     background-position: center;
     background-size: cover;
 }
@@ -115,7 +115,7 @@
 }
 
 .step-number{
-    position: relative !important;
+    position: absolute !important;
     top: -29px !important;
     left: -23px !important;
     width: 40px !important;
@@ -133,13 +133,31 @@
 }
 
 .simulator-warning{
-    position: absolute;
-    width: 85%;
-    height: 85px;
-    background-color: #01555f;
-    z-index: 9;
-    padding: 9px;
-    border: 3px solid #e8e8e8;
+    margin: 0px;
+    font-size: 11px;
+    color: #808080;
+    padding: 5px;
+    border: 1px solid #808080;
+    border-radius: 5px;
+}
+
+
+.simulator-background-area{
+    border-radius: 5px;
+    background-color:white;
+}
+
+.simulator-values{
+    font-size: 18px;
+    margin-top: 5px;
+    color: #fff;
+    background-color: #1d1d1d;
+    display: inline-block;
+    border-radius:10px;
+}
+
+.text-dark{
+    color:black!important;
 }
 
 
