@@ -5,6 +5,10 @@ angular.module('shoplyApp')
     $scope.load = function(){
         $scope.form = {};
         $scope.form.data = $rootScope.user;
+
+        if($stateParams.credit){
+            $scope.credit = $stateParams.credit;
+        }
     }
 
     $scope.counter = 5;
@@ -13,7 +17,7 @@ angular.module('shoplyApp')
     
     if($scope.counter == 0){
         $scope.stop()
-        $state.go('dashboard');
+        $state.go('contract', { credit : $scope.credit || {} });
         return;
     }
         $scope.counter--;

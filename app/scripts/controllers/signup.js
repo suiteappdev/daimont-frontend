@@ -77,9 +77,9 @@ angular.module('shoplyApp')
       };
 
       var _error = function(data){
-        if(data == 409){
+        if(data.status == 409){
             $scope.error_mail_registered = true;
-        }
+          }
       };
 
 

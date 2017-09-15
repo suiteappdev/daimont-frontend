@@ -20,7 +20,7 @@ angular.module('shoplyApp')
 
     $scope.load = function(){
       if($stateParams.signed){
-              $scope.signed = true;
+            $scope.signed = true;
       }
 
       api.credits().add('current').get().success(function(res){
@@ -61,7 +61,12 @@ angular.module('shoplyApp')
                 $scope.hide_mailed_msg = true;
                 $scope.nosigned = true;
               }else{
-                    $state.go('dashboard', { signed : true})
+                    api.credits($stateParams.credit).put({ _contract : res._id }).success(function(response){
+                        if(response){
+                            console.log("credito", response)
+                            $state.go('dashboard', { signed : true});                          
+                        }
+                    });
               }
         }
       });
@@ -77,9 +82,11 @@ angular.module('shoplyApp')
                    type: "success" },
                    function(isConfirm){ 
                       if (isConfirm) {
-                        $state.go('profile');
+                        $state.go('profile', { credit : $scope.current_credit._id});
                       }
             });          
+        }else{
+          $state.go('contract', { credit : $scope.current_credit._id});
         }
     }
 

@@ -85,7 +85,8 @@ angular
                       return $q.reject(rejection);
                     break;
                  }
-                  
+                
+                return $q.reject(rejection);
             }
         };
     });
@@ -193,6 +194,7 @@ angular
                 templateUrl: 'views/profile/profile.html',
                 controller:'profileCtrl',
                 params: {
+                  credit:null,
                   token: null,
                   contract: null
                 },  
