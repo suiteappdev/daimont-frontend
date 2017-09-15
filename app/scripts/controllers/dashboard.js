@@ -19,6 +19,10 @@ angular.module('shoplyApp')
     $scope.Records  = false;
 
     $scope.load = function(){
+      if($stateParams.signed){
+              $scope.signed = true;
+      }
+
       api.credits().add('current').get().success(function(res){
             $scope.records = res.length == 0 ? [] : [res];
             $scope.current_credit = $scope.records[0];  
@@ -51,9 +55,14 @@ angular.module('shoplyApp')
     }
 
     $scope.sign = function(){
-      api.contracts().add("verifiy/" + $scope.form.signature).success(function(res){
+      api.contracts().add("verify/" + $rootScope.signature).get().success(function(res){
         if(res){
-            $scope.signed = true; 
+              if(res.length == 0){
+                $scope.hide_mailed_msg = true;
+                $scope.nosigned = true;
+              }else{
+                    $state.go('dashboard', { signed : true})
+              }
         }
       });
     }

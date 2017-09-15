@@ -354,6 +354,9 @@ angular
                 url: '/dashboard',
                 access: { requiredAuthentication: true },
                 templateUrl: 'views/dashboard/dashboard.html',
+                params: {
+                  signed: null
+                },
                 data: {
                   pageTitle: 'Administración'
                 }
