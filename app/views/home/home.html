@@ -81,7 +81,7 @@
                    </div>
                   <i  ng-click="inc_amount()" style="background-color: #003b3e;cursor:pointer;position: relative;right: -185px;top: -15px;border:1px solid;border-radius:20%;padding: 5px;" class="now-ui-icons ui-1_simple-add"></i>
                   <div class="row" style="padding-right:10px;">
-                      <div class="col-lg-8 text-left"><p class="simulator-warning animated bounce" ng-show="show_warning_msg"><i class="fa fa-exclamation-triangle text-primary" aria-hidden="true"></i> Su cupo inicial es de 300.000 pesos.</p></div>
+                      <div class="col-lg-8 text-left"><p class="simulator-warning animated bounce text-warning" ng-show="show_warning_msg"><i class="fa fa-exclamation-triangle text-warning" aria-hidden="true"></i> Su cupo inicial es de 300.000 pesos.</p></div>
                       <div class="col-lg-4 text-center simulator-values"><span>{{form.data.amount[0] || 0 | currency:"$ "}}</span></div>
                   </div>
                   <br />
