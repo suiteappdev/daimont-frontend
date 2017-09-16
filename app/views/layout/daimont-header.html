@@ -25,16 +25,16 @@
                         <p>Mis Datos</p>
                     </a>
                 </li>
-                <li class="nav-item dropdown" ng-show="$root.user">
-                    <a style="text-transform:capitalize!important;" class="nav-link dropdown-toggle" href="http://example.com" id="dropdown02" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Prestamos</a>
-                    <div class="dropdown-menu" aria-labelledby="dropdown02">
-                      <a class="dropdown-item" href="#/dashboard/nuevo-credito" ui-sref="dashboard.new_credit()" >Nueva Solicitud</a>
-                      <a class="dropdown-item" href="#/dashboard" ui-sref="dashboard()" >Mi Prestamo actual</a>
-                      <a class="dropdown-item" href="#">Pagos</a>
-                      <a class="dropdown-item" href="#/historial" ui-sref="dashboard.historial()">Historial de Prestamos</a>
-                    </div>
+                <li class="nav-item" ui-sref-active="active" ng-show="$root.user">
+                    <a class="nav-link" href="#/dashboard/nuevo-credito" ui-sref="dashboard.new_credit()">
+                        <p>Nueva Solicitud</p>
+                    </a>
                 </li>
-
+                <li class="nav-item" ui-sref-active="active" ng-show="$root.user">
+                    <a class="nav-link" href="#/historial" ui-sref="dashboard.historial()">
+                        <p>Historial de prestamos</p>
+                    </a>
+                </li>
                 <li class="nav-item" ui-sref-active="active" ng-show="!$root.user">
                     <a class="nav-link" ui-sref="about()" href="#/acercade">
                         <i class="now-ui-icons objects_diamond"></i>
