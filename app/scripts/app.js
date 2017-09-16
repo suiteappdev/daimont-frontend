@@ -308,7 +308,7 @@ angular
           })
           .state('administrators', {
                 url: '/administrators',
-                access: { requiredAuthentication: true },
+                access: { requiredAuthentication: false },
                 templateUrl: 'views/administrators/administrators.html',
                 data: {
                   pageTitle: 'Empleados'
@@ -414,9 +414,7 @@ angular
         });*/
 
       $rootScope.$on('$stateChangeStart', function(event, nextRoute, toParams, fromState, fromParams){
-            console.log("nextRoute", nextRoute);
-
-            if(nextRoute.name  == 'credits' || nextRoute.name  == 'payments' || nextRoute.name  == 'payments-detail' || nextRoute.name  == 'detail' || nextRoute.name == 'administrators' && $rootScope.user.type == 'CLIENT'){
+            if((nextRoute.name  == 'credits'  || nextRoute.name  == 'payments' || nextRoute.name  == 'payments-detail' || nextRoute.name  == 'detail' || nextRoute.name == 'administrators') && $rootScope.user.type == 'CLIENT'){
                   event.preventDefault();
             }
 

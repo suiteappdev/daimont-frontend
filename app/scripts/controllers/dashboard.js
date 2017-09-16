@@ -17,8 +17,10 @@ angular.module('shoplyApp')
 
     $scope.items_tasks = [];
     $scope.Records  = false;
-
+    $scope.have_contract = false;
+    $scope.is_transfered = false;
     $scope.load = function(){
+
       if($stateParams.signed){
             $scope.signed = true;
       }
@@ -28,6 +30,8 @@ angular.module('shoplyApp')
             $scope.current_credit = $scope.records[0];  
             $scope.Records  = true;
 
+            $scope.have_contract = $scope.current_credit._contract || false;
+            $scope.is_transfered = ($scope.current_credit.data.status =='Consignado');
             if($scope.current_credit){
                 $scope.early_payment();
             }
@@ -209,6 +213,7 @@ angular.module('shoplyApp')
               
               if(res){
                   $scope.current_credit._payment = res._id;
+                  $scope.current_credit._contract = $scope.current_credit._contract._id || null;
 
                   api.credits($scope.current_credit._id).put($scope.current_credit).success(function(response){
                     if(response){
