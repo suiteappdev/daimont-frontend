@@ -20,8 +20,8 @@
             <span class="badge badge-danger" ng-show="!credit._user.data.updated">Desactualizado</span></p>
           </div>
           <div class="col col-xs-6 text-right">
-            <button type="button" ng-disabled="!credit.data.updated || credit.data.status == 'Aceptado'  "  ng-click="approve()" class="btn btn-primary btn-create"></i>Aprobar</button>
-           <button type="button" ng-disabled="!credit.data.status == 'Aceptado'"  ng-click="done()" class="btn btn-primary btn-create">Depositar</button>
+            <button type="button" ng-disabled="!credit._user.data.updated"  ng-click="approve()" class="btn btn-primary btn-create"></i>Aprobar</button>
+           <button type="button" ng-click="done()" class="btn btn-primary btn-create">Depositar</button>
            <button type="button" ng-click="reject()" class="btn btn-danger btn-create">Rechazar</button>
           </div>
         </div>

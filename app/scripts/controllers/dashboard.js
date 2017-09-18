@@ -71,7 +71,8 @@ angular.module('shoplyApp')
                    type: "success" },
                    function(isConfirm){ 
                       if (isConfirm) {
-                            $rootScope.user.data.cupon = ($scope.cupon + 100000);
+                            $rootScope.user.data.cupon = (parseInt($scope.cupon[0]) + 100000);
+
                             api.user($rootScope.user._id).put($rootScope.user).success(function(res){
                                 if(res){
                                     storage.update("user", $rootScope.user);
@@ -411,7 +412,7 @@ angular.module('shoplyApp')
 
     $scope.$watch('form.data.amount', function(o, n){
         if(n){
-              if(n[0] >= 300000){
+              if(n[0] >= $rootScope.user.data.cupon || 300000){
                 if(!$scope.notification_showed){
                     new NotificationFx({
                         message : '<p>El monto maximo de tu primer credito es de <span style="color:#00d2da;">$300.000 COP</span> <a href="#">Preguntas Frecuentes</a>.</p>',
