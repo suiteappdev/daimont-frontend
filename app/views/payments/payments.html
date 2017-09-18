@@ -3,7 +3,7 @@
 <div class="container">
   <div class="row">
       <ol class="breadcrumb" style="width:100%;margin-top:10px;">
-        <li class="breadcrumb-item"><a href="#/home" ui-sref="home()">Principal</a></li>
+        <li class="breadcrumb-item"><a href="#/credits" ui-sref="credits()">Principal</a></li>
         <li class="breadcrumb-item active">Pagos</li>
       </ol>
   </div>
@@ -54,6 +54,7 @@
             <th>Cliente</th>
             <th>Monto</th>
             <th>Banco</th>
+            <th>Titular</th>
             <th>Fecha</th>
             <th>Comprobante de pago</th>
             <th style="width: 36px;"></th>
@@ -68,6 +69,7 @@
             <td>{{record._user.full_name || 'no definido'}}</td>
             <td>{{record.data.total_payment | currency:"$ ":0 }}</td>
             <td>{{record.data.bank || 'no definido'}}</td>
+            <td>{{record.data.owner || 'no definido'}}</td>
             <td>{{record.data.pay_day | moment: 'format': 'MMMM DD, YYYY' }}</td>
             <td><a href="{{record.data.transaction}}" target="_blank">Evidencia de pago</a></td>
           </tr>

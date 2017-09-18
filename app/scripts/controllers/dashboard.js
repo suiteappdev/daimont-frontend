@@ -61,7 +61,7 @@ angular.module('shoplyApp')
     $scope.sign = function(){
       api.contracts().add("verify/" + $rootScope.signature).get().success(function(res){
         if(res){
-              if(res.length == 0){
+              if(res.length == 0 ){
                 $scope.hide_mailed_msg = true;
                 $scope.nosigned = true;
               }else{
@@ -144,6 +144,8 @@ angular.module('shoplyApp')
       }
 
       if(o){
+
+
         modal.confirm({
              closeOnConfirm : true,
              title: "Está Seguro?",

@@ -41,6 +41,12 @@
 .picker-input {
   cursor: text;
 }
+
+
+.number-font{
+  font-family: 'Copse', serif!important;
+}
+
 .picker-modal-overlay {
   position: fixed;
   top: 0;
@@ -1192,23 +1198,10 @@ div.datedropper.datedrop-custom-theme.picker-lkd .pick-submit {
 
 
 .upload_link{
-    align-items: center;
-    position: relative;
     display: flex;
-    vertical-align: baseline;
-    margin: 0 auto;
-}
-
-.upload_link:focus{
-  outline:0;
-}
-
-.upload_link:active{
-  outline:0;
-}
-
-.upload_link:visited{
-  outline:0;
+    text-align: center;
+    align-items: center;
+    margin: auto auto;
 }
 
 .how-to-item{
@@ -1262,6 +1255,10 @@ div.datedropper.datedrop-custom-theme.picker-lkd .pick-submit {
     padding: 5px;
     border-radius: 4px;
     margin-top: 5px;
+}
+
+.background-dark{
+  background-image:url(../images/bg-dark.png)
 }
 
 

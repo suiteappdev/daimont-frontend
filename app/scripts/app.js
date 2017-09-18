@@ -306,6 +306,17 @@ angular
                   pageTitle: 'Detalle del credito'
                 }
           })
+          .state('pronto_pago', {
+                url: '/pronto-pago/:credit',
+                access: { requiredAuthentication: true },
+                templateUrl: 'views/pronto_pago/pronto_pago.html',
+                params: {
+                  credit: null
+                },        
+                data: {
+                  pageTitle: 'Pronto pago'
+                }
+          })
           .state('administrators', {
                 url: '/administrators',
                 access: { requiredAuthentication: false },

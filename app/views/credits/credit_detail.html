@@ -20,8 +20,8 @@
             <span class="badge badge-danger" ng-show="!credit._user.data.updated">Desactualizado</span></p>
           </div>
           <div class="col col-xs-6 text-right">
-            <button type="button" ng-click="approve()" class="btn btn-primary btn-create"></i>Aprobar</button>
-           <button type="button" ng-click="done()" class="btn btn-primary btn-create">Depositar</button>
+            <button type="button" ng-disabled="!credit.data.updated || credit.data.status == 'Aceptado'  "  ng-click="approve()" class="btn btn-primary btn-create"></i>Aprobar</button>
+           <button type="button" ng-disabled="!credit.data.status == 'Aceptado'"  ng-click="done()" class="btn btn-primary btn-create">Depositar</button>
            <button type="button" ng-click="reject()" class="btn btn-danger btn-create">Rechazar</button>
           </div>
         </div>
@@ -44,9 +44,6 @@
                                       <li class="nav-item">
                                           <a class="nav-link" style="border-radius:0;" ng-click="tab = 'IF'" ng-class="{'active' : tab === 'IF'}">Información Financiera</a>
                                       </li>
-                                        <li class="nav-item">
-                                          <a class="nav-link" style="border-radius:0;" ng-click="tab = 'DP'" ng-class="{'active' : tab === 'DP'}"><i class="fa fa-paperclip" aria-hidden="true"></i>&nbsp;Adjuntar Deposito</a>
-                                      </li>
                                   </ul>
                                   <div class="card-block">
                                       <!-- Tab panes -->
@@ -55,11 +52,11 @@
                                           <div class="row"> 
                                               <div class="form-group col-lg-6">
                                                   <label class="bold">Nombres</label>
-                                                  <p>{{credit._user.data.name || 'No Definido'}} - <a href="" ng-click="upgrade_plan()"> actualizar plan de creditos</a></p>
+                                                  <p>{{credit._user.data.name || credit._user.name || 'No Definido'}}</p>
                                               </div> 
                                               <div class="form-group col-lg-6">
                                                   <label class="bold">Apellidos</label>
-                                                  <p>{{credit._user.data.last_name || 'No Definido'}}</p>
+                                                  <p>{{credit._user.data.last_name || credit._user.last_name || 'No Definido'}}</p>
                                               </div>
                                               <div class="form-group col-lg-6">
                                                   <label class="bold">Sexo</label>
@@ -98,23 +95,27 @@
                                         <div class="tab-pane" id="home1" role="tabpanel" ng-show="tab == 'IP'" ng-class="{'active' : tab == 'IP'}">
                                               <div class="row"> 
                                                 <div class="form-group col-lg-6 text-left">
-                                                    <label class="bold monospace">Monto</label>
+                                                    <label class="bold">Monto</label>
                                                     <p>{{credit.data.amount[0] | currency:"$ ":0 || 0}}</p>
                                                 </div> 
                                                 <div class="form-group col-lg-6 text-left">
-                                                    <label class="bold monospace">Interes</label>
+                                                    <label class="bold">Interes</label>
                                                     <p>{{credit.data.interestsDays | currency:"$ ":0 || 0}}</p>
                                                 </div> 
                                                 <div class="form-group col-lg-6 text-left">
-                                                    <label class="bold monospace">Gestión de credito</label>
+                                                    <label class="bold">Gestión de credito</label>
                                                     <p>{{credit.data.system_quote | currency:"$ ":0 || 0}}</p>
                                                 </div> 
                                                 <div class="form-group col-lg-6 text-left">
-                                                    <label class="bold monospace">Iva</label>
+                                                    <label class="bold">Iva</label>
                                                     <p>{{credit.data.ivaDays | currency:"$ ":0 || 0}}</p>
                                                 </div> 
                                                 <div class="form-group col-lg-6 text-left">
-                                                    <label class="bold monospace">Total</label>
+                                                    <label class="bold">Fecha de pago</label>
+                                                    <p>{{credit.data.pay_day | moment: 'format': 'MMMM DD, YYYY'}}</p>
+                                                </div> 
+                                                <div class="form-group col-lg-6 text-left">
+                                                    <label class="bold">Total</label>
                                                     <p><strong>{{credit.data.total_payment | currency:"$ ":0 || 0}}</strong></p>
                                                 </div> 
                                             </div>  
@@ -162,15 +163,6 @@
                                                       <p>{{credit._user.data.numero_cuenta || 'No Definido'}}</p>
                                                   </div>
                                               </div>
-                                          </div>
-                                            <div class="tab-pane" id="home1" role="tabpanel" ng-show="tab == 'DP'" ng-class="{'active' : tab == 'DP'}">
-                                              <div class="row"> 
-                                              <form name="approvedForm">
-                                                  <div class="form-group">
-                                                       <input type="file" name="evidence" name="pic" accept="image/*" ng-model="file" required reader="credit.deposit">      
-                                                  </div>                                                
-                                              </form>
-                                            </div>  
                                           </div>
                                       </div>
                                   </div>

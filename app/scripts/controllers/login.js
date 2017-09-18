@@ -144,7 +144,6 @@ angular.module('shoplyApp')
               $rootScope.user = storage.get('user');
               $state.go(constants.login_state_sucess);          
           }else if(res.user.type == "ADMINISTRATOR"){
-            alert(1)
               var  _user =  res.user;
               var  _token = res.token;
               storage.save('token', _token);

@@ -18,6 +18,8 @@ angular.module('shoplyApp')
       }
     }
 
+    $scope.now = new Date();
+
     $scope.upgrade_plan = function(){
         var _user = angular.copy($scope.credit._user);
 
@@ -107,11 +109,7 @@ angular.module('shoplyApp')
                       
                       $scope.credit.data.status = 'Consignado';
                       $scope.credit.data.deposited_time = new Date().toISOString();
-
-          						api.credits().add("deposited/" + $scope.credit._id).put($scope.toFormData($scope.credit),{
-                        transformRequest: angular.identity,
-                        headers: {'Content-Type':undefined, enctype:'multipart/form-data'}
-                    }).success(function(res){
+          						api.credits().add("deposited/" + $scope.credit._id).put($scope.credit).success(function(res){
           							if(res){
                                swal({
                                 title: "Bien Hecho",

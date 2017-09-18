@@ -7,8 +7,8 @@
                   <div class="row col-lg-12" ng-show="records.length == 0 && Records">
                       <div ng-show="records.length == 0 && Records" style="text-align: center;width: 100%;">
                       <div style="position: relative;margin-top: 20%;">
-                            <h4>No tienes creditos pendientes.</h4>
-                            <a  href="#/nuevo-credito" ui-sref=".new_credit()" class="btn btn-primary"><i class="now-ui-icons ui-1_simple-add"></i>&nbsp;Nuevo credito</a>   
+                            <h4>No tienes prestamos pendientes.</h4>
+                            <a  href="#/nuevo-credito" ui-sref=".new_credit()" class="btn btn-primary"><i class="now-ui-icons ui-1_simple-add"></i>&nbsp;Nuevo Prestamo</a>   
                       </div>
                       </div>
                       <div style="flex:1;" class="loader-wrapper" ng-show="!Records">
@@ -20,13 +20,14 @@
                           <button type="button" class="close" data-dismiss="alert" aria-label="Close" style="position: relative;top: -2px;  ">
                             <span aria-hidden="true">&times;</span>
                           </button>
-                          <strong>Listo!</strong>Te notificaremos en breve sobre el estado de tu prestamo.
+                          <strong>Listo!</strong> Te notificaremos en breve sobre el estado de tu prestamo.
                         </div>
-                        <div ng-show="!have_contract" style="border-radius: 5px;margin: 0 auto;" class="alert alert-warning alert-dismissible fade show" role="alert">
+                        <div ng-show="!have_contract && current_credit" style="border-radius: 5px;margin: 0 auto;" class="alert alert-warning alert-dismissible fade show" role="alert">
                           <button type="button" class="close" data-dismiss="alert" aria-label="Close" style="position: relative;top: -2px;  ">
                             <span aria-hidden="true">&times;</span>
                           </button>
-                          <strong>Por favor!</strong> para continuar es necesario que firmes nuestro contrato.
+                           <a href="" ng-click="confirm()" style="padding: 4px;margin-left: 10px;" class="btn btn-xs btn-warning pull-right">Firmar</a>
+                          <strong>Por favor!</strong> Para continuar es necesario que firmes nuestro contrato.
                         </div>
                       <div class="row" style="width: 100%;top: 70%;position: relative;padding-top:5%;" ng-show="records.length > 0">
                              <div class="col-lg-4 upload-area" style="height: 400px;background-color: rgba(0, 0, 0, 0.28);display:flex;">
@@ -35,9 +36,7 @@
                                          <input type="file" id="transaction" name="evidence" name="pic" accept="image/*" ng-model="file" required reader="$parent.new_payment_form.transaction" style="display:none;">      
                                     </div>                                                
                                 </form>
-                                <a href="" ng-click="upload()" class="upload_link" ><p>Sube la foto de tu consignación o transferencia bancaria</p></a>
-
-                                <button class="btn btn-primary" type="button"  ng-click="show_banks()" style="position: absolute;bottom: 19px;text-align: center;    left: 27%;">¿ Donde Pagar ?</button>
+                                <button href="" ng-disabled="!is_transfered" ng-click="upload()" class="btn btn-primary btn-sm upload_link" ><i class="fa fa-camera" aria-hidden="true"></i>&nbsp;Subir Foto</button>
                              </div>
                             <div class="col-lg-8">
                             <div class="row col-lg-12">

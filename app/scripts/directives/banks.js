@@ -45,10 +45,13 @@ angular.module('shoplyApp')
           },
 
           onItemAdd : function(value, $item){
-            angular.forEach($scope.records, function(v, k){
+            $scope.records.forEach(function(v, k){
               if(v[$scope.key] == value){
-                $scope.setObject = $scope.records[k];
-                return;
+                    var _bank = angular.copy(v);
+                    delete  _bank.$order;
+
+                    $scope.setObject = _bank;
+                    return;
               }
             });
           }

@@ -23,6 +23,14 @@ angular.module('shoplyApp')
       $state.go('detail', { credit : this.record._id } );
     }
 
+     $scope.add_to_task = function(){
+      if(this.record.add){
+        $scope.items_tasks.push(this.record._id);
+      }else{
+        $scope.items_tasks.splice($scope.items_tasks.indexOf(this.record._id), 1);
+      }
+    }
+
 
     $scope.toFormData = function(obj, form, namespace) {
         var fd = form || new FormData();
@@ -104,11 +112,10 @@ angular.module('shoplyApp')
 
     $scope.logout = function(){
       window.localStorage.clear();
-      
       delete $rootScope.isLogged;
       delete $rootScope.user;
 
-      $state.go('home');
+      $state.go('/');
     }
   
   });
