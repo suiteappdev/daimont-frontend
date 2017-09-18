@@ -25,6 +25,10 @@ angular.module('shoplyApp')
             $scope.signed = true;
       }
 
+      api.credits().add("max_amount").get().success(function(res){
+          $scope.cupon = res || [];
+      });
+
       api.credits().add('current').get().success(function(res){
             $scope.records = res.length == 0 ? [] : [res];
             $scope.current_credit = $scope.records[0];  
@@ -56,6 +60,34 @@ angular.module('shoplyApp')
 
       $scope.form.data.pay_day = $scope.pay_day($scope.form.data.days[0]).toISOString();
 
+    }
+
+    $scope.update_cupon = function(){
+            modal.confirm({
+                   closeOnConfirm : true,
+                   title: "Ampliación de cupo",
+                   text: "¿confirma que desea ampliar su cupo ? ",
+                   confirmButtonColor: "#008086",
+                   type: "success" },
+                   function(isConfirm){ 
+                      if (isConfirm) {
+                            $rootScope.user.data.cupon = ($scope.cupon + 100000);
+                            api.user($rootScope.user._id).put($rootScope.user).success(function(res){
+                                if(res){
+                                    storage.update("user", $rootScope.user);
+                                     new NotificationFx({
+                                            message : '<p>Tu cupo de credito ha sido actualizado.</p>',
+                                            layout : 'growl',
+                                            effect : 'genie',
+                                            type : 'notice', // notice, warning or error
+                                            onClose : function() {
+                                              
+                                            }
+                                      }).show();  
+                                }
+                            });
+                      }
+            });  
     }
 
     $scope.sign = function(){
@@ -219,7 +251,7 @@ angular.module('shoplyApp')
 
                   api.credits($scope.current_credit._id).put($scope.current_credit).success(function(response){
                     if(response){
-                        alert("credit updated")
+                    
                     }
                   });
               }

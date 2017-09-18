@@ -1,0 +1,31 @@
+<div class="login-page">
+<nav class="navbar navbar-toggleable-md" style="background-color:#000!important;margin:0px;">
+    <div class="container text-center">
+        <div class="navbar-translate">
+            <a class="navbar-brand ng-hide" ui-sref="home()" href="#/" ng-show="!$root.user" style="">
+              <img class="hidden-xs" style="width:70%;" src="images/logo-main.png">
+            </a>
+            <a class="navbar-brand" ui-sref="dashboard()" href="#/dashboard" ng-show="$root.user &amp;&amp; $root.user.type == 'CLIENT'">
+              <img class="hidden-xs" style="width:70%;" src="images/logo-main.png">
+              
+            </a>
+            <a class="navbar-brand ng-hide" ui-sref="credits()" href="#/credits" ng-show="$root.user &amp;&amp; $root.user.type == 'ADMINISTRATOR'">
+              <img class="hidden-xs" style="width:70%;" src="images/logo-main.png">
+              <span class="animated bounceInLeft" style="display: block;position: absolute;font-size: 7px;bottom: 0px;left: 44px;">Creditos rapidos y seguros</span>
+            </a>
+        </div>
+    </div>
+</nav>
+    <div class="page-header">
+        <div class="page-header-image"></div>
+        <div class="container">
+            <div style="padding-top: 5%;">
+                <div class="card card-padding">
+                    <div class="row alert alert-primary" role="alert" style="font-size:12px;position:relative;top:-12px;">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

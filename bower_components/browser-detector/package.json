@@ -1,0 +1,38 @@
+{
+  "name": "detect-mobile-browser",
+  "version": "5.0.0",
+  "description": "It is a very simple & small javascript plugin to detect all major modern mobile browsers.",
+  "main": "detect-browser.js",
+  "scripts": {
+    "test": "mocha test",
+    "test-travis": "./node_modules/istanbul/lib/cli.js cover ./node_modules/mocha/bin/_mocha -- -R spec ./test/*"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://smali-kazmi@github.com/smali-kazmi/detect-mobile-browser.git"
+  },
+  "keywords": [
+    "mobile",
+    "browser",
+    "smartphone",
+    "tablet",
+    "phone",
+    "mobile",
+    "useragent"
+  ],
+  "author": "SM@K <smali.kazmi@hotmail.com> (http://smak.pk/)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/smali-kazmi/detect-mobile-browser/issues"
+  },
+  "devDependencies": {
+    "coveralls": "*",
+    "mocha": "*",
+    "mocha-lcov-reporter": "*",
+    "istanbul": "*"
+  },
+  "spm": {
+    "main": "detect-browser.js"
+  },
+  "homepage": "https://github.com/smali-kazmi/detect-mobile-browser"
+}

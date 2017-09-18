@@ -363,6 +363,14 @@ angular
                   pageTitle: 'Creditos'
                 }
           })
+          .state('launcher', {
+                url: '/launcher',
+                access: { requiredAuthentication: false },
+                templateUrl: 'views/launcher/launcher.html',
+                data: {
+                  pageTitle: 'Descarga la app'
+                }
+          })
           .state('dashboard', {
                 url: '/dashboard',
                 access: { requiredAuthentication: true },
@@ -371,7 +379,7 @@ angular
                   signed: null
                 },
                 data: {
-                  pageTitle: 'Administración'
+                  pageTitle: 'Mi Prestamo'
                 }
           });
   }).run(["$rootScope", "constants", "storage", "$state","sounds", "api", "$window", "$http", function($rootScope, constants, storage, $state, sounds, api, $window, $http){
@@ -380,6 +388,7 @@ angular
         $rootScope.user = angular.fromJson(storage.get('user'));
         $rootScope.isLogged = storage.get('access_token') || storage.get('token')
         $rootScope.state = $state;
+        $rootScope.device = SmartPhone.isAny();
         $rootScope.online = navigator.onLine;
 
         $http.get('https://freegeoip.net/json/').success(function(res){
@@ -425,7 +434,13 @@ angular
         });*/
 
       $rootScope.$on('$stateChangeStart', function(event, nextRoute, toParams, fromState, fromParams){
+            if($rootScope.device){
+                event.preventDefault();
+                $state.transitionTo('launcher');
+            }
+
             if((nextRoute.name  == 'credits'  || nextRoute.name  == 'payments' || nextRoute.name  == 'payments-detail' || nextRoute.name  == 'detail' || nextRoute.name == 'administrators') && $rootScope.user.type == 'CLIENT'){
+                  nextRoute.data.pageTitle = fromState.data.pageTitle;
                   event.preventDefault();
             }
 

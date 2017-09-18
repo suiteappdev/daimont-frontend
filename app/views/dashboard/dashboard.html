@@ -1,5 +1,17 @@
 <div class="login-page" ng-controller="DashboardCtrl" ng-init="load()">
     <daimont-header></daimont-header>
+    <div class="background-dark" style="padding:4px;" ng-show="cupon && cupon.length > 0 || !$root.user.data.updated">
+        <div class="container">
+          <div class="row">
+                <div class="col-lg-6"></div>
+                <div class="col-lg-6 text-right row">
+                  <div ng-show="cupon && cupon.length > 0" class="col-lg-6" ng-class="$root.user.data.updated ? 'col-lg-12' : 'col-lg-6'"><p class="text-white" style="margin-bottom:0px;">Pedir cupo de: <a href="" ng-click="update_cupon()"><span class="badge badge-default">{{(cupon ? cupon + 100000 : 200000) | currency:"$ "}} COP</span></a></p></div>
+                  <div ng-class="cupon && cupon.length == 0 ? 'col-lg-12' : 'col-lg-6'" class="col-lg-6" ng-show="!$root.user.data.updated"><p class="text-white" style="margin-bottom:0px;">Perfil de prestamo: <a href="#/perfil" ui-sref="profile()" ><span class="badge badge-primary" ng-show="$root.user.data.updated">Actualizado</span>
+            <span class="badge badge-default" ng-show="!$root.user.data.updated">Desactualizado</span></a></p> </div>
+                </div>          
+          </div>
+        </div>
+    </div>
     <div class="page-header" filter-color="orange">
         <div class="profile-header-image"></div>
         <div class="container">

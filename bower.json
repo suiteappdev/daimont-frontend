@@ -35,7 +35,8 @@
     "angular-i18n": "^1.6.5",
     "bootstrap-datepicker": "https://github.com/uxsolutions/bootstrap-datepicker.git#^1.7.1",
     "handlebars": "^4.0.10",
-    "bounce.js": "^0.8.2"
+    "bounce.js": "^0.8.2",
+    "browser-detector": "^5.0.0"
   },
   "devDependencies": {
     "angular-mocks": "^1.4.0"
