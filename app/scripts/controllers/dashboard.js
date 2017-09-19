@@ -411,11 +411,20 @@ angular.module('shoplyApp')
     });
 
     $scope.$watch('form.data.amount', function(o, n){
+        var message;
+
         if(n){
-              if(n[0] >= $rootScope.user.data.cupon || 300000){
+              if(n[0] >= ($rootScope.user.data.cupon || 300000)){
+                
+                if($rootScope.user.data.cupon){
+                  message = '<p>El monto maximo de tu proximo credito es de ' + $rootScope.user.data.cupon + ' COP';
+                }else{
+                  message = '<p>El monto maximo de tu  credito es de <span style="color:#00d2da;">$300.000 COP</span></p>';
+                }
+
                 if(!$scope.notification_showed){
                     new NotificationFx({
-                        message : '<p>El monto maximo de tu primer credito es de <span style="color:#00d2da;">$300.000 COP</span> <a href="#">Preguntas Frecuentes</a>.</p>',
+                        message : message,
                         layout : 'growl',
                         effect : 'genie',
                         type : 'notice', // notice, warning or error
@@ -444,6 +453,30 @@ angular.module('shoplyApp')
         }
 
         if(o){
+
+              if(n[0] >= ($rootScope.user.data.cupon || 300000)){
+                
+                if($rootScope.user.data.cupon){
+                  message = '<p>El monto maximo de tu proximo credito es de ' + $rootScope.user.data.cupon + ' COP';
+                }else{
+                  message = '<p>El monto maximo de tu  credito es de <span style="color:#00d2da;">$300.000 COP</span></p>';
+                }
+
+                if(!$scope.notification_showed){
+                    new NotificationFx({
+                        message : message,
+                        layout : 'growl',
+                        effect : 'genie',
+                        type : 'notice', // notice, warning or error
+                        onClose : function() {
+                          
+                        }
+                      }).show();                  
+                }
+
+                $scope.notification_showed = true;
+              }
+
               $scope.form.data.interests = (o[0] * (2.4991666667 / 100));
               $scope.form.data.system_quote = ($scope.form.data.finance_quoteFixed + $scope.form.data.finance_quoteChange * $scope.form.data.days[0]);
 

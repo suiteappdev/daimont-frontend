@@ -39,7 +39,7 @@
                           <button type="button" class="close" data-dismiss="alert" aria-label="Close" style="position: relative;top: -2px;  ">
                             <span aria-hidden="true">&times;</span>
                           </button>
-                           <a href="" ng-click="upload()" style="padding: 4px;margin-left: 10px;" class="btn btn-xs btn-primary pull-right">Subir Foto</a>
+                           <a href="" ng-click="upload()" ng-disabled="!$root.bank_obj" style="padding: 4px;margin-left: 10px;" class="btn btn-xs btn-primary pull-right">Subir Foto</a>
                           <strong>Por favor!</strong> Sube la photo de tu transferencia o consignación bancaria.
                         </div>
 
@@ -57,7 +57,7 @@
                                          <input type="file" id="transaction" name="evidence" name="pic" accept="image/*" ng-model="file" required reader="$parent.new_payment_form.transaction" style="display:none;">      
                                     </div>                                                
                                 </form>
-                                <button href="" ng-disabled="!is_transfered" ng-click="upload()" class="btn btn-primary btn-sm upload_link" ><i class="fa fa-camera" aria-hidden="true"></i>&nbsp;Subir Foto</button>
+                                <button href="" ng-click="upload()" class="btn btn-primary btn-sm upload_link" ><i class="fa fa-camera" aria-hidden="true"></i>&nbsp;Subir Foto</button>
                              </div>
                             <div class="col-lg-8">
                             <div class="row col-lg-12">
@@ -164,7 +164,7 @@
                                     <div class="row">
                                         <div class="col-lg-12 text-left">
                                                <a ng-click="confirm()" ng-show="!have_contract" class="btn btn-success">CONTINUAR</a>
-                                          <a ng-show="is_transfered"  ng-click="show_banks()" class="btn btn-success">PAGAR</a>
+                                          <a ng-show="is_transfered" ng-click="show_banks()" class="btn btn-success">PAGAR</a>
                                         </div>
                                     </div>
                                   </div> 
