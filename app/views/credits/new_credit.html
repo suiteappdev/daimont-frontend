@@ -91,11 +91,10 @@
                                 <slider step="50000" instance="$parent.amount_instance" id="amount" ng-model="form.data.amount" initial="200000" range="[100000, 500000]"></slider>
                                 
                                 <i  ng-click="inc_amount()" style="cursor:pointer;position: relative;right: -220px;top: -15px;border:1px solid;border-radius:20%;padding: 5px;" class="now-ui-icons ui-1_simple-add"></i>
-
-                                <div class="row">
-                                    <div class="col-lg-6 text-left">{{''}}</div>
-                                    <div style="font-size:20px;margin-top: 5px;" class="col-lg-6 text-right">{{form.data.amount[0] || 0 | currency:"COP $ "}}</div>
-                                </div>
+                                <div class="row" style="padding-right:10px;">
+                                      <div class="col-lg-8 text-left"><p class="simulator-warning animated bounce text-warning" ng-show="show_warning_msg" style=""><i class="fa fa-exclamation-triangle text-warning" aria-hidden="true"></i> Su cupo inicial es de 300.000 pesos.</p></div>
+                                      <div class="col-lg-4 text-center simulator-values number-font"><span>{{form.data.amount[0] || 0 | currency:"$ "}}</span></div>
+                                  </div>
                                 <br />
                                 <br />
                                 <h5 class="text-left">¿Cuándo puedes pagar?</h5>

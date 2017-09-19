@@ -414,28 +414,13 @@ angular.module('shoplyApp')
         var message;
 
         if(n){
-              if(n[0] >= ($rootScope.user.data.cupon || 300000)){
-                
-                if($rootScope.user.data.cupon){
-                  message = '<p>El monto maximo de tu proximo credito es de ' + $rootScope.user.data.cupon + ' COP';
-                }else{
-                  message = '<p>El monto maximo de tu  credito es de <span style="color:#00d2da;">$300.000 COP</span></p>';
-                }
 
-                if(!$scope.notification_showed){
-                    new NotificationFx({
-                        message : message,
-                        layout : 'growl',
-                        effect : 'genie',
-                        type : 'notice', // notice, warning or error
-                        onClose : function() {
-                          
-                        }
-                      }).show();                  
-                }
-
-                $scope.notification_showed = true;
+              if(n[0] >= ($rootScope.user.data.cupon || 300000) && !$scope.show_warning_msg){
+                    $scope.show_warning_msg = true;
+              }else if(n[0] == 300000 && $scope.show_warning_msg){
+                    $scope.show_warning_msg = false;
               }
+               
 
               $scope.form.data.interests = (n[0] * (2.4991666667 / 100));
               $scope.form.data.system_quote = ($scope.form.data.finance_quoteFixed + $scope.form.data.finance_quoteChange * $scope.form.data.days[0]);
@@ -454,27 +439,10 @@ angular.module('shoplyApp')
 
         if(o){
 
-              if(n[0] >= ($rootScope.user.data.cupon || 300000)){
-                
-                if($rootScope.user.data.cupon){
-                  message = '<p>El monto maximo de tu proximo credito es de ' + $rootScope.user.data.cupon + ' COP';
-                }else{
-                  message = '<p>El monto maximo de tu  credito es de <span style="color:#00d2da;">$300.000 COP</span></p>';
-                }
-
-                if(!$scope.notification_showed){
-                    new NotificationFx({
-                        message : message,
-                        layout : 'growl',
-                        effect : 'genie',
-                        type : 'notice', // notice, warning or error
-                        onClose : function() {
-                          
-                        }
-                      }).show();                  
-                }
-
-                $scope.notification_showed = true;
+              if(o[0] >= ($rootScope.user.data.cupon || 300000) && !$scope.show_warning_msg){
+                    $scope.show_warning_msg = true;
+              }else if(o[0] == 300000 && $scope.show_warning_msg){
+                    $scope.show_warning_msg = false;
               }
 
               $scope.form.data.interests = (o[0] * (2.4991666667 / 100));
