@@ -17,9 +17,9 @@ angular.module('shoplyApp')
     $scope.form.data.finance_quoteChange = 960;
 
     $scope.slides = [
-      {image : 'slide_1.png', active : true},
-      {image : 'slide_2.png'},
-      {image : 'slide_3.png'}
+      {image : 'slide_1.251127b4.png', active : true},
+      {image : 'slide_2.02e8fb09.png'},
+      {image : 'slide_3.1c91ca30.png'}
     ];
 
     $scope.load = function(){
