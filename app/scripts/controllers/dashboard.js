@@ -62,6 +62,21 @@ angular.module('shoplyApp')
 
     }
 
+    $scope.delete_credit = function(){
+        modal.removeConfirm({closeOnConfirm : true}, 
+            function(isConfirm){ 
+               if (isConfirm) {
+                    $scope.current_credit.data.hidden = true;
+                    api.credits($scope.current_credit._id).put($scope.current_credit).success(function(res){
+                      if(res){
+                          sweetAlert.close();
+                          $scope.load();
+                      } 
+                    });
+               }
+           });
+    }
+
     $scope.update_cupon = function(){
             modal.confirm({
                    closeOnConfirm : true,
@@ -255,6 +270,8 @@ angular.module('shoplyApp')
                     
                     }
                   });
+
+                  $scope.load();
               }
 
              new NotificationFx({
@@ -330,34 +347,6 @@ angular.module('shoplyApp')
       
       $scope.totalizePayment();        
 
-    }
-
-    $scope.delete_credit = function(){
-         var record = this.record;
-         var original = this.record;
-
-         modal.confirm({
-                 closeOnConfirm : true,
-                 title: "Está Seguro?",
-                 text: "Confirma que desea eliminar este prestamo?",
-                 confirmButtonColor: "#008086",
-                 type: "success" },
-
-                 function(isConfirm){ 
-
-                     if (isConfirm) {
-                        
-                        record.data.hidden = true;
-
-                        api.credits(record._id).put(record).success(function(res){
-                          if(res){
-                             sweetAlert.close();
-                             $scope.records.splice($scope.records.indexOf(original), 1);
-                          } 
-                        });
-                     }
-
-          });
     }
 
     $scope.totalizePayment = function(){

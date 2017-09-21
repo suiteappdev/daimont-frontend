@@ -85,7 +85,17 @@ angular.module('shoplyApp')
 
       if($scope.signup.$valid){
         if($scope.formRegister.data.password != $scope.formRegister.data.confirm_password){
-            sweetAlert.swal("Formulario Incompleto.", "las contraseñas no coinciden.", "error");
+            sweetAlert.swal("Formulario Incompleto.", "Las contraseñas no coinciden.", "error");
+            return;
+        }
+
+        if($scope.formRegister.data.email != $scope.email_confirm){
+            sweetAlert.swal("Formulario Incompleto.", "Los correos no coinciden", "error");
+            return;
+        }
+
+        if(!$scope.accept_terms){
+            sweetAlert.swal("Formulario Incompleto.", "Debes aceptar los terminos y condiciones", "error");
             return;
         }
 

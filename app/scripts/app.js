@@ -455,5 +455,7 @@ angular
                   $state.transitionTo('login');
                   return;
             }
+
+            window.scrollTo(0, 0);
       });
   }]);

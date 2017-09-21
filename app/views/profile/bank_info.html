@@ -9,20 +9,23 @@
 
     <div class="row">
         <div class="col-lg-6">
-            <div class="form-group">
+            <div class="form-group text-left">
+                <label class="text-muted">¿Cuantas cuentas bancarias tiene?</label>
                 <selectize required config="{create:false, maxItems:1, valueField: 'value', labelField: 'text', placeholder:'¿ Cuantas cuentas bancarias posee ?'}" options='[{value:"1", text:"1"}, {value:"2", text:"2"}, {value:"3", text:"3"}, {value:"4 o Mas", text:"4 o Mas"}]' ng-model="$root.user.data.numero_cuentas_bancaria"></selectize>
             </div>
         </div>
         <div class="col-lg-6">
-            <div class="form-group">
+            <div class="form-group text-left">
+                <label class="text-muted">¿Tiene tarjetas de creditos?</label>
                 <selectize required config="{create:false, maxItems:1, valueField: 'value', labelField: 'text', placeholder:'¿Tiene tarjetas de Credito?'}" options='[{value:"Si", text:"Si"}, {value:"No", text:"No"}]' ng-model="$root.user.data.tarjeta_credito"></selectize>
             </div>
         </div>
         <div class="col-lg-6">
-            <div class="form-group">
+            <div class="form-group text-left">
+                <label class="text-muted">Banco donde recibiras el dinero</label>
                 <banks-field
                     required
-                    placeholder="¿Banco donde recibir el dinero?"
+                    placeholder="Seleccione un banco"
                     key="name" 
                     show-all="true"
                     label="name"
@@ -31,9 +34,10 @@
             </div>
         </div>
         <div class="col-lg-6">
-            <div class="form-group">
+            <div class="form-group text-left">
+                <label class="text-muted">Numero de tu cuenta bancaria</label>
                 <input type="text" required ng-model="$root.user.data.numero_cuenta" class="form-control" placeholder="Numero de cuenta" >
-                <span style="font-size: 10px;color: #a0a0a0;position: relative;left: -24px;top: -11px;"><i class="now-ui-icons business_bulb-63"></i>Escribir el numero sin puntos o guiones.</span>
+                <span style="font-size: 10px;color: #a0a0a0;position: relative;top: -11px;"><i class="now-ui-icons business_bulb-63"></i>Escribir el numero sin puntos o guiones.</span>
             </div>       
         </div>
     </div>

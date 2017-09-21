@@ -1,11 +1,11 @@
-<div class="login-page" ng-controller="DashboardCtrl" ng-init="load()">
+<div class="login-page" ng-controller="DashboardCtrl" ng-init="load()" style="margin-top: 75px;">
     <daimont-header></daimont-header>
     <div class="background-dark" style="padding:4px;" ng-hide="records.length == 0 && Records">
         <div class="container">
           <div class="row">
                 <div class="col-lg-6"></div>
                 <div class="col-lg-6 text-right row">
-                  <div ng-show="cupon" class="col-lg-6" ng-class="$root.user.data.updated ? 'col-lg-12' : 'col-lg-6'"><p class="text-white" style="margin-bottom:0px;">{{cupon.length > 0 ? 'solicitar cupo de: ' : 'su cupo es de :'}} <a href="" ng-click="update_cupon()"><span class="badge badge-default">{{(cupon.length > 0 ? (cupon[0] + 100000) : 300000) | currency:"$ "}} COP</span></a></p></div>
+                  <div ng-show="cupon" class="col-lg-6" ng-class="$root.user.data.updated ? 'col-lg-12' : 'col-lg-6'"><p class="text-white" style="margin-bottom:0px;">{{cupon.amount  ? 'solicitar cupo de: ' : 'su cupo es de :'}} <a href="" ng-click="update_cupon()"><span class="badge badge-default">{{(cupon.amount ? (cupon.amount + 100000) : 300000) | currency:"$ "}} COP</span></a></p></div>
                   <div class="col-lg-6" ng-show="!$root.user.data.updated"><p class="text-white" style="margin-bottom:0px;">Perfil : <a href="#/perfil" ui-sref="profile()" ><span class="badge badge-primary" ng-show="$root.user.data.updated">Actualizado</span>
             <span class="badge badge-default" ng-show="!$root.user.data.updated">Desactualizado</span></a></p> </div>
                 </div>          
@@ -34,15 +34,6 @@
                           </button>
                           <strong>Listo!</strong> Te notificaremos en breve sobre el estado de tu prestamo.
                         </div>
-
-                        <div ng-show="$root.bank_obj"  style="border-radius: 5px;margin: 0 auto;" class="alert alert-warning alert-dismissible fade show" role="alert">
-                          <button type="button" class="close" data-dismiss="alert" aria-label="Close" style="position: relative;top: -2px;  ">
-                            <span aria-hidden="true">&times;</span>
-                          </button>
-                           <a href="" ng-click="upload()" ng-disabled="!$root.bank_obj" style="padding: 4px;margin-left: 10px;" class="btn btn-xs btn-primary pull-right">Subir Foto</a>
-                          <strong>Por favor!</strong> Sube la photo de tu transferencia o consignación bancaria.
-                        </div>
-
                         <div ng-show="!have_contract && current_credit" style="border-radius: 5px;margin: 0 auto;" class="alert alert-warning alert-dismissible fade show" role="alert">
                           <button type="button" class="close" data-dismiss="alert" aria-label="Close" style="position: relative;top: -2px;  ">
                             <span aria-hidden="true">&times;</span>
@@ -57,9 +48,10 @@
                                          <input type="file" id="transaction" name="evidence" name="pic" accept="image/*" ng-model="file" required reader="$parent.new_payment_form.transaction" style="display:none;">      
                                     </div>                                                
                                 </form>
-                                <button href="" ng-click="upload()" class="btn btn-primary btn-sm upload_link" ><i class="fa fa-camera" aria-hidden="true"></i>&nbsp;Subir Foto</button>
+                                <button href="" ng-click="upload()" ng-disabled="!current_credit.data.status == 'Consignado'" class="btn btn-primary btn-sm upload_link" ><i class="fa fa-camera" aria-hidden="true"></i>&nbsp;Subir Foto</button>
                              </div>
                             <div class="col-lg-8">
+                              <a href="" ng-click="delete_credit()" style="position: absolute;top: -14px;right: 16px;"><i class="fa fa-window-close text-white" aria-hidden="true"></i></a>
                             <div class="row col-lg-12">
                                 <div class="col-lg-8 row">
                                     <h3 class="float-left" style="margin-bottom: 5px;">Resumen de Credito </h3>
@@ -174,6 +166,6 @@
                   </div>
             </div>
         </div>
-        <daimont-footer></daimont-footer>
     </div>
+    <daimont-footer></daimont-footer>
 </div>

@@ -12,9 +12,8 @@ angular.module('shoplyApp')
     $scope.myInterval = 3000;
   	
   	$scope.slides = [
-  		{image: 'http://lorempixel.com/400/200/'},
-  		{ image: 'http://lorempixel.com/400/200/food'},
-  		{image: 'http://lorempixel.com/400/200/sports'},
-  		{image: 'http://lorempixel.com/400/200/people'}
-	];
+	      {image : 'about_us_slide_1.jpg', active : true},
+	      {image : 'about_us_slide_2.jpg'},
+	      {image : 'about_us_slide_3.jpg'}
+	   ];
   });

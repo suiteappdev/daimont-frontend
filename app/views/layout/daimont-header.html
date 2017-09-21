@@ -1,4 +1,4 @@
-<nav class="navbar navbar-toggleable-md" style="background-color:#000!important;margin:0px;">
+<nav class="navbar navbar-toggleable-md fixed-top" style="background-color:#000!important;margin:0px;">
     <div class="container">
         <div class="navbar-translate">
             <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#example-navbar-info" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -61,10 +61,7 @@
                     </a>
                 </li>
                 <li class="nav-item" ui-sref-active="active" ng-show="!$root.user">
-                    <a ng-show="$root.state.current.name == 'home'" class="nav-link" style="color:white;cursor:pointer;" ng-click="how_to()">
-                        <p>Como solicitar tu prestamo</p>
-                    </a>
-                    <a ng-show="$root.state.current.name != 'home'" class="nav-link" ui-sref="how()" href="#/como-empezar">
+                    <a class="nav-link" ui-sref="how()" href="#/como-empezar">
                         <p>Como solicitar tu prestamo</p>
                     </a>
                 </li>
@@ -81,7 +78,7 @@
                 <li class="nav-item" ui-sref-active="active" ng-hide="$root.user">
                     <a class="nav-link" ui-sref="login()" href="#/login">
                         <i class="now-ui-icons users_circle-08" style="color: #00989e;"></i>
-                        <p>Entrar</p>
+                        <p>Ingresar</p>
                     </a>
                 </li>               
                  <div class="pull-right navbar-text" ng-show="$root.user">

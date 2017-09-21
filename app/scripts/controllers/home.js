@@ -16,6 +16,12 @@ angular.module('shoplyApp')
     $scope.form.data.finance_quoteFixed = 12990;
     $scope.form.data.finance_quoteChange = 960;
 
+    $scope.slides = [
+      {image : 'slide_1.png', active : true},
+      {image : 'slide_2.png'},
+      {image : 'slide_3.png'}
+    ];
+
     $scope.load = function(){
       if(storage.get("rememberEmail")){
         $scope.fromStore = true;

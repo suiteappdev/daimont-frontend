@@ -8,6 +8,7 @@ angular.module('shoplyApp')
       restrict: 'EA',
       scope : {
         interval  : "=",
+        images : "=",
         controls : "="
       },
       link: function postLink(scope, element, attrs) {

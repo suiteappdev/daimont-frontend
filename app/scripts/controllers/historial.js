@@ -6,7 +6,7 @@ angular.module('shoplyApp')
     $scope.page = 1;
     
     $scope.load = function(){
-        api.credits().get().success(function(res){
+        api.credits().add('history').get().success(function(res){
             $scope.records = res || [];
             $scope.Records  = true;
         });

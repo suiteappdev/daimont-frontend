@@ -1,4 +1,4 @@
-<div class="login-page" ng-controller="signupCtrl">
+<div class="login-page" ng-controller="signupCtrl" style="padding-top:75px;">
     <daimont-header></daimont-header>
     <div class="page-header" filter-color="orange">
         <div class="page-header-image"></div>
@@ -29,12 +29,9 @@
                                 </div>                            
                             </div>
                             <div class="col-lg-12">
-                                <div style="margin-bottom:10px;" class="input-group form-group-no-border" ng-class="{ 'has-danger' : (signup.$submitted || signup.phone.$touched) && signup.phone.$invalid }">
-                                    <span class="input-group-addon">
-                                        <i class="now-ui-icons tech_mobile"></i>
-                                    </span>
-                                    <input type="text" required name="phone" ng-model="formRegister.data.phone" class="form-control" placeholder="Numero Celular" ng-class="{ 'form-control-danger' : (signup.$submitted || signup.phone.$touched) && signup.phone.$invalid }">
-                                </div>                                
+                                <div class="form-group" ng-class="{ 'has-danger' : (signup.$submitted || signup.email_confirm.$touched) && signup.email_confirm.$invalid }">
+                                    <input type="email" ng-copy="$event.preventDefault()" ng-paste="$event.preventDefault()" required name="email_confirm" ng-model="email_confirm" class="form-control" placeholder="Confirmar Correo" ng-class="{ 'form-control-danger' : (signup.$submitted || signup.email_confirm.$touched) && signup.email_confirm.$invalid }">
+                                </div>                            
                             </div>
                             <div class="col-lg-12">
                                 <div class="form-group" ng-class="{ 'has-danger' : (signup.$submitted || signup.password.$touched) && signup.password.$invalid }">
@@ -47,6 +44,16 @@
                                         <input type="password" required name="confirm_pwd" disable-right-click ng-cut="$event.preventDefault()" ng-copy="$event.preventDefault()" ng-paste="$event.preventDefault()" ng-model="formRegister.data.confirm_password" class="form-control" placeholder="Repetir Contraseña"  ng-class="{ 'form-control-danger' : (signup.$submitted || signup.confirm_pwd.$touched) && signup.confirm_pwd.$invalid }">
                                     </div>
                                 </div>                                 
+                            </div>
+                            <div class="col-lg-12">
+                                <div class="form-group">
+                                    <div class="checkbox text-right" style="color:gray;">
+                                        <input type="checkbox" ng-model="accept_terms" ng-changed="accept_terms()" id="checkbox1" type="checkbox">
+                                        <label for="checkbox1" style="font-size: 10px;">
+                                            acepto los terminos y condiciones y el tratamiento de datos.
+                                        </label>
+                                    </div>                                
+                                </div>
                             </div>
                         </div>
                         </div>
@@ -65,9 +72,6 @@
                             </h6>
                         </div>
                         <br>
-                        <div>
-                           <p style="" class="text-muted terms">Al registrarte <span class="text-primary"><a href="#/terminos-condiciones" ng-click="terms()">aceptas todos los terminos y condiciones</a></span> y el tratamiento de datos personales.</p>   
-                        </div>
                     </form>
                 </div>
             </div>
