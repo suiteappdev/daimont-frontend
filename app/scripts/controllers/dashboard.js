@@ -42,16 +42,7 @@ angular.module('shoplyApp')
       });
 
       if($stateParams.credit){
-        var data  = {};
-        
-        data._user = $rootScope.user._id;
-        data._credit = $stateParams.credit;
 
-        api.contracts().post(data).success(function(res){
-            if(res){
-                $scope.code_mailed = true;
-            }
-        });
       }
 
       api.payments().get().success(function(res){
@@ -106,24 +97,6 @@ angular.module('shoplyApp')
             });  
     }
 
-    $scope.sign = function(){
-      api.contracts().add("verify/" + $rootScope.signature).get().success(function(res){
-        if(res){
-              if(res.length == 0 ){
-                $scope.hide_mailed_msg = true;
-                $scope.nosigned = true;
-              }else{
-                    api.credits($stateParams.credit).put({ _contract : res._id }).success(function(response){
-                        if(response){
-                            console.log("credito", response)
-                            $state.go('dashboard', { signed : true});                          
-                        }
-                    });
-              }
-        }
-      });
-    }
-
     $scope.confirm = function(){
         if(!$rootScope.user.data.updated){
             modal.confirm({
@@ -138,7 +111,50 @@ angular.module('shoplyApp')
                       }
             });          
         }else{
-          $state.go('contract', { credit : $scope.current_credit._id});
+        var data = {};
+        data._user = $rootScope.user._id;
+        data._credit = $scope.current_credit._id;
+
+        api.contracts().post(data).success(function(res){
+            if(res){
+                  swal({
+                    title: "Firmar Contrato",
+                    text: "Hemos enviado un codigo a tu bandeja de entrada o spam",
+                    type: "input",
+                    confirmButtonColor: "#008086", 
+                    confirmButtonText: "Firmar",
+                    cancelButtonText: "Cancelar",
+                    showCancelButton: true,
+                    closeOnConfirm: false,
+                    animation: "slide-from-top",
+                    inputPlaceholder: "Escribe el codigo de 6 caracteres"
+                  },
+                  function(inputValue){
+                    if (inputValue === false) return false;
+                    
+                    if (inputValue === "") {
+                      swal.showInputError("Tu firma es incorrecta!");
+                      return false
+                    }
+
+                    api.contracts().add("verify/" + inputValue).get().success(function(res){
+                      if(res){
+                            if(res.length == 0 ){
+                              swal.showInputError("Tu firma es incorrecta!");
+                            }else{
+                                  api.credits($scope.current_credit._id).put({ _contract : res._id }).success(function(response){
+                                      if(response){
+                                          $state.go('dashboard', { signed : true});
+                                          sweetAlert.close()                          
+                                      }
+                                  });
+                            }
+                      }
+                    });
+
+                  });                
+            }
+        });
         }
     }
 

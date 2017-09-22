@@ -1264,6 +1264,18 @@ div.datedropper.datedrop-custom-theme.picker-lkd .pick-submit {
     background-color: #00999f;
 }
 
+.sweet-alert .sa-input-error.show {
+    opacity: 1;
+    -webkit-transform: scale(1);
+    transform: scale(1);
+    display: none;
+}
+
+.sweet-alert.show-input input {
+    display: block;
+    text-align: center;
+}
+
 
 
 

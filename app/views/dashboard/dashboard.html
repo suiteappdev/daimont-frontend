@@ -32,14 +32,7 @@
                           <button type="button" class="close" data-dismiss="alert" aria-label="Close" style="position: relative;top: -2px;  ">
                             <span aria-hidden="true">&times;</span>
                           </button>
-                          <strong>Listo!</strong> Te notificaremos en breve sobre el estado de tu prestamo.
-                        </div>
-                        <div ng-show="!have_contract && current_credit" style="border-radius: 5px;margin: 0 auto;" class="alert alert-warning alert-dismissible fade show" role="alert">
-                          <button type="button" class="close" data-dismiss="alert" aria-label="Close" style="position: relative;top: -2px;  ">
-                            <span aria-hidden="true">&times;</span>
-                          </button>
-                           <a href="" ng-click="confirm()" style="padding: 4px;margin-left: 10px;" class="btn btn-xs btn-warning pull-right">Firmar</a>
-                          <strong>Por favor!</strong> Para continuar es necesario que firmes nuestro contrato.
+                          <strong>Contrato firmado!</strong> Te notificaremos en breve sobre el estado de tu prestamo.
                         </div>
                       <div class="row" style="width: 100%;top: 70%;position: relative;padding-top:5%;" ng-show="records.length > 0">
                              <div class="col-lg-4 upload-area" style="height: 400px;background-color: rgba(0, 0, 0, 0.28);display:flex;">
@@ -48,7 +41,7 @@
                                          <input type="file" id="transaction" name="evidence" name="pic" accept="image/*" ng-model="file" required reader="$parent.new_payment_form.transaction" style="display:none;">      
                                     </div>                                                
                                 </form>
-                                <button href="" ng-click="upload()" ng-disabled="!current_credit.data.status == 'Consignado'" class="btn btn-primary btn-sm upload_link" ><i class="fa fa-camera" aria-hidden="true"></i>&nbsp;Subir Foto</button>
+                                <button href="" ng-click="upload()" ng-disabled="current_credit.data.status != 'Consignado'" class="btn btn-primary btn-sm upload_link" ><i class="fa fa-camera" aria-hidden="true"></i>&nbsp;Subir Foto</button>
                              </div>
                             <div class="col-lg-8">
                               <a href="" ng-click="delete_credit()" style="position: absolute;top: -14px;right: 16px;"><i class="fa fa-window-close text-white" aria-hidden="true"></i></a>
@@ -65,7 +58,7 @@
                                <div class="progress-container progress-primary" style="width:100%;">
                                     <div class="row">
                                         <div class="col-lg-6 text-left">
-                                            {{payForDays}} dias transcurridos.
+                                         {{payForDays == 1 ? '1 dia credito.' : payForDays + ' dias de credito.'}}
                                         </div>
                                         <div class="col-lg-6 text-right">
                                             <span class="badge badge-warning"style="margin-top:5px;margin-bottom: 30px;">{{current_credit.data.pay_day | moment: 'format': 'MMMM DD, YYYY' }}</span>
@@ -105,7 +98,7 @@
                                     </div>
                                     <div class="row">
                                         <div class="col-lg-6 text-left">
-                                          <a ng-click="confirm()" ng-show="!have_contract" class="btn btn-success">CONTINUAR</a>
+                                          <a ng-click="confirm()" ng-show="!have_contract" class="btn btn-success">CONTINUAR Y FIRMAR CONTRATO</a>
                                           <a ng-show="is_transfered"  ng-click="show_banks()" class="btn btn-success">PAGAR</a>
                                         </div>
                                     </div>
@@ -116,7 +109,7 @@
                                <div class="progress-container progress-primary" style="width:100%;">
                                     <div class="row">
                                         <div class="col-lg-6 text-left">
-                                          {{payForDays}} dias transcurridos.
+                                          {{payForDays == 1 ? '1 dia credito.' : payForDays + ' dias de credito.'}}
                                         </div>
                                         <div class="col-lg-6 text-right">
                                             <span class="badge badge-warning"style="margin-top:5px;margin-bottom: 30px;">{{current_credit.data.pay_day | moment: 'format': 'MMMM DD, YYYY' }}</span>
