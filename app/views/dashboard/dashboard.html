@@ -28,7 +28,7 @@
                       </div>
                   </div>
                     <div class="main-wrap row col-lg-12" style="width: 900px;margin: 0 auto;padding-top: 10px;" >
-                        <div  ng-show="signed" style="border-radius: 5px;margin: 0 auto;" class="alert alert-primary alert-dismissible fade show" role="alert">
+                        <div  ng-show="signed && current_credit" style="border-radius: 5px;margin: 0 auto;" class="alert alert-primary alert-dismissible fade show" role="alert">
                           <button type="button" class="close" data-dismiss="alert" aria-label="Close" style="position: relative;top: -2px;  ">
                             <span aria-hidden="true">&times;</span>
                           </button>
@@ -47,7 +47,7 @@
                               <a href="" ng-click="delete_credit()" style="position: absolute;top: -14px;right: 16px;"><i class="fa fa-window-close text-white" aria-hidden="true"></i></a>
                             <div class="row col-lg-12">
                                 <div class="col-lg-8 row">
-                                    <h3 class="float-left" style="margin-bottom: 5px;">Resumen de Credito </h3>
+                                    <h3 class="float-left" style="margin-bottom: 5px;">Detalle de Prestamo </h3>
                                 </div>
                                 <div class="col-lg-4">
                                     <span class="float-right"><a href="" ng-click="show_details()" class="text-white" style="top: 10px;
