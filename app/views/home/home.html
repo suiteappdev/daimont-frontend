@@ -110,7 +110,7 @@
                                             <label style="" class="text-dark"><i class="now-ui-icons ui-1_calendar-60" ></i>&nbsp;Fecha de Pago:</label>
                                         </div>
                                         <div class="col-lg-6 text-right">
-                                            <p style=""><span class="badge badge-warning">{{ form.data.pay_day || current_date | moment: 'format': 'MMMM DD, YYYY' }}</span></p>
+                                            <p style=""><span class="badge badge-primary">{{ form.data.pay_day || current_date | moment: 'format': 'MMMM DD, YYYY' }}</span></p>
                                         </div> 
                                         <div class="col-lg-6 text-left">
                                             <label style="" class="text-dark">Monto Solicitado:</label>
@@ -143,7 +143,7 @@
                                             <label style="" class="text-dark">Total a Pagar:</label>
                                         </div>
                                         <div class="col-lg-6 text-right">
-                                            <p class="text-warning number-font">{{form.data.total_payment || 0 | currency:"$ ":0}} COP</p>
+                                            <p class="number-font text-dark">{{form.data.total_payment || 0 | currency:"$ ":0}} COP</p>
                                         </div>
                                     </div>
                                     <div class="row">
@@ -172,7 +172,7 @@
                                 <div class="content">
                                     <div class="row">
                                         <div class="col-lg-6 text-left">
-                                            <label style="color:#101010;" class="text-white"><i class="now-ui-icons ui-1_calendar-60" ></i>&nbsp;Fecha de Pago:</label>
+                                            <label class="text-white"><i class="now-ui-icons ui-1_calendar-60" ></i>&nbsp;Fecha de Pago:</label>
                                         </div>
                                         <div class="col-lg-6 text-right">
                                             <p style="color:#101010;"><span class="badge badge-warning">{{ form.data.pay_day || current_date | moment: 'format': 'MMMM DD, YYYY' }}</span></p>
@@ -205,7 +205,7 @@
                                         <hr style="1px dashed #858585 !important;" />                       
 
                                         <div class="col-lg-6 text-left">
-                                            <label style="color:#101010;" class="text-white">Total a Pagar:</label>
+                                            <label  class="text-white">Total a Pagar:</label>
                                         </div>
                                         <div class="col-lg-6 text-right">
                                             <p class="text-warning">{{form.data.total_payment || 0 | currency:"$ ":0}} COP</p>

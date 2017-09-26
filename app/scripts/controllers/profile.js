@@ -17,7 +17,7 @@ angular.module('shoplyApp')
     
     if($scope.counter == 0){
         $scope.stop()
-        $state.go('contract', { credit : $scope.credit || {} });
+        $state.go('dashboard');
         return;
     }
         $scope.counter--;

@@ -16,7 +16,7 @@
         <div class="profile-header-image"></div>
         <div class="container">
             <div class="" ui-view>
-                  <div class="row col-lg-12" ng-show="records.length == 0 && Records">
+                  <div class="row col-lg-12">
                       <div ng-show="records.length == 0 && Records" style="text-align: center;width: 100%;">
                       <div style="position: relative;margin-top: 20%;">
                             <h4>No tienes prestamos pendientes.</h4>
@@ -24,10 +24,23 @@
                       </div>
                       </div>
                       <div style="flex:1;" class="loader-wrapper" ng-show="!Records">
-                            <img style="width:250px;" src="images/loading.svg">
+                            <img style="width:80px;margin-top: 20%;margin-bottom:10px;" src="images/loading.svg">
+                            <p clas="text-white">Estamos cargando tu prestamo...</p>
                       </div>
                   </div>
                     <div class="main-wrap row col-lg-12" style="width: 900px;margin: 0 auto;padding-top: 10px;" >
+                        <div  ng-show="isNew" style="border-radius: 5px;margin: 0 auto;" class="alert alert-primary alert-dismissible fade show" role="alert">
+                          <button type="button" class="close" data-dismiss="alert" aria-label="Close" style="position: relative;top: -2px;  ">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                          <strong>Por favor!</strong> Para continuar es necesario que firmes nuestro contrato de prestamo.
+                        </div>
+                        <div  ng-show="$root.bank_selected" style="border-radius: 5px;margin: 0 auto;margin-top: 10px;" class="alert alert-primary alert-dismissible fade show" role="alert">
+                          <button type="button" class="close" data-dismiss="alert" aria-label="Close" style="position: relative;top: -2px;  ">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                          <strong>Hola!</strong> Has elejido pagar en {{$root.bank_obj.name}} Por favor sube una foto clara de tu movimiento de pago. 
+                        </div>
                         <div  ng-show="signed && current_credit" style="border-radius: 5px;margin: 0 auto;" class="alert alert-primary alert-dismissible fade show" role="alert">
                           <button type="button" class="close" data-dismiss="alert" aria-label="Close" style="position: relative;top: -2px;  ">
                             <span aria-hidden="true">&times;</span>
@@ -44,7 +57,7 @@
                                 <button href="" ng-click="upload()" ng-disabled="current_credit.data.status != 'Consignado'" class="btn btn-primary btn-sm upload_link" ><i class="fa fa-camera" aria-hidden="true"></i>&nbsp;Subir Foto</button>
                              </div>
                             <div class="col-lg-8">
-                              <a href="" ng-click="delete_credit()" style="position: absolute;top: -14px;right: 16px;"><i class="fa fa-window-close text-white" aria-hidden="true"></i></a>
+                              <a href="" ng-click="delete_credit()" style="position: absolute;top: -14px;right: 16px;"><i class="fa fa-trash text-white" aria-hidden="true"></i></a>
                             <div class="row col-lg-12">
                                 <div class="col-lg-8 row">
                                     <h3 class="float-left" style="margin-bottom: 5px;">Detalle de Prestamo </h3>
@@ -148,7 +161,7 @@
                                     <br>
                                     <div class="row">
                                         <div class="col-lg-12 text-left">
-                                               <a ng-click="confirm()" ng-show="!have_contract" class="btn btn-success">CONTINUAR</a>
+                                               <a ng-click="confirm()" ng-show="!have_contract" class="btn btn-success">CONTINUAR Y FIRMAR CONTRATO</a>
                                           <a ng-show="is_transfered" ng-click="show_banks()" class="btn btn-success">PAGAR</a>
                                         </div>
                                     </div>

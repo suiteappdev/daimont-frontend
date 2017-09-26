@@ -390,6 +390,8 @@ angular
         $rootScope.state = $state;
         $rootScope.device = SmartPhone.isAny();
         $rootScope.online = navigator.onLine;
+        $rootScope.loader = false;
+        $rootScope.loaderText = 'cargando...';
 
         $http.get('https://freegeoip.net/json/').success(function(res){
             $rootScope.client_metadata = res || {};

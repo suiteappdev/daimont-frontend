@@ -14,11 +14,14 @@ angular.module('shoplyApp')
     $scope.form.data = {};
     $scope.form.data.finance_quoteFixed = 12990;
     $scope.form.data.finance_quoteChange = 960;
-
+    $scope.isNew = false;
     $scope.items_tasks = [];
+    $scope.current_credit = false;
+    $scope.records = [];
     $scope.Records  = false;
     $scope.have_contract = false;
     $scope.is_transfered = false;
+
     $scope.load = function(){
 
       if($stateParams.signed){
@@ -30,15 +33,19 @@ angular.module('shoplyApp')
       });
 
       api.credits().add('current').get().success(function(res){
-            $scope.records = res.length == 0 ? [] : [res];
-            $scope.current_credit = $scope.records[0];  
-            $scope.Records  = true;
+            $timeout(function(){
+                $scope.Records  = true;
+                $scope.records = res.length == 0 ? [] : [res];
+                $scope.current_credit = $scope.records[0];  
+                
+                $scope.have_contract = $scope.current_credit._contract || false;
+                $scope.is_transfered = ($scope.current_credit.data.status =='Consignado');
+                
+                if($scope.current_credit){
+                    $scope.early_payment();
+                }
 
-            $scope.have_contract = $scope.current_credit._contract || false;
-            $scope.is_transfered = ($scope.current_credit.data.status =='Consignado');
-            if($scope.current_credit){
-                $scope.early_payment();
-            }
+            },5000);
       });
 
       if($stateParams.credit){
@@ -61,6 +68,11 @@ angular.module('shoplyApp')
                     api.credits($scope.current_credit._id).put($scope.current_credit).success(function(res){
                       if(res){
                           sweetAlert.close();
+                          
+                          if($scope.isNew){
+                              $scope.isNew = false;
+                          }
+
                           $scope.load();
                       } 
                     });
@@ -259,6 +271,9 @@ angular.module('shoplyApp')
 
     $scope.show_banks = function(){
       window.modal = modal.show({templateUrl : 'views/dashboard/payment.html', size:'lg', scope: this, backdrop: true, show : true, keyboard  : true}, function($scope){
+          
+          $rootScope.bank_selected = true;
+
           $scope.$close();
       }); 
     }
@@ -311,31 +326,18 @@ angular.module('shoplyApp')
     }
 
     $scope.new_credit = function(){
-       modal.confirm({
-               closeOnConfirm : true,
-               title: "Está Seguro?",
-               text: "Confirma que desea realizar este préstamo?",
-               confirmButtonColor: "#008086",
-               type: "success" },
+      $scope.form._user = storage.get('uid') || $rootScope.user._id;
+      $scope.form.data.status = 'Pendiente';
+      $scope.form.owner = storage.get('uid') || $rootScope.user._id;
 
-               function(isConfirm){ 
+      api.credits().post($scope.form).success(function(res){
+        if(res){
+            $state.go('dashboard');
+            $scope.isNew = true;
+            $scope.load();
+        } 
+      });
 
-                   if (isConfirm) {
-                    
-                      $scope.form._user = storage.get('uid') || $rootScope.user._id;
-                      $scope.form.data.status = 'Pendiente';
-                      $scope.form.owner = storage.get('uid') || $rootScope.user._id;
-
-                      api.credits().post($scope.form).success(function(res){
-                        if(res){
-                            sweetAlert.close();
-                            $state.go('dashboard');
-                            $scope.load();
-                    
-                           } 
-                      });
-                  }
-        });
     }
 
     $scope.upload = function(){

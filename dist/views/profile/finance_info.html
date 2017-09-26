@@ -7,7 +7,8 @@
                         {value:&quot;De 3.000.000 hasta 3.500.000&quot;, text:&quot;De 3.000.000 hasta 3.500.000&quot;},
                         {value:&quot;De 4.000.000 hasta 4.500.000&quot;, text:&quot;De 4.000.000 hasta 4.500.000&quot;},
                         {value:&quot;De 5.000.000 hasta 5.500.000&quot;, text:&quot;De 5.000.000 hasta 5.500.000&quot;},
-                        {value:&quot;De 5.500.000 hasta 6.000.000&quot;, text:&quot;De 5.500.000 hasta 6.000.000&quot;}
+                        {value:&quot;De 5.500.000 hasta 6.000.000&quot;, text:&quot;De 5.500.000 hasta 6.000.000&quot;},
+                        {value:&quot;De 6.000.000 en adelante&quot;, text:&quot;De 6.000.000 en adelante&quot;}
                     ]" ng-model="$root.user.data.ingresos_totales"> </selectize> </div> </div> <div class="col-lg-6"> <div class="form-group"> <label class="text-muted">Egresos totales mensuales: </label> <selectize required config="{create:false, maxItems:1, valueField: 'value', labelField: 'text', placeholder:'Engresos totales mensuales'}" options="[
                         {value:&quot;Menos de 500.000&quot;, text:&quot;Menos de 500.000&quot;},
                         {value:&quot;De 500.000 hasta 1.000.000&quot;, text:&quot;De 500.000 hasta 1.000.000&quot;},
@@ -17,5 +18,6 @@
                         {value:&quot;De 3.000.000 hasta 3.500.000&quot;, text:&quot;De 3.000.000 hasta 3.500.000&quot;},
                         {value:&quot;De 4.000.000 hasta 4.500.000&quot;, text:&quot;De 4.000.000 hasta 4.500.000&quot;},
                         {value:&quot;De 5.000.000 hasta 5.500.000&quot;, text:&quot;De 5.000.000 hasta 5.500.000&quot;},
-                        {value:&quot;De 5.500.000 hasta 6.000.000&quot;, text:&quot;De 5.500.000 hasta 6.000.000&quot;}
+                        {value:&quot;De 5.500.000 hasta 6.000.000&quot;, text:&quot;De 5.500.000 hasta 6.000.000&quot;},
+                        {value:&quot;De 6.000.000 en adelante&quot;, text:&quot;De 6.000.000 en adelante&quot;}
                     ]" ng-model="$root.user.data.egresos_totales"> </selectize> </div> </div> </div> <input type="button" ng-click="go_back()" name="previous" class="previous action-button" value="Anterior"> <a ui-sref="profile.bank" href="#/profile/update/bank" name="next" class="btn btn-primary bold" value="Continuar">Continuar</a> </form>
