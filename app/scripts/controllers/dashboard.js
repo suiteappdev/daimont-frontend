@@ -33,19 +33,16 @@ angular.module('shoplyApp')
       });
 
       api.credits().add('current').get().success(function(res){
-            $timeout(function(){
-                $scope.Records  = true;
-                $scope.records = res.length == 0 ? [] : [res];
-                $scope.current_credit = $scope.records[0];  
-                
-                $scope.have_contract = $scope.current_credit._contract || false;
-                $scope.is_transfered = ($scope.current_credit.data.status =='Consignado');
-                
-                if($scope.current_credit){
-                    $scope.early_payment();
-                }
-
-            },5000);
+            $scope.Records  = true;
+            $scope.records = res.length == 0 ? [] : [res];
+            $scope.current_credit = $scope.records[0];  
+            
+            $scope.have_contract = $scope.current_credit._contract || false;
+            $scope.is_transfered = ($scope.current_credit.data.status =='Consignado');
+            
+            if($scope.current_credit){
+                $scope.early_payment();
+            }
       });
 
       if($stateParams.credit){
