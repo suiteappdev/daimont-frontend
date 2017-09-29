@@ -124,6 +124,15 @@ angular.module('shoplyApp')
         });
     }
 
+    $scope.logout = function(){
+      window.localStorage.clear();
+      
+      delete $rootScope.isLogged;
+      delete $rootScope.user;
+
+      $state.go('home');
+    }
+
    $scope.reject = function(){
        modal.confirm({
                closeOnConfirm : true,
@@ -133,7 +142,7 @@ angular.module('shoplyApp')
                type: "success" },
                function(isConfirm){ 
                    if (isConfirm) {
-                      api.credits($scope.credit._id).put($scope.credit).success(function(res){
+                      api.credits().add("rejected/" + $scope.credit._id).put($scope.credit).success(function(res){
                         if(res){
                                swal({
                                 title: "Bien Hecho",

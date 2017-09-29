@@ -457,7 +457,7 @@ angular
                 return;
             }
 
-            if((nextRoute.name  == 'credits'  || nextRoute.name  == 'payments' || nextRoute.name  == 'payments-detail' || nextRoute.name  == 'detail' || nextRoute.name == 'administrators') && $rootScope.user.type == 'CLIENT'){
+            if((nextRoute.name  == 'credits'  || nextRoute.name  == 'payments' || nextRoute.name  == 'payments-detail' || nextRoute.name  == 'detail' /*|| nextRoute.name == 'administrators'*/) && $rootScope.user.type == 'CLIENT'){
                   nextRoute.data.pageTitle = fromState.data.pageTitle;
                   event.preventDefault();
                   return;
