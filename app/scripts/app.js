@@ -174,6 +174,7 @@ angular
               templateUrl: 'views/login/login.html',
               params : {
                 mailed : null,
+                user_signed : null,
                 token : null
               },
               data: {
@@ -249,6 +250,15 @@ angular
                   pageTitle: 'Información Bancaria'
                 }
           })
+          .state('profile.resumen', {
+                url: '/update/resumen',
+                access: { requiredAuthentication: false },
+                templateUrl: 'views/profile/resumen.html',
+                controller:'profileCtrl',
+                data: {
+                  pageTitle: 'Resumen de datos'
+                }
+          })
           .state('recover', {
                 url: '/recover',
                 templateUrl: 'views/recover/recover.html',
@@ -275,6 +285,9 @@ angular
                 url: '/nuevo-credito',
                 access: { requiredAuthentication: true },
                 templateUrl: 'views/credits/new_credit.html',
+                params: {
+                  with_offer: null
+                },   
                 data: {
                   pageTitle: 'Nuevo Credito'
                 }
@@ -376,7 +389,9 @@ angular
                 access: { requiredAuthentication: true },
                 templateUrl: 'views/dashboard/dashboard.html',
                 params: {
-                  signed: null
+                  signed: null,
+                  with_offer : null,
+                  without_offer : null
                 },
                 data: {
                   pageTitle: 'Mi Prestamo'

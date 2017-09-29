@@ -8,13 +8,12 @@
  * Controller of the shoplyApp
  */
 angular.module('shoplyApp')
-  .controller('DashboardCtrl', function ($scope, modal,  api, storage, $state, $rootScope, $timeout, $http, $stateParams) {
+  .controller('DashboardCtrl', function ($scope, modal,  api, storage, $state, $rootScope, $timeout, $http, $stateParams, $filter) {
     $scope.current_date = new Date();
     $scope.form = {};
     $scope.form.data = {};
     $scope.form.data.finance_quoteFixed = 12990;
     $scope.form.data.finance_quoteChange = 960;
-    $scope.isNew = false;
     $scope.items_tasks = [];
     $scope.current_credit = false;
     $scope.records = [];
@@ -26,6 +25,13 @@ angular.module('shoplyApp')
 
       if($stateParams.signed){
             $scope.signed = true;
+            delete $scope.without_offer;
+      }
+
+      console.log("PARAMS", $stateParams);
+
+      if($stateParams.with_offer){
+            $scope.with_offer = true;
       }
 
       api.credits().add("max_amount").get().success(function(res){
@@ -34,20 +40,23 @@ angular.module('shoplyApp')
 
       api.credits().add('current').get().success(function(res){
             $scope.Records  = true;
-            $scope.records = res.length == 0 ? [] : [res];
+            $scope.records = res.length == 0 || res.data.with_offer ? [] : [res];
             $scope.current_credit = $scope.records[0];  
-            
             $scope.have_contract = $scope.current_credit._contract || false;
             $scope.is_transfered = ($scope.current_credit.data.status =='Consignado');
             
+            if($stateParams.without_offer){
+                api.credits().add("email_request/" + $scope.current_credit._id).get().success(function(res){
+                  if(res){
+                       $scope.without_offer = true;
+                  }
+                });
+            }
+
             if($scope.current_credit){
                 $scope.early_payment();
             }
       });
-
-      if($stateParams.credit){
-
-      }
 
       api.payments().get().success(function(res){
             $scope.payments = res || [];  
@@ -107,64 +116,43 @@ angular.module('shoplyApp')
     }
 
     $scope.confirm = function(){
-        if(!$rootScope.user.data.updated){
-            modal.confirm({
-                   closeOnConfirm : true,
-                   title: "Accion requerida",
-                   text: "actualiza tu información personal para continuar...",
-                   confirmButtonColor: "#008086",
-                   type: "success" },
-                   function(isConfirm){ 
-                      if (isConfirm) {
-                        $state.go('profile', { credit : $scope.current_credit._id});
+            swal({
+              title: "Firmar Contrato",
+              text: "Revisa tu correo (spam) y usa el codigo de 6 caracteres que te hemos enviado.",
+              type: "input",
+              confirmButtonColor: "#008086", 
+              confirmButtonText: "Firmar",
+              cancelButtonText: "Cancelar",
+              showCancelButton: true,
+              closeOnConfirm: false,
+              animation: "slide-from-top",
+              inputPlaceholder: "Escribe el codigo de 6 caracteres"
+            },
+            function(inputValue){
+              if (inputValue === false) return false;
+              
+              if (inputValue === "") {
+                swal.showInputError("Tu firma es incorrecta!");
+                return false
+              }
+
+              api.contracts().add("verify/" + inputValue).get().success(function(res){
+                if(res){
+                      if(res.length == 0 ){
+                        swal.showInputError("Tu firma es incorrecta!");
+                      }else{
+                            api.credits($scope.current_credit._id).put({ _contract : res._id }).success(function(response){
+                                if(response){
+                                    $state.go('dashboard', { signed : true});
+                                    delete $scope.without_offer;
+                                    sweetAlert.close()                          
+                                }
+                            });
                       }
-            });          
-        }else{
-        var data = {};
-        data._user = $rootScope.user._id;
-        data._credit = $scope.current_credit._id;
+                }
+              });
 
-        api.contracts().post(data).success(function(res){
-            if(res){
-                  swal({
-                    title: "Firmar Contrato",
-                    text: "Hemos enviado un codigo a tu bandeja de entrada o spam",
-                    type: "input",
-                    confirmButtonColor: "#008086", 
-                    confirmButtonText: "Firmar",
-                    cancelButtonText: "Cancelar",
-                    showCancelButton: true,
-                    closeOnConfirm: false,
-                    animation: "slide-from-top",
-                    inputPlaceholder: "Escribe el codigo de 6 caracteres"
-                  },
-                  function(inputValue){
-                    if (inputValue === false) return false;
-                    
-                    if (inputValue === "") {
-                      swal.showInputError("Tu firma es incorrecta!");
-                      return false
-                    }
-
-                    api.contracts().add("verify/" + inputValue).get().success(function(res){
-                      if(res){
-                            if(res.length == 0 ){
-                              swal.showInputError("Tu firma es incorrecta!");
-                            }else{
-                                  api.credits($scope.current_credit._id).put({ _contract : res._id }).success(function(response){
-                                      if(response){
-                                          $state.go('dashboard', { signed : true});
-                                          sweetAlert.close()                          
-                                      }
-                                  });
-                            }
-                      }
-                    });
-
-                  });                
-            }
-        });
-        }
+            });  
     }
 
      $scope.inc_amount = function(){
@@ -324,14 +312,26 @@ angular.module('shoplyApp')
 
     $scope.new_credit = function(){
       $scope.form._user = storage.get('uid') || $rootScope.user._id;
+      $scope.form.data.client_metadata = $rootScope.client_metadata || {};
       $scope.form.data.status = 'Pendiente';
       $scope.form.owner = storage.get('uid') || $rootScope.user._id;
 
+
+
       api.credits().post($scope.form).success(function(res){
         if(res){
-            $state.go('dashboard');
-            $scope.isNew = true;
-            $scope.load();
+            var data = {};
+            data._user = $rootScope.user._id;
+            data._credit = res._id;
+
+            api.contracts().post(data).success(function(res){
+                if(res){
+                   $state.go('dashboard');
+                   $scope.isNew = true;
+                   $scope.load();
+                }
+            }); 
+
         } 
       });
 
@@ -419,11 +419,11 @@ angular.module('shoplyApp')
 
         if(n){
 
-              if(n[0] >= ($rootScope.user.data.cupon || 300000) && !$scope.show_warning_msg){
+              /*if(n[0] >= ($rootScope.user.data.cupon || 300000) && !$scope.show_warning_msg){
                     $scope.show_warning_msg = true;
-              }else if(n[0] == 300000 && $scope.show_warning_msg){
+              }else {
                     $scope.show_warning_msg = false;
-              }
+              }*/
                
 
               $scope.form.data.interests = (n[0] * (2.4991666667 / 100));
@@ -443,11 +443,11 @@ angular.module('shoplyApp')
 
         if(o){
 
-              if(o[0] >= ($rootScope.user.data.cupon || 300000) && !$scope.show_warning_msg){
+              /*if(o[0] >= ($rootScope.user.data.cupon || 300000) && !$scope.show_warning_msg){
                     $scope.show_warning_msg = true;
-              }else if(o[0] == 300000 && $scope.show_warning_msg){
+              }else{
                     $scope.show_warning_msg = false;
-              }
+              }*/
 
               $scope.form.data.interests = (o[0] * (2.4991666667 / 100));
               $scope.form.data.system_quote = ($scope.form.data.finance_quoteFixed + $scope.form.data.finance_quoteChange * $scope.form.data.days[0]);

@@ -1,9 +1,13 @@
 <div class="login-page" ng-controller="profileCtrl" ng-init="load()" style="margin-top:75px;">
     <daimont-header></daimont-header>
-    <div class="page-header" filter-color="orange">
-        <div class="profile-header-image"></div>
+    <div class="page-header" filter-color="orange" style="height: 800px;!important">
+        <div class="profile-header-image">      
+        </div>
         <div class="container">
-            <div class="col-md-4 content-center hidden-md-down" style="top:45%;!important">
+            <div class="col-md-4 content-center" style="top:45%;!important">
+                  <div class="row col-lg-12" style="padding-right:10px;" ng-show="!$root.user.data.updated">
+                        <div class="col-lg-12 text-left"><p  class="simulator-primary text-warning text-center" style="border-color: 0999f;color: #fff!important;margin: 0 auto;width: 600px;margin-bottom: 30px;"><i class="fa fa-exclamation-triangle text-warning" aria-hidden="true"></i> Para continuar con tu solicitud de prestamo por favor actualiza tu perfil de credito.</p></div>
+                  </div> 
                 <!-- multistep form -->
                 <div id="msform">
                   <!-- progressbar -->
@@ -12,16 +16,12 @@
                     <li ng-click="go_to('profile.location')" ng-class="{active : state.current.name === 'profile.location'}">Información Residencial</li>
                     <li ng-click="go_to('profile.finance')" ng-class="{active : state.current.name === 'profile.finance'}">Información laboral</li>
                     <li ng-click="go_to('profile.bank')" ng-class="{active : state.current.name === 'profile.bank'}">Información Bancaria</li>
+                   <li ng-click="go_to('profile.resumen')" ng-class="{active : state.current.name === 'profile.resumen'}">Resumen</li>
                   </ul>
                   <!-- fieldsets -->
                   <fieldset>
                     <div ui-view>
                         <form name="basic"> 
-                  <div class="row alert alert-success" role="alert" ng-show="activated" style="font-size:12px;position:relative;top:-12px;">
-                          <div class="container">
-                              Cuenta Activada. Por favor actualiza este perfil. este paso solo se realizara una véz.
-                          </div>
-                  </div>
               <h2 class="fs-title">Informacion Basica</h2>
               <h3 class="fs-subtitle">Por favor complete los campos y presione continuar</h3>
 
@@ -43,7 +43,7 @@
                   <div class="col-lg-6">
                     <div class="form-group text-left">
                       <label class="text-muted">Cedula de ciudadania:</label>
-                          <input type="text" required ng-model="$root.user.data.cedula" class="form-control" name="cedula" placeholder="Cedula" />
+                          <input type="text" required disabled ng-model="$root.user.cc" class="form-control" name="cedula" placeholder="Cedula" />
                     </div>
                   </div>
                   <div class="col-lg-6">

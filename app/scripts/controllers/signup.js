@@ -71,7 +71,7 @@ angular.module('shoplyApp')
 
       var _success = function(data){
         if(data){
-            $state.go('login', { mailed : true});
+            $state.go('login', { user_signed : true});
            //$scope.login();
         }
       };
@@ -89,10 +89,10 @@ angular.module('shoplyApp')
             return;
         }
 
-        if($scope.formRegister.data.email != $scope.email_confirm){
+        /*if($scope.formRegister.data.email != $scope.email_confirm){
             sweetAlert.swal("Formulario Incompleto.", "Los correos no coinciden", "error");
             return;
-        }
+        }*/
 
         if(!$scope.accept_terms){
             sweetAlert.swal("Formulario Incompleto.", "Debes aceptar los terminos y condiciones", "error");
@@ -101,11 +101,12 @@ angular.module('shoplyApp')
 
         if($rootScope.credit){
             var _credit = {};
-            _credit.data = $rootScope.credit;
+            _credit.data = $rootScope.credit.data;
+            _credit.data.client_metadata = $rootScope.client_metadata || {};
             _credit.data.status = 'Pendiente';
         }
 
-        account.usuario().register(angular.extend($scope.formRegister.data, {username : $scope.formRegister.data.email, credit : $rootScope.credit || {}})).then(_success, _error);
+        account.usuario().register(angular.extend($scope.formRegister.data, {username : $scope.formRegister.data.email, credit : _credit || {}})).then(_success, _error);
       }else if($scope.signup.$invalid){
             modal.incompleteForm();
       } 

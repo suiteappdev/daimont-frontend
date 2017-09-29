@@ -11,6 +11,7 @@ angular.module('shoplyApp')
   .controller('LoginCtrl', function ($scope, sweetAlert, constants, $state, storage, account, $rootScope, Facebook, $stateParams, modal, api) {
   	$scope.load = function(){
       $scope.mailed = $stateParams.mailed || null;
+      $scope.user_signed = $stateParams.user_signed || null;
       
       delete $scope.form;
 
@@ -142,7 +143,13 @@ angular.module('shoplyApp')
               storage.save('uid', _user._id);
               $rootScope.isLogged = true;
               $rootScope.user = storage.get('user');
-              $state.go(constants.login_state_sucess);          
+
+              if(!res.user.data.updated){
+                  $state.go('profile');
+              }else{
+                  $state.go(constants.login_state_sucess);          
+              }
+
           }else if(res.user.type == "ADMINISTRATOR"){
               var  _user =  res.user;
               var  _token = res.token;

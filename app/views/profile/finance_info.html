@@ -20,18 +20,7 @@
                 <label class="text-muted">Ingresos Totales mensuales:</label>
                 <selectize 
                     required 
-                    config="{create:true, maxItems:1, valueField: 'value', labelField: 'text', placeholder:'Ingresos totales mensuales'}" options='[
-                        {value:"Menos de 500.000", text:"Menos de 500.000"},
-                        {value:"De 500.000 hasta 1.000.000", text:"De 500.000 hasta 1.000.000"},
-                        {value:"De 1.000.000 hasta 1.500.000", text:"De 1.000.000 hasta 1.500.000"},
-                        {value:"De 1.500.000 hasta 2.000.000", text:"De 1.500.000 hasta 2.000.000"},
-                        {value:"De 2.000.000 hasta 2.500.000", text:"De 2.000.000 hasta 2.500.000"},
-                        {value:"De 3.000.000 hasta 3.500.000", text:"De 3.000.000 hasta 3.500.000"},
-                        {value:"De 4.000.000 hasta 4.500.000", text:"De 4.000.000 hasta 4.500.000"},
-                        {value:"De 5.000.000 hasta 5.500.000", text:"De 5.000.000 hasta 5.500.000"},
-                        {value:"De 5.500.000 hasta 6.000.000", text:"De 5.500.000 hasta 6.000.000"},
-                        {value:"De 6.000.000 en adelante", text:"De 6.000.000 en adelante"}
-                    ]' 
+                    config="ingresos_setup" options='ingresos_records' 
                     ng-model="$root.user.data.ingresos_totales">
                 </selectize>
             </div>        
@@ -42,24 +31,13 @@
             </label>
                 <selectize 
                     required 
-                    config="{create:false, maxItems:1, valueField: 'value', labelField: 'text', placeholder:'Engresos totales mensuales'}" options='[
-                        {value:"Menos de 500.000", text:"Menos de 500.000"},
-                        {value:"De 500.000 hasta 1.000.000", text:"De 500.000 hasta 1.000.000"},
-                        {value:"De 1.000.000 hasta 1.500.000", text:"De 1.000.000 hasta 1.500.000"},
-                        {value:"De 1.500.000 hasta 2.000.000", text:"De 1.500.000 hasta 2.000.000"},
-                        {value:"De 2.000.000 hasta 2.500.000", text:"De 2.000.000 hasta 2.500.000"},
-                        {value:"De 3.000.000 hasta 3.500.000", text:"De 3.000.000 hasta 3.500.000"},
-                        {value:"De 4.000.000 hasta 4.500.000", text:"De 4.000.000 hasta 4.500.000"},
-                        {value:"De 5.000.000 hasta 5.500.000", text:"De 5.000.000 hasta 5.500.000"},
-                        {value:"De 5.500.000 hasta 6.000.000", text:"De 5.500.000 hasta 6.000.000"},
-                        {value:"De 6.000.000 en adelante", text:"De 6.000.000 en adelante"}
-                    ]' 
-                    ng-model="$root.user.data.egresos_totales">
+                    config="egresos_setup" options='egresos_records' 
+                    ng-model="$root.user.data.egresos_totales" >
                 </selectize>        
             </div>
         </div>        
     </div>
     <input type="button" ng-click="go_back()" name="previous" class="previous action-button" value="Anterior" />
-    <a ui-sref="profile.bank" href="#/profile/update/bank" name="next" class="btn btn-primary bold" value="Continuar">Continuar</a>    
+    <a ui-sref="profile.bank" href="#/profile/update/bank" name="next" class="btn btn-primary bold" value="Continuar">Siguiente</a>    
 </form name="finance">
 

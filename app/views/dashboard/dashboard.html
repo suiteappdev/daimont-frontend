@@ -1,6 +1,6 @@
 <div class="login-page" ng-controller="DashboardCtrl" ng-init="load()" style="margin-top: 75px;">
     <daimont-header></daimont-header>
-    <div class="background-dark" style="padding:4px;" ng-hide="records.length == 0 && Records">
+    <div class="background-dark" style="padding:4px;display:none;" ng-hide="records.length == 0 && Records">
         <div class="container">
           <div class="row">
                 <div class="col-lg-6"></div>
@@ -29,11 +29,13 @@
                       </div>
                   </div>
                     <div class="main-wrap row col-lg-12" style="width: 900px;margin: 0 auto;padding-top: 10px;" >
-                        <div  ng-show="isNew" style="border-radius: 5px;margin: 0 auto;" class="alert alert-primary alert-dismissible fade show" role="alert">
-                          <button type="button" class="close" data-dismiss="alert" aria-label="Close" style="position: relative;top: -2px;  ">
-                            <span aria-hidden="true">&times;</span>
-                          </button>
-                          <strong>Por favor!</strong> Para continuar es necesario que firmes nuestro contrato de prestamo.
+                        <div class="row col-lg-12" style="padding-right:10px;" ng-show="isNew && !signed">
+                              <div class="col-lg-12 text-left"><p  class="simulator-primary text-warning ng-binding" style="margin-bottom: 10px;border-color: 0999f;
+                        color: #fff!important;"><i class="fa fa-exclamation-triangle text-warning" aria-hidden="true"></i> Hemos enviado un codigo de 6 caracteres a tu bandeja de entrada o SPAM usa este codigo para firmar el contrato, cualquier duda puedes comunicarte con nosotros usando nuestro chat en linea.</p></div>
+                        </div>
+                        <div class="row col-lg-12" style="padding-right:10px;" ng-show="without_offer && !signed">
+                              <div class="col-lg-12 text-left"><p  class="simulator-primary text-warning ng-binding" style="margin-bottom: 10px;border-color: 0999f;
+                        color: #fff!important;"><i class="fa fa-exclamation-triangle text-warning" aria-hidden="true"></i> Hemos enviado un codigo de 6 caracteres a tu bandeja de entrada o SPAM usa este codigo para firmar el contrato, cualquier duda puedes comunicarte con nosotros usando nuestro chat en linea.</p></div>
                         </div>
                         <div  ng-show="$root.bank_selected" style="border-radius: 5px;margin: 0 auto;margin-top: 10px;" class="alert alert-primary alert-dismissible fade show" role="alert">
                           <button type="button" class="close" data-dismiss="alert" aria-label="Close" style="position: relative;top: -2px;  ">
@@ -45,7 +47,7 @@
                           <button type="button" class="close" data-dismiss="alert" aria-label="Close" style="position: relative;top: -2px;  ">
                             <span aria-hidden="true">&times;</span>
                           </button>
-                          <strong>Contrato firmado!</strong> Te notificaremos en breve sobre el estado de tu prestamo.
+                          <strong>Contrato firmado!</strong> En menos de 12 horas te notificaremos sobre el estado de tu prestamo.
                         </div>
                       <div class="row" style="width: 100%;top: 70%;position: relative;padding-top:5%;" ng-show="records.length > 0">
                              <div class="col-lg-4 upload-area" style="height: 400px;background-color: rgba(0, 0, 0, 0.28);display:flex;">

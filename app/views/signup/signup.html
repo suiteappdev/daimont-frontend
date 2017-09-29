@@ -7,7 +7,7 @@
                 <div class="card card-login card-padding">
                 <div class="row alert alert-danger" role="alert" ng-show="error_mail_registered" style="font-size:12px;position:relative;top:-12px;">
                     <div class="container">
-                       Este correo se encuentra registrado.
+                       Correo ó cedula  de ciudadania ya se encuentran registrado.
                     </div>
                 </div>
                     <form class="form" name="signup">
@@ -29,8 +29,8 @@
                                 </div>                            
                             </div>
                             <div class="col-lg-12">
-                                <div class="form-group" ng-class="{ 'has-danger' : (signup.$submitted || signup.email_confirm.$touched) && signup.email_confirm.$invalid }">
-                                    <input type="email" ng-copy="$event.preventDefault()" ng-paste="$event.preventDefault()" required name="email_confirm" ng-model="email_confirm" class="form-control" placeholder="Confirmar Correo" ng-class="{ 'form-control-danger' : (signup.$submitted || signup.email_confirm.$touched) && signup.email_confirm.$invalid }">
+                                <div class="form-group" ng-class="{ 'has-danger' : (signup.$submitted || signup.cc.$touched) && signup.cc.$invalid }">
+                                    <input type="number" required name="cc" ng-model="formRegister.data.cc" class="form-control" placeholder="Cedula de ciudadania" ng-class="{ 'form-control-danger' : (signup.$submitted || signup.cc.$touched) && signup.cc.$invalid }">
                                 </div>                            
                             </div>
                             <div class="col-lg-12">
@@ -48,7 +48,7 @@
                             <div class="col-lg-12">
                                 <div class="form-group">
                                     <div class="checkbox text-right" style="color:gray;">
-                                        <input type="checkbox" ng-model="accept_terms" ng-changed="accept_terms()" id="checkbox1" type="checkbox">
+                                        <input type="checkbox" name="terms" required ng-model="accept_terms" ng-changed="accept_terms()" id="checkbox1" type="checkbox">
                                         <label for="checkbox1" style="font-size: 10px;">
                                             acepto los <a href="#/terminos-condiciones" ui-sref="terms()" target="_blank" ><span class="text-primary">terminos y condiciones</span> </a>y el tratamiento de datos.
                                         </label>
