@@ -1,2 +1,0 @@
-# daimont-frontend
-daimont-frontend
