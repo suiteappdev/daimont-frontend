@@ -1,86 +1,90 @@
-<h2 class="fs-title">Resumen</h2>
-<h3 class="fs-subtitle">Datos de su perfil financiero.</h3>
 <form name="resumen">
  <div class="row"> 
-	  <div class="form-group col-lg-3">
+	  <div class="form-group col-lg-4">
 	      <label class="text-left text-dark" style="width:100%;">Nombres</label>
 	      <p class="text-muted text-left">{{form.data.name || 'No Definido'}}</p>
 	  </div> 
-	  <div class="form-group col-lg-3">
+	  <div class="form-group col-lg-4">
 	      <label class="text-left text-dark" style="width:100%;">Sexo</label>
 	      <p class="text-muted text-left">{{form.data.data.sexo || 'No Definido'}}</p>
 	  </div>
-	  <div class="form-group col-lg-3">
+	  <div class="form-group col-lg-4">
 	      <label class="text-left text-dark" style="width:100%;">CC:</label>
 	      <p class="text-muted text-left">{{form.data.cc || 'No Definido'}}</p>
 	  </div> 
-	  <div class="form-group col-lg-3">
+	  <div class="form-group col-lg-4">
 	      <label class="text-left text-dark" style="width:100%;">Telefono:</label>
-	      <p class="text-muted text-left">{{form.data.phone || 'No Definido'}}</p>
+	      <p class="text-muted text-left">{{form.data.data.phone || 'No Definido'}}</p>
 	  </div>
-	  <div class="form-group col-lg-3">
+	  <div class="form-group col-lg-4">
 	      <label class="text-left text-dark" style="width:100%;">Email:</label>
 	      <p class="text-muted text-left">{{form.data.email || 'No Definido'}}</p>
 	  </div>
-	  <div class="form-group col-lg-3">
+	  <div class="form-group col-lg-4">
 	      <label class="text-left text-dark" style="width:100%;">Departamento</label>
 	      <p class="text-muted text-left">{{form.data.data.departamento || 'No Definido'}}</p>
 	  </div> 
-	  <div class="form-group col-lg-3">
+	  <div class="form-group col-lg-4">
 	      <label class="text-left text-dark" style="width:100%;">Ciudad</label>
 	      <p class="text-muted text-left">{{form.data.data.ciudad || 'No Definido'}}</p>
 	  </div> 
-	  <div class="form-group col-lg-3">
+	  <div class="form-group col-lg-4">
 	      <label class="text-left text-dark" style="width:100%;">Fecha de nacimiento</label>
-	      <p class="text-muted text-left">{{form.data.data.fecha_nacimiento || 'No Definido'}}</p>
+	      <p class="text-muted text-left">{{form.data.data.fecha_nacimiento.day || 'No Definido'}} de {{form.data.data.fecha_nacimiento.month}} del {{form.data.data.fecha_nacimiento.year}}</p>
 	  </div> 
-	  <div class="form-group col-lg-3">
+	  <div class="form-group col-lg-4">
 	      <label class="text-left text-dark" style="width:100%;">Fecha de expedición</label>
-	      <p class="text-muted text-left">{{form.data.data.fecha_expedicion || 'No Definido'}}</p>
+	      <p class="text-muted text-left">{{form.data.data.fecha_expedicion.day || 'No Definido'}} de {{form.data.data.fecha_expedicion.month}} del {{form.data.data.fecha_expedicion.year}}</p>
 	  </div>
-      <div class="form-group col-lg-3">
+      <div class="form-group col-lg-4">
           <label class="text-dark text-left" style="width:100%;">Nivel de Estudio</label>
           <p class="text-muted text-left">{{form.data.data.nivel_estudio || 'No Definido'}}</p>
       </div> 
-      <div class="form-group col-lg-3">
+      <div class="form-group col-lg-4">
           <label class="text-dark text-left" style="width:100%;">Perfil actual:</label>
           <p class="text-muted text-left">{{form.data.data.perfil_actual || 'No Definido'}}</p>
       </div> 
-      <div class="form-group col-lg-3">
+      <div class="form-group col-lg-4">
           <label class="text-dark text-left" style="width:100%;">Tipo de Vivienda</label>
           <p class="text-muted text-left">{{form.data.data.tipo_vivienda || 'No Definido'}}</p>
       </div> 
-      <div class="form-group col-lg-3">
+      <div class="form-group col-lg-4">
           <label class="text-dark text-left" style="width:100%;">Estrato</label>
           <p class="text-muted text-left">{{form.data.data.estrato || 'No Definido'}}</p>
       </div> 
-      <div class="form-group col-lg-3">
+      <div class="form-group col-lg-4">
           <label class="text-dark text-left" style="width:100%;">Ingresos</label>
           <p class="text-muted text-left">{{form.data.data.ingresos_totales || 'No Definido'}}</p>
       </div> 
-      <div class="form-group col-lg-3">
+      <div class="form-group col-lg-4">
           <label class="text-dark text-left" style="width:100%;">Egresos</label>
           <p class="text-muted text-left">{{form.data.data.egresos_totales || 'No Definido'}}</p>
       </div> 
-      <div class="form-group col-lg-3">
+      <div class="form-group col-lg-4">
           <label class="text-dark text-left" style="width:100%;">Cuentas bancarias</label>
           <p class="text-muted text-left">{{form.data.data.numero_cuentas_bancaria || 'No Definido'}}</p>
       </div>
-      <div class="form-group col-lg-3">
+      <div class="form-group col-lg-4">
           <label class="text-dark text-left" style="width:100%;">Tarjeta de credito</label>
           <p class="text-muted text-left">{{form.data.data.tarjeta_credito || 'No Definido'}}</p>
       </div> 
-      <div class="form-group col-lg-3">
+      <div class="form-group col-lg-4">
           <label class="text-dark text-left" style="width:100%;">Banco</label>
           <p class="text-muted text-left">{{form.data.data.banco_desembolso || 'No Definido'}}</p>
       </div> 
-      <div class="form-group col-lg-3">
+      <div class="form-group col-lg-4">
+          <label class="text-dark text-left" style="width:100%;">Tipo de Cuenta</label>
+          <p class="text-muted text-left">{{form.data.data.tipo_cuenta || 'No Definido'}}</p>
+      </div>
+      <div class="form-group col-lg-4">
           <label class="text-dark text-left" style="width:100%;">Numero de Cuenta</label>
           <p class="text-muted text-left">{{form.data.data.numero_cuenta || 'No Definido'}}</p>
       </div>
 	</div>
+  <div>
     <input type="button" ng-click="go_back()" name="previous" class="previous action-button" value="Anterior" />
-    <a ng-click="update()" class="btn btn-primary bold" value="Finalizar">Finalizar</a>    
+    <a ng-click="update()" class="btn btn-primary bold" value="Finalizar">Finalizar</a>     
+  </div>
 </form>
 
 

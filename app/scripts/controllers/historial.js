@@ -3,6 +3,7 @@
 angular.module('shoplyApp')
   .controller('historialCtrl', function ($scope, api, modal, constants, $state, storage, account, $rootScope, $stateParams, $timeout, $http) {
     $scope.Records  = false;
+    $scope.records = [];
     $scope.page = 1;
     
     $scope.load = function(){

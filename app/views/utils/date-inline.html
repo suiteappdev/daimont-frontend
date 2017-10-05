@@ -1,0 +1,12 @@
+<div class="row">
+ <div class="col-lg-4"> 
+     <selectize required config="{create:false, maxItems:1, valueField: 'day', labelField: 'day', placeholder:'Dia', searchField : 'day'}" options='days' ng-model="date.day"></selectize>
+ </div>
+ <div class="col-lg-4"> 
+     <selectize required config="{create:false, maxItems:1, valueField: 'name', labelField: 'name', placeholder:'Mes', searchField:'name'}" options='months' ng-model="date.month"></selectize>
+     
+ </div>
+ <div class="col-lg-4"> 
+   <selectize required config="{create:false, maxItems:1, valueField: 'year', labelField: 'year', placeholder:'Año' , searchField : 'year'}" options='years' ng-model="date.year"></selectize>
+ </div>                           
+</div>

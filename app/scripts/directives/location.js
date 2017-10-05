@@ -62,7 +62,7 @@ angular.module('shoplyApp')
         valueField: 'name',
         labelField: 'name',
         searchField: ['name'],
-        placeholder: 'Ciudad',
+        placeholder: $scope.placeholder || 'Ciudad',
         selectOnTab : true,
         maxItems: 1,
         allowEmptyOption : $scope.emptyOption
@@ -75,7 +75,9 @@ angular.module('shoplyApp')
       restrict: 'E',
       scope : {
         ngModel : "=",
-        emptyOption : "@"
+        emptyOption : "@",
+        placeholder  : "@",
+        allowAll : "="
       },
       controller : ctrl,
       link: function postLink(scope, element, attrs) {

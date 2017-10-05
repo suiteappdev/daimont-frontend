@@ -29,27 +29,23 @@
                       </div>
                   </div>
                     <div class="main-wrap row col-lg-12" style="width: 900px;margin: 0 auto;padding-top: 10px;" >
-                        <div class="row col-lg-12" style="padding-right:10px;" ng-show="isNew && !signed">
-                              <div class="col-lg-12 text-left"><p  class="simulator-primary text-warning ng-binding" style="margin-bottom: 10px;border-color: 0999f;
-                        color: #fff!important;"><i class="fa fa-exclamation-triangle text-warning" aria-hidden="true"></i> Hemos enviado un codigo de 6 caracteres a tu bandeja de entrada o SPAM usa este codigo para firmar el contrato, Para hacer valido la firma de los contratos se requiere aprobacion primero por parte de Daimont, hasta no ser aprobado el credito, el contrato y la firma no son validas, el proceso de aprobacion o rechazo es de 12 horas habiles, y el desembolso se realiza en 12 horas habiles.</p></div>
-                        </div>
-                        <div class="row col-lg-12" style="padding-right:10px;" ng-show="without_offer && !signed">
-                              <div class="col-lg-12 text-left"><p  class="simulator-primary text-warning ng-binding" style="margin-bottom: 10px;border-color: 0999f;
-                        color: #fff!important;"><i class="fa fa-exclamation-triangle text-warning" aria-hidden="true"></i> Hemos enviado un codigo de 6 caracteres a tu bandeja de entrada o SPAM usa este codigo para firmar el contrato,Para hacer valido la firma de los contratos se requiere aprobacion primero por parte de Daimont, hasta no ser aprobado el credito, el contrato y la firma no son validas, el proceso de aprobacion o rechazo es de 12 horas habiles, y el desembolso se realiza en 12 horas habiles.</p></div>
-                        </div>
                         <div  ng-show="$root.bank_selected" style="border-radius: 5px;margin: 0 auto;margin-top: 10px;" class="alert alert-primary alert-dismissible fade show" role="alert">
                           <button type="button" class="close" data-dismiss="alert" aria-label="Close" style="position: relative;top: -2px;  ">
                             <span aria-hidden="true">&times;</span>
                           </button>
                           <strong>Hola!</strong> Has elejido pagar en {{$root.bank_obj.name}} Por favor sube una foto clara de tu movimiento de pago. 
                         </div>
-                        <div  ng-show="signed && current_credit" style="border-radius: 5px;margin: 0 auto;" class="alert alert-primary alert-dismissible fade show" role="alert">
+                        <div  ng-show="$root.signed" style="border-radius: 5px;margin: 0 auto;" class="alert alert-primary alert-dismissible fade show" role="alert">
                           <button type="button" class="close" data-dismiss="alert" aria-label="Close" style="position: relative;top: -2px;  ">
                             <span aria-hidden="true">&times;</span>
                           </button>
                           <strong>Contrato firmado!</strong> En menos de 12 horas te notificaremos sobre el estado de tu prestamo.
                         </div>
                       <div class="row" style="width: 100%;top: 70%;position: relative;padding-top:5%;" ng-show="records.length > 0">
+                        <div class="alert alert-primary text-justify" role="alert" ng-show="!$root.hide_note">
+                            <strong>NOTA:</strong> Para hacer valido la firma de los contratos se requiere aprobacion primero por parte de Daimont, hasta no ser aprobado el credito, el contrato y la firma no son validas, el proceso de aprobacion o rechazo es de 12 horas habiles, y el desembolso se realiza en 12 horas habiles.
+                        </div>
+    
                              <div class="col-lg-4 upload-area" style="height: 400px;background-color: rgba(0, 0, 0, 0.28);display:flex;">
                                 <form name="approvedForm">
                                     <div class="form-group">
@@ -113,7 +109,7 @@
                                     </div>
                                     <div class="row">
                                         <div class="col-lg-6 text-left">
-                                          <a ng-click="confirm()" ng-show="!have_contract" class="btn btn-success">CONTINUAR Y FIRMAR CONTRATO</a>
+                                          <a ng-click="confirm()" ng-show="!have_contract" class="btn btn-success">FIRMAR CONTRATO</a>
                                           <a ng-show="is_transfered"  ng-click="show_banks()" class="btn btn-success">PAGAR</a>
                                         </div>
                                     </div>
@@ -163,7 +159,7 @@
                                     <br>
                                     <div class="row">
                                         <div class="col-lg-12 text-left">
-                                               <a ng-click="confirm()" ng-show="!have_contract" class="btn btn-success">CONTINUAR Y FIRMAR CONTRATO</a>
+                                               <a ng-click="confirm()" ng-show="!have_contract" class="btn btn-success">FIRMAR CONTRATO</a>
                                           <a ng-show="is_transfered" ng-click="show_banks()" class="btn btn-success">PAGAR</a>
                                         </div>
                                     </div>

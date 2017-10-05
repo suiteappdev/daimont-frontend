@@ -89,10 +89,10 @@ angular.module('shoplyApp')
             return;
         }
 
-        /*if($scope.formRegister.data.email != $scope.email_confirm){
+        if($scope.formRegister.data.email != $scope.email_confirm){
             sweetAlert.swal("Formulario Incompleto.", "Los correos no coinciden", "error");
             return;
-        }*/
+        }
 
         if(!$scope.accept_terms){
             sweetAlert.swal("Formulario Incompleto.", "Debes aceptar los terminos y condiciones", "error");

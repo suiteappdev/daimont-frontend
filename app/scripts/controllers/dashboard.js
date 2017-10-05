@@ -16,19 +16,21 @@ angular.module('shoplyApp')
     $scope.form.data.finance_quoteChange = 960;
     $scope.items_tasks = [];
     $scope.current_credit = false;
+    $scope.with_offer = false;
     $scope.records = [];
     $scope.Records  = false;
     $scope.have_contract = false;
     $scope.is_transfered = false;
 
     $scope.load = function(){
+      if(!$rootScope.user.data.updated){
+          $state.go('profile');
+      }
 
       if($stateParams.signed){
             $scope.signed = true;
             delete $scope.without_offer;
       }
-
-      console.log("PARAMS", $stateParams);
 
       if($stateParams.with_offer){
             $scope.with_offer = true;
@@ -41,17 +43,15 @@ angular.module('shoplyApp')
       api.credits().add('current').get().success(function(res){
             $scope.Records  = true;
             $scope.records = res.length == 0 || res.data.with_offer ? [] : [res];
-            $scope.current_credit = $scope.records[0];  
+
+            if(!$scope.records[0]){
+                $state.go('dashboard.new_credit');
+                return;
+            }
+            
+            $scope.current_credit = $scope.records[0] || undefined;  
             $scope.have_contract = $scope.current_credit._contract || false;
             $scope.is_transfered = ($scope.current_credit.data.status =='Consignado');
-            
-            if($stateParams.without_offer){
-                api.credits().add("email_request/" + $scope.current_credit._id).get().success(function(res){
-                  if(res){
-                       $scope.without_offer = true;
-                  }
-                });
-            }
 
             if($scope.current_credit){
                 $scope.early_payment();
@@ -74,12 +74,12 @@ angular.module('shoplyApp')
                     api.credits($scope.current_credit._id).put($scope.current_credit).success(function(res){
                       if(res){
                           sweetAlert.close();
-                          
+                          $scope.records.length = 0;
+                          delete $scope.current_credit;
+
                           if($scope.isNew){
                               $scope.isNew = false;
                           }
-
-                          $scope.load();
                       } 
                     });
                }
@@ -87,72 +87,76 @@ angular.module('shoplyApp')
     }
 
     $scope.update_cupon = function(){
-            modal.confirm({
-                   closeOnConfirm : true,
-                   title: "Ampliación de cupo",
-                   text: "¿confirma que desea ampliar su cupo ? ",
-                   confirmButtonColor: "#008086",
-                   type: "success" },
-                   function(isConfirm){ 
-                      if (isConfirm) {
-                            $rootScope.user.data.cupon = (parseInt($scope.cupon[0]) + 100000);
+        swal({
+          title: "Ampliar cupo de presamo",
+          text: "¿confirma que desea ampliar su cupo de prestamo?",
+          type: "info",
+          confirmButtonColor: "#008086",
+          cancelButtonText: "Cancelar",
+          showCancelButton: true,
+          closeOnConfirm: false,
+          showLoaderOnConfirm: true,
+        },
+        function(){
+          $rootScope.user.data.cupon = (parseInt($scope.cupon[0]) + 100000);
 
-                            api.user($rootScope.user._id).put($rootScope.user).success(function(res){
-                                if(res){
-                                    storage.update("user", $rootScope.user);
-                                     new NotificationFx({
-                                            message : '<p>Tu cupo de credito ha sido actualizado.</p>',
-                                            layout : 'growl',
-                                            effect : 'genie',
-                                            type : 'notice', // notice, warning or error
-                                            onClose : function() {
-                                              
-                                            }
-                                      }).show();  
-                                }
-                            });
-                      }
-            });  
+            api.user($rootScope.user._id).put($rootScope.user).success(function(res){
+                if(res){
+                    storage.update("user", $rootScope.user);
+                }
+            });
+        });
     }
 
     $scope.confirm = function(){
-            swal({
-              title: "Firmar Contrato",
-              text: "Revisa tu correo (spam) y usa el codigo de 6 caracteres que te hemos enviado.",
-              type: "input",
-              confirmButtonColor: "#008086", 
-              confirmButtonText: "Firmar",
-              cancelButtonText: "Cancelar",
-              showCancelButton: true,
-              closeOnConfirm: false,
-              animation: "slide-from-top",
-              inputPlaceholder: "Escribe el codigo de 6 caracteres"
-            },
-            function(inputValue){
-              if (inputValue === false) return false;
-              
-              if (inputValue === "") {
-                swal.showInputError("Tu firma es incorrecta!");
-                return false
-              }
+        var data = {};
+        data._user = $rootScope.user._id;
+        data._credit = $scope.current_credit._id;
 
-              api.contracts().add("verify/" + inputValue).get().success(function(res){
-                if(res){
-                      if(res.length == 0 ){
-                        swal.showInputError("Tu firma es incorrecta!");
-                      }else{
-                            api.credits($scope.current_credit._id).put({ _contract : res._id }).success(function(response){
-                                if(response){
-                                    $state.go('dashboard', { signed : true});
-                                    delete $scope.without_offer;
-                                    sweetAlert.close()                          
-                                }
-                            });
+        api.contracts().post(data).success(function(res){
+            if(res){
+                  swal({
+                    title: "Firmar Contrato",
+                    text: "Revisa tu correo bandeja de entrada o (spam) y usa el codigo de 6 caracteres que te hemos enviado.",
+                    type: "input",
+                    confirmButtonColor: "#008086", 
+                    confirmButtonText: "Firmar",
+                    cancelButtonText: "Cancelar",
+                    showCancelButton: true,
+                    closeOnConfirm: false,
+                    animation: "slide-from-top",
+                    inputPlaceholder: "Escribe el codigo de 6 caracteres"
+                  },
+                  function(inputValue){
+                    if (inputValue === false) return false;
+                    
+                    if (inputValue === "") {
+                      swal.showInputError("Tu firma es incorrecta!");
+                      return false
+                    }
+
+                    api.contracts().add("verify/" + inputValue).get().success(function(res){
+                      if(res){
+                            if(res.length == 0 ){
+                              swal.showInputError("Tu firma es incorrecta!");
+                            }else{
+                                  api.credits($scope.current_credit._id).put({ _contract : res._id }).success(function(response){
+                                      if(response){
+                                          swal("Contrato Firmado!", "Usted ha firmado correctamente, su solicitud de credito sera revisada lo mas pronto posible, de ser aprobado el credito, se realizara el desombolso en 12 horas habiles, de ser rechazado su credito los contratos se anulan y puede volver a solicitar un credito nuevamente  en 60 dias", "success")
+                                          $scope.isNew = true;
+                                          $rootScope.hide_note = true;
+                                          $rootScope.signed = true;
+                                      }
+                                  });
+                            }
                       }
-                }
-              });
+                    });
 
-            });  
+                  });  
+            }
+        });
+
+
     }
 
      $scope.inc_amount = function(){
@@ -256,9 +260,8 @@ angular.module('shoplyApp')
 
     $scope.show_banks = function(){
       window.modal = modal.show({templateUrl : 'views/dashboard/payment.html', size:'lg', scope: this, backdrop: true, show : true, keyboard  : true}, function($scope){
-          
           $rootScope.bank_selected = true;
-
+          $scope.hide_note = true;
           $scope.$close();
       }); 
     }
@@ -311,27 +314,39 @@ angular.module('shoplyApp')
     }
 
     $scope.new_credit = function(){
+
       $scope.form._user = storage.get('uid') || $rootScope.user._id;
       $scope.form.data.client_metadata = $rootScope.client_metadata || {};
       $scope.form.data.status = 'Pendiente';
       $scope.form.owner = storage.get('uid') || $rootScope.user._id;
 
-
-
       api.credits().post($scope.form).success(function(res){
         if(res){
-            var data = {};
-            data._user = $rootScope.user._id;
-            data._credit = res._id;
-
-            api.contracts().post(data).success(function(res){
-                if(res){
-                   $state.go('dashboard');
-                   $scope.isNew = true;
-                   $scope.load();
-                }
-            }); 
-
+              api.credits().add("current").get().success(function(res){
+                  if(res){
+                      api.credits().add("email_request/" + res._id).get().success(function(res){
+                        if(res){
+                              modal.confirm({
+                                       confirmButtonText: "Aceptar",
+                                       closeOnConfirm : true,
+                                       title: "Resumen Enviado.",
+                                       showCancelButton: false,
+                                       text: "Enviamos un correo con el resumen del credito, por favor lealo cuidadosamente antes de realizar la firma electronica, el correo puede llegar en su bandeja de entrada o Spam.",
+                                       confirmButtonColor: "#008086",
+                                       type: "success" },
+                                       function(isConfirm){ 
+                                          if (isConfirm) {
+                                              $scope.isNew = true;
+                                              $scope.isDone = true;
+                                              $state.go('dashboard', { without_offer : true });
+                                              $scope.load();
+                                          }
+                                });
+                        }
+                      });                                                   
+                  }
+              })
+            
         } 
       });
 

@@ -31,7 +31,7 @@
                   <div class="col-lg-6">
                     <div class="form-group text-left">
                          <label class="text-muted">Fecha de nacimiento:</label>
-                         <date-picker required placeholder="Fecha de nacimiento" name="fecha_nacimiento" ng-model="$root.user.data.fecha_nacimiento"><date-picker>
+                        <date-inline ng-model="$root.user.data.fecha_nacimiento" placeholder="Fecha de nacimiento" ></date-inline>
                     </div>
                   </div>
               </div>
@@ -39,14 +39,26 @@
                   <div class="col-lg-6">
                     <div class="form-group text-left">
                          <label class="text-muted">Fecha de expedición:</label>
-                        <date-picker required placeholder="Fecha de expedición" name="fecha_expedicion" ng-model="$root.user.data.fecha_expedicion"><date-picker>
+                         <date-inline ng-model="$root.user.data.fecha_expedicion"></date-inline>
                     </div>
                       
                   </div>
                   <div class="col-lg-6">
                     <div class="form-group text-left">
+                        <label class="text-muted">Ciudad de expedición:</label>
+                        <ciudad-field required placeholder="Ciudad de expedición" ng-model="$root.user.data.ciudad_expedicion"></ciudad-field>
+                    </div>
+                  </div>
+                  <div class="col-lg-6">
+                    <div class="form-group text-left">
                          <label class="text-muted">Sexo:</label>
                         <selectize name="sexo" required config="{create:false, maxItems:1, valueField: 'value', labelField: 'text', placeholder:'Sexo'}" options='[{value:"Masculino", text:"Masculino"}, {value:"Femenino", text:"Femenino"}]' ng-model="$root.user.data.sexo"></selectize>     
+                    </div>
+                  </div>
+                  <div class="col-lg-6">
+                    <div class="form-group text-left">
+                         <label class="text-muted">Telefono:</label>
+                        <input type="number" required ng-model="$root.user.data.phone" class="form-control" name="tel" placeholder="Telefono" />
                     </div>
                   </div>
               </div> 

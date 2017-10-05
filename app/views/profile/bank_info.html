@@ -35,6 +35,12 @@
         </div>
         <div class="col-lg-6">
             <div class="form-group text-left">
+                <label class="text-muted">Tipo de cuenta</label>
+                <selectize required config="{create:false, maxItems:1, valueField: 'value', labelField: 'text', placeholder:'Tipo de cuenta'}" options='[{value:"Ahorros", text:"Ahorros"}, {value:"Corriente", text:"Corriente"}]' ng-model="$root.user.data.tipo_cuenta"></selectize>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="form-group text-left">
                 <label class="text-muted">Numero de tu cuenta bancaria</label>
                 <input type="text" required ng-model="$root.user.data.numero_cuenta" class="form-control" placeholder="Numero de cuenta" >
                 <span style="font-size: 10px;color: #a0a0a0;position: relative;top: -11px;"><i class="now-ui-icons business_bulb-63"></i>Escribir el numero sin puntos o guiones.</span>

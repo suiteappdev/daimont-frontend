@@ -68,7 +68,7 @@
                                               </div> 
                                               <div class="form-group col-lg-6">
                                                   <label class="bold">Telefono:</label>
-                                                  <p>{{credit._user.phone || 'No Definido'}}</p>
+                                                  <p>{{credit._user.data.phone || 'No Definido'}}</p>
                                               </div>
                                               <div class="form-group col-lg-6">
                                                   <label class="bold">Email:</label>
@@ -84,11 +84,15 @@
                                               </div> 
                                               <div class="form-group col-lg-6">
                                                   <label class="bold">Fecha de nacimiento</label>
-                                                  <p>{{credit._user.data.fecha_nacimiento || 'No Definido'}}</p>
+                                                  <p>{{credit._user.data.fecha_nacimiento.day || 'No Definido'}} de {{credit._user.data.fecha_nacimiento.month}} del {{credit._user.data.fecha_nacimiento.year}}</p>
                                               </div> 
                                               <div class="form-group col-lg-6">
                                                   <label class="bold">Fecha de expedición</label>
-                                                  <p>{{credit._user.data.fecha_expedicion || 'No Definido'}}</p>
+                                                  <p>{{credit._user.data.fecha_expedicion.day || 'No Definido'}} de {{credit._user.data.fecha_expedicion.month}} del {{credit._user.data.fecha_expedicion.year}}</p>
+                                              </div>
+                                              <div class="form-group col-lg-6">
+                                                  <label class="bold">Ciudad de expedición</label>
+                                                  <p>{{credit._user.data.ciudad_expedicion || 'No Definido'}}</p>
                                               </div>
                                           </div>                      
                                           </div>
@@ -117,6 +121,10 @@
                                                 <div class="form-group col-lg-6 text-left">
                                                     <label class="bold">Total</label>
                                                     <p><strong>{{credit.data.total_payment | currency:"$ ":0 || 0}}</strong></p>
+                                                </div>
+                                                <div class="form-group col-lg-6 text-left">
+                                                    <label class="bold">Cupo de Prestamo</label>
+                                                    <p><strong>{{credit._user.data.cupon | currency:"$ ":0 || 0}}</strong></p>
                                                 </div> 
                                             </div>  
                                           </div>
@@ -157,6 +165,10 @@
                                                   <div class="form-group col-lg-6">
                                                       <label class="bold">Banco</label>
                                                       <p>{{credit._user.data.banco_desembolso || 'No Definido'}}</p>
+                                                  </div> 
+                                                  <div class="form-group col-lg-6">
+                                                      <label class="bold">Tipo de Cuenta</label>
+                                                      <p>{{credit._user.data.tipo_cuenta || 'No Definido'}}</p>
                                                   </div> 
                                                   <div class="form-group col-lg-6">
                                                       <label class="bold">Numero de Cuenta</label>

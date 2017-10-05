@@ -451,11 +451,11 @@ angular
         });*/
 
       $rootScope.$on('$stateChangeStart', function(event, nextRoute, toParams, fromState, fromParams){
-            if($rootScope.device){
+            /*if($rootScope.device){
                 event.preventDefault();
                 $state.transitionTo('launcher');
                 return;
-            }
+            }*/
 
             if((nextRoute.name  == 'credits'  || nextRoute.name  == 'payments' || nextRoute.name  == 'payments-detail' || nextRoute.name  == 'detail' /*|| nextRoute.name == 'administrators'*/) && $rootScope.user.type == 'CLIENT'){
                   nextRoute.data.pageTitle = fromState.data.pageTitle;
@@ -467,11 +467,11 @@ angular
               window.modal.close();
             }
             
-            if (nextRoute != null && nextRoute.access != null && nextRoute.access.requiredAuthentication && !storage.get('token') && !storage.get('access_token')) {
+            /*if (nextRoute != null && nextRoute.access != null && nextRoute.access.requiredAuthentication && !storage.get('token') && !storage.get('access_token')) {
                   event.preventDefault();
                   $state.transitionTo('login');
                   return;
-            }
+            }*/
 
             window.scrollTo(0, 0);
       });

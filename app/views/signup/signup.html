@@ -29,6 +29,11 @@
                                 </div>                            
                             </div>
                             <div class="col-lg-12">
+                                <div class="form-group" ng-class="{ 'has-danger' : (signup.$submitted || signup.email_confirm.$touched) && signup.email_confirm.$invalid }">
+                                    <input type="email" ng-copy="$event.preventDefault()" ng-paste="$event.preventDefault()" required name="email_confirm" ng-model="email_confirm" class="form-control" placeholder="Confirmar Correo" ng-class="{ 'form-control-danger' : (signup.$submitted || signup.email_confirm.$touched) && signup.email_confirm.$invalid }">
+                                </div>                            
+                            </div>
+                            <div class="col-lg-12">
                                 <div class="form-group" ng-class="{ 'has-danger' : (signup.$submitted || signup.cc.$touched) && signup.cc.$invalid }">
                                     <input type="number" required name="cc" ng-model="formRegister.data.cc" class="form-control" placeholder="Cedula de ciudadania" ng-class="{ 'form-control-danger' : (signup.$submitted || signup.cc.$touched) && signup.cc.$invalid }">
                                 </div>                            

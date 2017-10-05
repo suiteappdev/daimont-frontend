@@ -4,28 +4,28 @@ angular.module('shoplyApp')
   .controller('profileCtrl', function ($scope, api, modal, constants, $state, storage, account, $rootScope, $stateParams, $timeout, $http) {
     $scope.ingresos_records = [
                         {number:500000,  value:"Menos de 500.000", text:"Menos de 500.000"},
-                        {number:500000,  value:"De 500.000 hasta 1.000.000", text:"De 500.000 hasta 1.000.000"},
-                        {number:1000000, value:"De 1.000.000 hasta 1.500.000", text:"De 1.000.000 hasta 1.500.000"},
-                        {number:1500000, value:"De 1.500.000 hasta 2.000.000", text:"De 1.500.000 hasta 2.000.000"},
-                        {number:2000000, value:"De 2.000.000 hasta 2.500.000", text:"De 2.000.000 hasta 2.500.000"},
-                        {number:3000000, value:"De 3.000.000 hasta 3.500.000", text:"De 3.000.000 hasta 3.500.000"},
-                        {number:4000000, value:"De 4.000.000 hasta 4.500.000", text:"De 4.000.000 hasta 4.500.000"},
-                        {number:5000000, value:"De 5.000.000 hasta 5.500.000", text:"De 5.000.000 hasta 5.500.000"},
-                        {number:5500000, value:"De 5.500.000 hasta 6.000.000", text:"De 5.500.000 hasta 6.000.000"},
-                        {number:7000000, value:"De 6.000.000 en adelante", text:"De 6.000.000 en adelante"}
+                        {number:500001,  value:"De 500.000 hasta 1.000.000", text:"De 500.000 hasta 1.000.000"},
+                        {number:1000001, value:"De 1.000.001 hasta 1.500.000", text:"De 1.000.001 hasta 1.500.000"},
+                        {number:1500001, value:"De 1.500.001 hasta 2.000.000", text:"De 1.500.001 hasta 2.000.000"},
+                        {number:2000001, value:"De 2.000.001 hasta 2.500.000", text:"De 2.000.001 hasta 2.500.000"},
+                        {number:3000001, value:"De 3.000.001 hasta 3.500.000", text:"De 3.000.001 hasta 3.500.000"},
+                        {number:4000001, value:"De 4.000.001 hasta 4.500.000", text:"De 4.000.001 hasta 4.500.000"},
+                        {number:5000001, value:"De 5.000.001 hasta 5.500.000", text:"De 5.000.001 hasta 5.500.000"},
+                        {number:5500001, value:"De 5.500.001 hasta 6.000.000", text:"De 5.500.001 hasta 6.000.000"},
+                        {number:7000001, value:"De 6.000.001 en adelante", text:"De 6.000.000 en adelante"}
                     ];
 
     $scope.egresos_records = [
                         {number : 500000, value:"Menos de 500.000", text:"Menos de 500.000"},
-                        {number : 500000, value:"De 500.000 hasta 1.000.000", text:"De 500.000 hasta 1.000.000"},
-                        {number : 1000000, value:"De 1.000.000 hasta 1.500.000", text:"De 1.000.000 hasta 1.500.000"},
-                        {number : 1500000, value:"De 1.500.000 hasta 2.000.000", text:"De 1.500.000 hasta 2.000.000"},
-                        {number : 2000000, value:"De 2.000.000 hasta 2.500.000", text:"De 2.000.000 hasta 2.500.000"},
-                        {number : 3000000, value:"De 3.000.000 hasta 3.500.000", text:"De 3.000.000 hasta 3.500.000"},
-                        {number : 4000000, value:"De 4.000.000 hasta 4.500.000", text:"De 4.000.000 hasta 4.500.000"},
-                        {number : 5000000, value:"De 5.000.000 hasta 5.500.000", text:"De 5.000.000 hasta 5.500.000"},
-                        {number : 5500000, value:"De 5.500.000 hasta 6.000.000", text:"De 5.500.000 hasta 6.000.000"},
-                        {number : 7000000, value:"De 6.000.000 en adelante", text:"De 6.000.000 en adelante"}
+                        {number : 500001, value:"De 500.000 hasta 1.000.000", text:"De 500.000 hasta 1.000.000"},
+                        {number : 1000001, value:"De 1.000.001 hasta 1.500.000", text:"De 1.000.001 hasta 1.500.000"},
+                        {number : 1500001, value:"De 1.500.001 hasta 2.000.000", text:"De 1.500.001 hasta 2.000.000"},
+                        {number : 2000001, value:"De 2.000.001 hasta 2.500.000", text:"De 2.000.001 hasta 2.500.000"},
+                        {number : 3000001, value:"De 3.000.001 hasta 3.500.000", text:"De 3.000.001 hasta 3.500.000"},
+                        {number : 4000001, value:"De 4.000.001 hasta 4.500.000", text:"De 4.000.001 hasta 4.500.000"},
+                        {number : 5000001, value:"De 5.000.001 hasta 5.500.000", text:"De 5.000.001 hasta 5.500.000"},
+                        {number : 5500001, value:"De 5.500.001 hasta 6.000.000", text:"De 5.500.001 hasta 6.000.000"},
+                        {number : 7000001, value:"De 6.000.001 en adelante", text:"De 6.000.000 en adelante"}
                     ];
 
 
@@ -130,6 +130,9 @@ angular.module('shoplyApp')
     }
 
     $scope.update = function(){
+        $rootScope.updating = true;
+        window.scrollTo(0, 0);
+
         if($rootScope.user.data.updated){
             api.user($rootScope.user._id).put($rootScope.user).success(function(res){
                 if(res){
@@ -177,19 +180,39 @@ angular.module('shoplyApp')
 
         api.user($rootScope.user._id).put($rootScope.user).success(function(res){
             if(res){
-            
-                swal({
-                  title: "Analizando perfil...",
-                  text: "Nuestro sistema esta calculando tu capacidad de credito por favor espera..",
-                  timer: 5000,
-                  showConfirmButton: false
-                });
-                
                 storage.update("user", $rootScope.user);
                 $scope.updated = true;
 
                 if($rootScope.user.credit.data.amount[0] <= _cupon){
-                    api.credits().add("current").get().success(function(res){
+                        api.credits().add("current").get().success(function(res){
+                            if(res){
+                                $timeout(function(){
+                                    modal.confirm({
+                                             closeOnConfirm : true,
+                                             confirmButtonText: "OK",
+                                             title: "Resumen Enviado.",
+                                             showCancelButton: false,
+                                             showLoaderOnConfirm: true,
+                                             text: "Enviamos correo con el resumen del credito a su correo, por favor lealo cuidadosamente antes de realizar la firma electronica, el correo puede llegar en su bandeja de entrada o Spam.",
+                                             confirmButtonColor: "#008086",
+                                             type: "success" },
+                                             function(isConfirm){ 
+                                                if (isConfirm) {
+                                                        $rootScope.updating = false;
+
+                                                        api.credits().add("email_request/" + res._id).get().success(function(res){
+                                                          if(res){
+                                                                $state.go('dashboard', { without_offer : true });
+                                                          }
+                                                        }); 
+                                                }
+                                      });
+
+                                }, 10000);
+                            }
+                        })
+
+                    /*api.credits().add("current").get().success(function(res){
                         if(res){
                             var data = {};
                             data._user = $rootScope.user._id;
@@ -201,13 +224,14 @@ angular.module('shoplyApp')
                                 }
                             });
                         }
-                    }) 
+                    }) */
 
                 }else{
-                    $scope.mytimeout = $timeout($scope.onTimeout, 0);
-                    delete $rootScope.beforeUpdate;                    
+                    $state.go('dashboard.new_credit', { with_offer : true, reload:true});
+                    $rootScope.updating = false;
                 }
             }
         });
+
     }
   });

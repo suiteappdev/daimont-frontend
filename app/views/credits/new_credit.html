@@ -1,8 +1,10 @@
-<div class="row" style="width: 850px;text-align: center;margin: 0 auto;padding-top: 5%;" >
-    <div class="row col-lg-12" style="padding-right:10px;" ng-show="with_offer">
-          <div class="col-lg-12 text-left"><p  class="simulator-primary text-warning" style="margin-bottom: 40px;border-color: 0999f;
-    color: #fff!important;"><i class="fa fa-exclamation-triangle text-warning" aria-hidden="true"></i> Nuestro sistema te ha asignado un cupo de {{$root.user.data.cupon | currency:"$ ":0}} pesos. para aceptar esta oferta presiona sobre el boton solicitar.</p></div>
-    </div>
+<div class="row" style="width: 850px;text-align: center;margin: 0 auto;padding-top: 10%;" >
+                    <div ng-show="with_offer" style="text-align: justify;border-radius: 5px;margin: 0 auto;margin-bottom: 30px;width: 85%;left: -22px;position: relative;" class="alert alert-primary alert-dismissible fade show" role="alert">
+                      <button type="button" class="close" data-dismiss="alert" aria-label="Close" style="position: relative;top: -2px;  ">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                      <strong>Hola!</strong> Nuestro sistema te ha asignado un maximo de <strong>{{$root.user.data.cupon | currency:"$":0}}</strong> pesos, si estas de acuerdo solicita un credito nuevo, teniendo en cuenta este monto.
+                    </div>
                         <div class="simulator_summary col-lg-6 ng-hide" ng-hide="!$root.switch_summary">
                             <div class="card card-credit-resume card-padding">
                                 <div class="header header-primary text-center">
@@ -123,7 +125,7 @@
                                             <label style="color:#101010;" class="text-white"><i class="now-ui-icons ui-1_calendar-60" ></i>&nbsp;Fecha de Pago:</label>
                                         </div>
                                         <div class="col-lg-6 text-right">
-                                            <p style="color:#101010;"><span class="badge badge-warning">{{ form.data.pay_day || current_date | moment: 'format': 'MMMM DD, YYYY' }}</span></p>
+                                            <p style="color:#101010;"><span class="badge badge-primary">{{ form.data.pay_day || current_date | moment: 'format': 'MMMM DD, YYYY' }}</span></p>
                                         </div> 
                                         <div class="col-lg-6 text-left">
                                             <label style="color:#101010;" class="text-white">Monto Solicitado:</label>
@@ -156,13 +158,12 @@
                                             <label style="color:#101010;" class="text-white">Total a Pagar:</label>
                                         </div>
                                         <div class="col-lg-6 text-right">
-                                            <p class="text-warning">{{form.data.total_payment || 0 | currency:"$ ":0}} COP</p>
+                                            <p class="number-font"><strong>{{form.data.total_payment || 0 | currency:"$ ":0}} COP</strong></p>
                                         </div>
                                     </div>
                                     <div class="row" ng-hide="!$root.isLogged || !$root.user">
                                         <div class="col-lg-12">
-                                            <a href="" ng-disabled="current_credit"  ng-show="current_credit"  class="btn btn-default btn-block">Tienes un credito pendiente</a> 
-                                            <a href="" ng-click="new_credit()" ng-show="!current_credit" ng-disabled="current_credit" class="btn btn-primary btn-block">Solicitar</a>                           
+                                            <button href="" ng-disabled="current_credit" class="btn btn-primary btn-block" ng-click="new_credit()">Solicitar</button>                           
                                         </div>
                                     </div>
                                 </div>
