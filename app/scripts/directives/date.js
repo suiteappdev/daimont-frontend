@@ -80,7 +80,7 @@ angular.module('shoplyApp').directive('dateInline', function ( $timeout ) {
         { name:"Diciembre" , days:31}
     ];
 
-      for(var i = 1900; i < year+1; i++){
+      for(var i = $scope.initial; i < year+1; i++){
           $scope.years.push({ year :i})
       }
     }
@@ -91,6 +91,7 @@ angular.module('shoplyApp').directive('dateInline', function ( $timeout ) {
       restrict: 'EA',
       scope : {
         ngModel : "=",
+        initial : "=",
         placeholder : "@",
         required : '@'
       },

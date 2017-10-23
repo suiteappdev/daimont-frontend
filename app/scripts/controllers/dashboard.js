@@ -43,12 +43,6 @@ angular.module('shoplyApp')
       api.credits().add('current').get().success(function(res){
             $scope.Records  = true;
             $scope.records = res.length == 0 || res.data.with_offer ? [] : [res];
-
-            if(!$scope.records[0]){
-                $state.go('dashboard.new_credit');
-                return;
-            }
-            
             $scope.current_credit = $scope.records[0] || undefined;  
             $scope.have_contract = $scope.current_credit._contract || false;
             $scope.is_transfered = ($scope.current_credit.data.status =='Consignado');
@@ -98,11 +92,12 @@ angular.module('shoplyApp')
           showLoaderOnConfirm: true,
         },
         function(){
-          $rootScope.user.data.cupon = (parseInt($scope.cupon[0]) + 100000);
-
+          $rootScope.user.data.cupon = (parseInt($scope.cupon.amount) + 100000);
             api.user($rootScope.user._id).put($rootScope.user).success(function(res){
                 if(res){
                     storage.update("user", $rootScope.user);
+                    sweetAlert.close();
+                    $scope.load();
                 }
             });
         });
@@ -117,7 +112,7 @@ angular.module('shoplyApp')
             if(res){
                   swal({
                     title: "Firmar Contrato",
-                    text: "Revisa tu correo bandeja de entrada o (spam) y usa el codigo de 6 caracteres que te hemos enviado.",
+                    text: "Revisa tu correo bandeja de entrada o correo no deseado y usa el codigo de 6 caracteres que te hemos enviado.",
                     type: "input",
                     confirmButtonColor: "#008086", 
                     confirmButtonText: "Firmar",
@@ -140,12 +135,17 @@ angular.module('shoplyApp')
                             if(res.length == 0 ){
                               swal.showInputError("Tu firma es incorrecta!");
                             }else{
-                                  api.credits($scope.current_credit._id).put({ _contract : res._id }).success(function(response){
+                                  $scope.current_credit._contract = res._id;
+                                  $scope.current_credit.data.status = 'Firmado';
+
+                                  api.credits($scope.current_credit._id).put($scope.current_credit).success(function(response){
                                       if(response){
-                                          swal("Contrato Firmado!", "Usted ha firmado correctamente, su solicitud de credito sera revisada lo mas pronto posible, de ser aprobado el credito, se realizara el desombolso en 12 horas habiles, de ser rechazado su credito los contratos se anulan y puede volver a solicitar un credito nuevamente  en 60 dias", "success")
+                                          swal("Contrato Firmado!", "Usted ha firmado correctamente. Su solicitud de credito sera revisada lo mas pronto posible, de ser aprobado el credito, se realizara el desombolso en 12 horas habiles, de ser rechazado su credito los contratos se anulan y puede volver a solicitar un credito nuevamente  en 60 dias", "success")
                                           $scope.isNew = true;
                                           $rootScope.hide_note = true;
                                           $rootScope.signed = true;
+                                          $scope.load();
+                                          window.scrollTo(0, 0);
                                       }
                                   });
                             }
@@ -191,6 +191,7 @@ angular.module('shoplyApp')
           $scope.days_instance.set(value);  
       }
 
+
     $scope.$watch('new_payment_form.transaction', function(o, n){
       if(n){
             modal.confirm({
@@ -206,11 +207,9 @@ angular.module('shoplyApp')
                             $scope.new_payment();
                         }
               });
-      }
+          }
 
       if(o){
-
-
         modal.confirm({
              closeOnConfirm : true,
              title: "Está Seguro?",
@@ -261,7 +260,7 @@ angular.module('shoplyApp')
     $scope.show_banks = function(){
       window.modal = modal.show({templateUrl : 'views/dashboard/payment.html', size:'lg', scope: this, backdrop: true, show : true, keyboard  : true}, function($scope){
           $rootScope.bank_selected = true;
-          $scope.hide_note = true;
+          $rootScope.hide_note = true;
           $scope.$close();
       }); 
     }
@@ -272,8 +271,9 @@ angular.module('shoplyApp')
 
     $scope.new_payment = function(){
       $scope.new_payment_form.data = $scope.paymentForm;
-      $scope.new_payment_form.data.bank = $rootScope.banco;
+      $scope.new_payment_form.data.bank = $rootScope.bank_obj;
       $scope.new_payment_form._credit = $scope.current_credit._id;
+      $scope.new_payment_form._user = $rootScope.user._id;
 
       api.payments().post($scope.toFormData($scope.new_payment_form), {
         transformRequest: angular.identity,
@@ -283,12 +283,12 @@ angular.module('shoplyApp')
               if(res){
                   $scope.current_credit._payment = res._id;
                   $scope.current_credit._contract = $scope.current_credit._contract._id || null;
-
+                  $scope.current_credit.data.status = 'Pagado';
                   api.credits($scope.current_credit._id).put($scope.current_credit).success(function(response){
                     if(response){
                     
                     }
-                  });
+                });
 
                   $scope.load();
               }
@@ -352,8 +352,50 @@ angular.module('shoplyApp')
 
     }
 
-    $scope.upload = function(){
-      $('#transaction').click();
+    $scope.upload_consignacion_bancaria = function(){
+      
+          if(!$rootScope.bank_obj){
+                swal({
+                  title: "Selecciona un banco.",
+                  text: "Por favor selecciona un banco donde realizaste tu pago ó donde deseas pagar.",
+                  type: "info",
+                  showCancelButton: false,
+                  confirmButtonColor: "#008086",
+                  confirmButtonText: "Ok",
+                  closeOnConfirm: true
+                },
+                function(){
+                  $scope.show_banks();
+                });
+
+                return;
+          }
+
+        $scope.paymentForm.payment_type = 'Consignación';
+        $('#consignacion_bancaria').click();
+    }
+
+
+    $scope.upload_transacion_bancaria = function(){
+          if(!$rootScope.bank_obj){
+                swal({
+                  title: "Selecciona un banco.",
+                  text: "Por favor selecciona un banco donde realizaste tu pago ó donde deseas pagar.",
+                  type: "info",
+                  showCancelButton: false,
+                  confirmButtonColor: "#008086",
+                  confirmButtonText: "Ok",
+                  closeOnConfirm: true
+                },
+                function(){
+                  $scope.show_banks();
+                });
+
+                return;
+          }
+
+          $scope.paymentForm.payment_type = 'Transferencia';
+          $('#transaccion_bancaria').click();
     }
 
     $scope.early_payment = function(){
@@ -367,7 +409,7 @@ angular.module('shoplyApp')
 
       $scope.payForDays  = now.diff(system, 'days') == 0 ? 1 : now.diff(system, 'days');
 
-      $scope.paymentForm.interests = (parseInt($scope.current_credit.data.amount[0]) * (2.4991666667 / 100));
+      $scope.paymentForm.interests = (parseInt($scope.current_credit.data.amount[0]) * (2.18831289 / 100));
 
       $scope.paymentForm.system_quote = ($scope.form.data.finance_quoteFixed + $scope.form.data.finance_quoteChange * $scope.payForDays);
       $scope.paymentForm.iva = $scope.paymentForm.system_quote * (19 / 100);
@@ -441,7 +483,7 @@ angular.module('shoplyApp')
               }*/
                
 
-              $scope.form.data.interests = (n[0] * (2.4991666667 / 100));
+              $scope.form.data.interests = (n[0] * (2.18831289 / 100));
               $scope.form.data.system_quote = ($scope.form.data.finance_quoteFixed + $scope.form.data.finance_quoteChange * $scope.form.data.days[0]);
               $scope.form.data.iva = (($scope.form.data.system_quote + $scope.form.data.finance_quote) * (19 / 100));
               
@@ -464,7 +506,7 @@ angular.module('shoplyApp')
                     $scope.show_warning_msg = false;
               }*/
 
-              $scope.form.data.interests = (o[0] * (2.4991666667 / 100));
+              $scope.form.data.interests = (o[0] * (2.18831289 / 100));
               $scope.form.data.system_quote = ($scope.form.data.finance_quoteFixed + $scope.form.data.finance_quoteChange * $scope.form.data.days[0]);
 
               $scope.form.data.iva = (($scope.form.data.system_quote + $scope.form.data.finance_quote) * (19 / 100));

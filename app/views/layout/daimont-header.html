@@ -85,8 +85,8 @@
                   <div class="dropdown">
                      <a href="" style="text-decoration: none;" class="dropdown-toggle" id="about-us" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                           {{$root.user.name}}
-                          <img ng-show="user.picture.data.url" ng-src="{{user.picture.data.url}}">
-                          <img ng-show="!user.picture.data.avatar" class="rounded-circle img-raised" ng-src="images/no_avatar.gif">
+                          <img ng-show="$root.user.data.picture" ng-src="{{$root.user.data.picture}}">
+                          <img ng-show="!$root.user.data.picture" class="rounded-circle img-raised" ng-src="images/no_avatar.gif">
                           <div class="dropdown-menu dropdown-menu-right" aria-labelledby="about-us">
                             <a class="dropdown-header">Opciones</a>
                             <div class="dropdown-divider"></div>

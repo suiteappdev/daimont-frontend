@@ -49,15 +49,14 @@
     "jquery": "~2.2.3",
     "qunit": "~1.22.0"
   },
-  "version": "0.7.1",
-  "_release": "0.7.1",
+  "version": "0.7.2",
+  "_release": "0.7.2",
   "_resolution": {
     "type": "version",
-    "tag": "v0.7.1",
-    "commit": "af85df2004eb45e6827c9f91639c3f67190ede7a"
+    "tag": "v0.7.2",
+    "commit": "59076d7efe2afe9ae5ee65cb187eff50764743a9"
   },
   "_source": "https://github.com/fengyuanchen/cropperjs.git",
   "_target": "^0.7.1",
-  "_originalSource": "cropperjs",
-  "_direct": true
+  "_originalSource": "cropperjs"
 }

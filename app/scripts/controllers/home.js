@@ -255,7 +255,7 @@ angular.module('shoplyApp')
                     $scope.show_warning_msg = false;
               }
 
-              $scope.form.data.interests = (n[0] * (2.4991666667 / 100));
+              $scope.form.data.interests = (n[0] * (2.18831289 / 100));
               $scope.form.data.system_quote = ($scope.form.data.finance_quoteFixed + $scope.form.data.finance_quoteChange * $scope.form.data.days[0]);
               $scope.form.data.iva = (($scope.form.data.system_quote + $scope.form.data.finance_quote) * (19 / 100));
               
@@ -273,7 +273,7 @@ angular.module('shoplyApp')
         }
 
         if(o){
-              $scope.form.data.interests = (o[0] * (2.4991666667 / 100));
+              $scope.form.data.interests = (o[0] * (2.18831289 / 100));
               $scope.form.data.system_quote = ($scope.form.data.finance_quoteFixed + $scope.form.data.finance_quoteChange * $scope.form.data.days[0]);
 
               $scope.form.data.iva = (($scope.form.data.system_quote + $scope.form.data.finance_quote) * (19 / 100));

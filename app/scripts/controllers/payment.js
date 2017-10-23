@@ -11,4 +11,13 @@ angular.module('shoplyApp')
             $scope.payment = $stateParams.payment;
         }
     }
+
+    $scope.show_user_detail = function(){
+      $scope.current_payment = this.record;
+      
+      window.modal = modal.show({templateUrl : 'views/payments/user_detail.html', size:'lg', scope: this, backdrop: true, show : true, keyboard  : true}, function($scope){
+          
+          $scope.$close();
+      }); 
+    }
   });

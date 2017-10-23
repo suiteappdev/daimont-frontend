@@ -63,7 +63,6 @@ angular.module('shoplyApp')
                text: "Confirma que desea pedir este credito?",
                confirmButtonColor: "#008086",
                type: "success" },
-
                function(isConfirm){ 
                    if (isConfirm) {
                         Facebook.login(function(response) {
@@ -99,33 +98,84 @@ angular.module('shoplyApp')
     };
 
     $scope.facebook_login_default = function() {
-        Facebook.login(function(response) {
-          if(response.status == 'connected'){
-              var fb_token = response.authResponse.accessToken;
-              storage.save('access_token', fb_token.toString());
+      var _success = function(data){
+        if(data){
+            $scope.me(function(response){
+              console.log("ME FB", response);
+                      $scope.me(function(data){
+                        api.user().add("facebook/" + data.id).get().success(function(res){
+                            if(res != null){
+                                $rootScope.isLogged = true;
+                                $rootScope.user = res;
+                                storage.update('user', res);
+                                
+                                if(!res.data.updated){
+                                      $state.go('profile');
+                                  }else{
+                                      $state.go(constants.login_state_sucess);          
+                                  }
+                            }
+                        });
+                      }); 
+            });
+        }
+      };
 
-              $scope.me(function(data){
-                 var new_user = {};
-                 
-                 new_user.data = {};
-                 new_user.metadata  = {};
-                 new_user.metadata._author  = data.id;
-                 new_user.name = data.first_name;
-                 new_user.last_name = data.last_name;
-                 new_user.email = data.email;
+      var _error = function(data){
+        if(data.status == 409){
+                      $scope.me(function(data){
 
-                 $rootScope.isLogged = true;
-                 $rootScope.user = new_user;
-                 $rootScope.loggedIn = true;
+                        api.user().add("facebook/" + data.id).get().success(function(res){
+                            if(res != null){
+                                $rootScope.isLogged = true;
+                                $rootScope.user = res;
+                                 window.localStorage.setItem('user', JSON.stringify(res));
 
-                 storage.save('uid', data.id);
-                 storage.save('user', new_user);
-
-                 $state.go(constants.login_state_sucess);
-              });          
+                                if(!res.data.updated){
+                                      $state.go('profile');
+                                  }else{
+                                      $state.go(constants.login_state_sucess);          
+                                  }
+                            }
+                        });
+                      });   
           }
+      };
+                    Facebook.login(function(response) {
+                      if(response.status == 'connected'){
+                          console.log("RESPONSE FB", response);
+                          console.log("token", response.authResponse.accessToken);
+                          var fb_token = response.authResponse.accessToken;
 
-        }, { scope:'email' } );   
+                          window.localStorage.setItem('access_token', fb_token);
+
+                          $scope.me(function(data){
+                                    var new_user = {};
+                                    new_user.data = {};
+                                    new_user.metadata  = {};
+                                    new_user.data._provider = 'FACEBOOK';
+                                    new_user.data.facebookId  = data.id;
+                                    new_user.name = data.first_name;
+                                    new_user.type = 'CLIENT';
+                                    new_user.data.picture = data.picture.data.url;
+                                    new_user.last_name = data.last_name;
+                                    new_user.email = data.email;
+                            
+                                      if($rootScope.credit){
+                                          var _credit = {};
+                                          _credit.data = $rootScope.credit.data;
+                                          _credit.data.client_metadata = $rootScope.client_metadata || {};
+                                          _credit.data.status = 'Pendiente';
+                                          new_user.credit = _credit;
+                                      }
+
+                                    account.usuario().register(new_user).then(_success, _error);  
+
+                                 $scope.$apply();
+                          });  
+                      }
+
+                    }, { scope:'email' } );   
     };
 
   	$scope.login = function(){
@@ -158,7 +208,7 @@ angular.module('shoplyApp')
               storage.save('uid', _user._id);
               $rootScope.isLogged = true;
               $rootScope.user = storage.get('user');
-              $state.go("credits");          
+              $state.go("credits", { status : 'firmado' });          
           }else{
             sweetAlert.swal("Inhabilitado.", "Privilegios son insuficientes.", "error");
             $scope.unprivileged = true;

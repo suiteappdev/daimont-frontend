@@ -36,12 +36,14 @@
                             <div class="row">
                                 <div class="col-lg-12">
                                     <div class="form-group" ng-class="{ 'has-danger' : (loginForm.$submitted || loginForm.email.$touched) && loginForm.email.$invalid }">
+                                        <label class="text-muted pull-left" style="font-size:12px;">Correo Electronico</label>
                                         <input type="email"  name="email" required ng-model="form.data.email" class="form-control" placeholder="Corre Electronico" ng-class="{ 'form-control-danger' : (loginForm.$submitted || loginForm.email.$touched) && loginForm.email.$invalid }">
                                     </div>                                
                                 </div>
                                 <div class="col-lg-12">
                                     <div class="form-group" ng-class="{ 'has-danger' : (loginForm.$submitted || loginForm.password.$touched) && loginForm.password.$invalid }">
                                         <div class="form-group">
+                                            <label class="text-muted pull-left" style="font-size:12px;">Contraseña</label>
                                             <input type="password" name="password" required  ng-model="form.data.password" class="form-control" placeholder="Contraseña" ng-class="{ 'form-control-danger' : (loginForm.$submitted || loginForm.password.$touched) && loginForm.password.$invalid }">
                                         </div>
                                     </div>                                    

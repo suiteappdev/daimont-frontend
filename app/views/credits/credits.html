@@ -43,10 +43,11 @@
                       </button>
                       <div class="dropdown-menu dropdown-menu-right">
                         <a class="dropdown-header">FILTRAR POR</a>
-                        <a href="" ng-click="status_filter.data.status = 'Pendiente'"  class="dropdown-item"><span class="badge badge-default">PENDIENTE</span></a>
-                        <a href="" ng-click="status_filter.data.status = 'Aceptado'"  class="dropdown-item"><span class="badge badge-success" >APROBADO</span></a>
-                        <a href="" ng-click="status_filter.data.status = 'Consignado'"  class="dropdown-item"><span class="badge badge-success">CONSIGNADO</span></a>
-                        <a href="" ng-click="status_filter.data.status = 'Rechazado'"  class="dropdown-item"><span class="badge badge-danger">RECHAZADO</span></a>
+                        <a href="#/credits/pendiente" ui-sref="credits({status : 'pendiente'})"  class="dropdown-item"><span class="badge badge-default">PENDIENTE POR FIRMAR</span></a>
+                        <a href="#/credits/aceptado" ui-sref="credits({status : 'aceptado'})"  class="dropdown-item"><span class="badge badge-success" >APROBADO</span></a>
+                         <a href="#/credits/firmado" ui-sref="credits({status : 'firmado'})"  class="dropdown-item"><span class="badge badge-success" >Firmado</span></a>
+                        <a href="#/credits/consignado" ui-sref="credits({status : 'consignado'})"  class="dropdown-item"><span class="badge badge-success">CONSIGNADO</span></a>
+                        <a href="#/credits/rechazado" ui-sref="credits({status : 'rechazado'})"  class="dropdown-item"><span class="badge badge-danger">RECHAZADO</span></a>
                         <a class="dropdown-header">Perfil</a>
                         <a href="" ng-click="profile_filter = true" class="dropdown-item"><span class="badge badge-success">ACTUALIZADO</span></a>
                         <a href="" ng-click="profile_filter = false" class="dropdown-item"><span class="badge badge-danger">DESACTUALIZADO</span></a>
@@ -86,11 +87,11 @@
             </td>
             <td>{{record._user.full_name}}</td>
             <td>
-              <span class="badge badge-default" ng-show="record.data.status == 'Pendiente'">PENDIENTE</span>
+              <span class="badge badge-default" ng-show="record.data.status == 'Pendiente'">PENDIENTE POR FIRMAR</span>
               <span class="badge badge-success" ng-show="record.data.status == 'Aceptado'">APROBADO</span>
+              <span class="badge badge-primary" ng-show="record.data.status == 'Firmado'">FIRMADO</span>
               <span class="badge badge-success" ng-show="record.data.status == 'Consignado'">CONSIGNADO</span>
               <span class="badge badge-danger" ng-show="record.data.status == 'Rechazado'">RECHAZADO</span>
-              <span class="badge badge-warning" ng-show="record.data.status == 'Desactualizado'">REQUIERE ACTUALIZACION</span>
             </td>
             <td>{{record.data.pay_day | moment: 'format': 'MMMM DD, YYYY' }}</td>
             <td><span class="badge badge-success" ng-show="record._user.data.updated">Actualizado</span>

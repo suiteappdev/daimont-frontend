@@ -108,6 +108,14 @@ angular.module('shoplyApp')
           });
     }
 
+    $scope.document_exist = function(){
+        api.user().add("documento/" + $rootScope.user.cc).success(function(res){
+            if(res != null){
+                alert("esta cedula ya se encuentra registrada");
+            }
+        });
+    }
+
     $scope.logout = function(){
       window.localStorage.clear();
       
@@ -143,8 +151,6 @@ angular.module('shoplyApp')
 
             return;
         }
-
-
 
         if($rootScope.user.data.ingresos_obj && $rootScope.user.data.egresos_obj){
             var _result = ($rootScope.user.data.ingresos_obj.number - $rootScope.user.data.egresos_obj.number);
@@ -202,7 +208,7 @@ angular.module('shoplyApp')
 
                                                         api.credits().add("email_request/" + res._id).get().success(function(res){
                                                           if(res){
-                                                                $state.go('dashboard', { without_offer : true });
+                                                                $state.go('dashboard', { without_offer : true }, { reload : true });
                                                           }
                                                         }); 
                                                 }
@@ -211,23 +217,8 @@ angular.module('shoplyApp')
                                 }, 10000);
                             }
                         })
-
-                    /*api.credits().add("current").get().success(function(res){
-                        if(res){
-                            var data = {};
-                            data._user = $rootScope.user._id;
-                            data._credit = res._id;
-
-                            api.contracts().post(data).success(function(res){
-                                if(res){
-                                    $state.go('dashboard', { without_offer : true });
-                                }
-                            });
-                        }
-                    }) */
-
                 }else{
-                    $state.go('dashboard.new_credit', { with_offer : true, reload:true});
+                    $state.go('dashboard.new_credit', { with_offer : true} , { reload : true });
                     $rootScope.updating = false;
                 }
             }

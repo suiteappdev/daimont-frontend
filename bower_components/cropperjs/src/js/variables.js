@@ -48,6 +48,7 @@
   var REGEXP_DATA_URL = /^data\:/;
   var REGEXP_DATA_URL_HEAD = /^data\:([^\;]+)\;base64,/;
   var REGEXP_DATA_URL_JPEG = /^data\:image\/jpeg.*;base64,/;
+  var REGEXP_HYPHENATE = /([a-z\d])([A-Z])/g;
 
   // Data
   var DATA_PREVIEW = 'preview';
@@ -70,7 +71,7 @@
 
   // Supports
   var SUPPORT_CANVAS = !!document.createElement('canvas').getContext;
-  var IS_SAFARI = navigator && /safari/i.test(navigator.userAgent) && /apple computer/i.test(navigator.vendor);
+  var IS_SAFARI_OR_UIWEBVIEW = navigator && /(Macintosh|iPhone|iPod|iPad).*AppleWebKit/i.test(navigator.userAgent);
 
   // Maths
   var min = Math.min;

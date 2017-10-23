@@ -8,15 +8,44 @@
  * Controller of the shoplyApp
  */
 angular.module('shoplyApp')
-  .controller('CreditsCtrl', function ($scope, modal,  api, storage, $state, $rootScope, $timeout, $http) {
+  .controller('CreditsCtrl', function ($scope, modal, $stateParams,  api, storage, $state, $rootScope, $timeout, $http) {
     $scope.items_tasks = [];
     $scope.Records  = false;
 
     $scope.load = function(){
-      api.credits().add('all').get().success(function(res){
-            $scope.records = res || []
-            $scope.Records  = true;
-      });
+      if($stateParams.status){
+          if($stateParams.status == 'firmado'){
+              api.credits().add('firmado').get().success(function(res){
+                    $scope.records = res || []
+                    $scope.Records  = true;
+              });            
+            }else if($stateParams.status == 'pendiente'){
+                api.credits().add('pendiente').get().success(function(res){
+                      $scope.records = res || []
+                      $scope.Records  = true;
+                }); 
+            }else if($stateParams.status == 'consignado'){
+                api.credits().add('consignado').get().success(function(res){
+                      $scope.records = res || []
+                      $scope.Records  = true;
+                }); 
+            }else if($stateParams.status == 'rechazado'){
+                api.credits().add('rechazado').get().success(function(res){
+                      $scope.records = res || []
+                      $scope.Records  = true;
+                }); 
+            }else if($stateParams.status == 'desactualizado'){
+                api.credits().add('desactualizado').get().success(function(res){
+                      $scope.records = res || []
+                      $scope.Records  = true;
+                }); 
+            }
+      }else{
+        api.credits().add('all').get().success(function(res){
+              $scope.records = res || []
+              $scope.Records  = true;
+        });
+      }
     }
 
     $scope.detail = function(){

@@ -8,6 +8,10 @@ noUiSlider is lightweight JavaScript range slider.
 - **Touch support** on Android, iOS and Windows devices
 - Tons of [examples](https://refreshless.com/nouislider/examples) and answered [Stack Overflow questions](https://stackoverflow.com/questions/tagged/nouislider)
 
+--------
+**Quick note:** I'm out of town for a while, so support will be slower than usual. Apologies in advance.
+--------
+
 License
 -------
 noUiSlider is licensed [WTFPL](http://www.wtfpl.net/about/). You can use it **for free** and **without any attribution**, in any personal or commercial project. You may also fork the project and re-release it under another license you prefer.
@@ -26,6 +30,9 @@ npm [(package)](https://www.npmjs.com/package/nouislider)
 
 Changelog
 ---------
+
+### 10.1.0 (*2017-07-26*)
+- Added: `multitouch` option (#793);
 
 ### 10.0.0 (*2017-05-28*)
 - Change: Change event listeners to be passive (#785);

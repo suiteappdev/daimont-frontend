@@ -3,7 +3,7 @@
                       <button type="button" class="close" data-dismiss="alert" aria-label="Close" style="position: relative;top: -2px;  ">
                         <span aria-hidden="true">&times;</span>
                       </button>
-                      <strong>Hola!</strong> Nuestro sistema te ha asignado un maximo de <strong>{{$root.user.data.cupon | currency:"$":0}}</strong> pesos, si estas de acuerdo solicita un credito nuevo, teniendo en cuenta este monto.
+                      <strong>Hola!</strong> Nuestro sistema te ha asignado un cupo maximo de <strong>{{$root.user.data.cupon | currency:"$":0}}</strong> pesos, si estas de acuerdo solicita un credito nuevo, teniendo en cuenta este monto.
                     </div>
                         <div class="simulator_summary col-lg-6 ng-hide" ng-hide="!$root.switch_summary">
                             <div class="card card-credit-resume card-padding">
@@ -163,7 +163,7 @@
                                     </div>
                                     <div class="row" ng-hide="!$root.isLogged || !$root.user">
                                         <div class="col-lg-12">
-                                            <button href="" ng-disabled="current_credit" class="btn btn-primary btn-block" ng-click="new_credit()">Solicitar</button>                           
+                                            <button href="" ng-disabled="current_credit && !with_offer" class="btn btn-primary btn-block" ng-click="new_credit()">Solicitar</button>                           
                                         </div>
                                     </div>
                                 </div>

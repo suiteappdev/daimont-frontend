@@ -26,14 +26,13 @@
     "angular": "~1.4.0",
     "moment": "~2.10.3"
   },
-  "_release": "4fc28292f1",
+  "_release": "1c14b3271b",
   "_resolution": {
     "type": "branch",
     "branch": "master",
-    "commit": "4fc28292f122510b64377ab3c7a158e553c21b1e"
+    "commit": "1c14b3271b83c8ca88b32ec9dd69a15e3fd94019"
   },
   "_source": "https://github.com/jkuri/ngDatepicker.git",
   "_target": "*",
-  "_originalSource": "ngDatepicker",
-  "_direct": true
+  "_originalSource": "ngDatepicker"
 }

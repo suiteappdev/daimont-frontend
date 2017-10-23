@@ -184,21 +184,27 @@
     }
   }
 
+  function hyphenate(str) {
+    return str.replace(REGEXP_HYPHENATE, '$1-$2').toLowerCase();
+  }
+
   function getData(element, name) {
-    return isObject(element[name]) ?
-      element[name] :
-      element.dataset ?
-        element.dataset[name] :
-        element.getAttribute('data-' + name);
+    if (isObject(element[name])) {
+      return element[name];
+    } else if (element.dataset) {
+      return element.dataset[name];
+    }
+
+    return element.getAttribute('data-' + hyphenate(name));
   }
 
   function setData(element, name, data) {
-    if (isObject(data) && isUndefined(element[name])) {
+    if (isObject(data)) {
       element[name] = data;
     } else if (element.dataset) {
       element.dataset[name] = data;
     } else {
-      element.setAttribute('data-' + name, data);
+      element.setAttribute('data-' + hyphenate(name), data);
     }
   }
 
@@ -208,7 +214,7 @@
     } else if (element.dataset) {
       delete element.dataset[name];
     } else {
-      element.removeAttribute('data-' + name);
+      element.removeAttribute('data-' + hyphenate(name));
     }
   }
 
@@ -399,7 +405,7 @@
     var newImage;
 
     // Modern browsers (ignore Safari)
-    if (image.naturalWidth && !IS_SAFARI) {
+    if (image.naturalWidth && !IS_SAFARI_OR_UIWEBVIEW) {
       return callback(image.naturalWidth, image.naturalHeight);
     }
 
@@ -504,13 +510,13 @@
       context.translate(translateX, translateY);
     }
 
-    if (rotatable) {
-      context.rotate(rotate * PI / 180);
-    }
-
-    // Should call `scale` after rotated
+    // Scale should come first before rotate as in the "getTransform" function
     if (scalable) {
       context.scale(scaleX, scaleY);
+    }
+
+    if (rotatable) {
+      context.rotate(rotate * PI / 180);
     }
 
     context.drawImage(image, floor(dstX), floor(dstY), floor(dstWidth), floor(dstHeight));
@@ -596,7 +602,7 @@
           orientation = dataView.getUint16(offset, littleEndian);
 
           // Override the orientation with its default value for Safari
-          if (IS_SAFARI) {
+          if (IS_SAFARI_OR_UIWEBVIEW) {
             dataView.setUint16(offset, 1, littleEndian);
           }
 

@@ -46,7 +46,7 @@ angular
 
                  if(window.localStorage.access_token){
                     $httpProvider.defaults.headers.common['access-token'] =  window.localStorage.access_token;
-                    $httpProvider.defaults.headers.common['x-daimont-user'] =  window.localStorage.uid || null  ; // common
+                    $httpProvider.defaults.headers.common['x-daimont-user'] = window.localStorage.user ? angular.fromJson(window.localStorage.user)._id : null // common
                  }
                  
                 console.log(config, 'request')
@@ -369,9 +369,12 @@ angular
                 }
           })
           .state('credits', {
-                url: '/credits',
+                url: '/credits/:status',
                 access: { requiredAuthentication: true },
                 templateUrl: 'views/credits/credits.html',
+                params: {
+                  status: null
+                },
                 data: {
                   pageTitle: 'Creditos'
                 }
